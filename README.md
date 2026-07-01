@@ -2,19 +2,31 @@
 
 A playful, retro CPG-style landing page for **NOODS** — prebiotic instant noodles.
 
-## Quick Start
+## Required brand assets
 
-Open `index.html` in a browser, or serve locally:
+Add your official PNG files to `assets/` before previewing:
+
+| File | Description |
+|------|-------------|
+| `assets/logo.png` | Official NOODS logo (sticky top-left header) |
+| `assets/mascots.png` | Official three-girl mascot illustration |
+
+These files are **not** included in the repo. Use your final brand PNGs exactly as provided — do not substitute AI-generated artwork.
+
+Optional:
+
+| File | Description |
+|------|-------------|
+| `assets/noodle-background.png` | Noodle pattern background (post-hero sections) |
+| `assets/hero-placeholder.mp4` | Hero video background |
+
+## Quick Start
 
 ```bash
 python3 -m http.server 8080
 ```
 
 Then visit [http://localhost:8080](http://localhost:8080).
-
-## Replace Placeholder Video
-
-Swap `assets/hero-placeholder.mp4` with your brand hero video. The video is set to autoplay, loop, muted, and plays inline.
 
 ## Brand Palette
 
