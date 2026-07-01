@@ -12,12 +12,10 @@
 </head>
 <body>
 
-  <!-- Sticky Logo -->
-  <header class="site-header" id="site-header">
-    <a href="#hero" class="site-header__logo" aria-label="NOODS — back to top">
-      <img src="assets/Logo.png" alt="NOODS" />
-    </a>
-  </header>
+  <!-- Fixed logo — no visible header bar -->
+  <a href="#hero" class="site-logo" id="site-logo" aria-label="NOODS — back to top">
+    <img src="assets/NOODS LOGO.png" alt="NOODS" />
+  </a>
 
   <!-- Hero -->
   <section class="hero" id="hero">
@@ -31,38 +29,69 @@
     >
       <source src="assets/hero-video.mp4" type="video/mp4" />
     </video>
-    <div class="hero__overlay"></div>
 
     <div class="hero__content">
-      <div class="hero__headline-banner">
-        <h1 class="hero__headline">Prebiotic Instant Noodles</h1>
-      </div>
-
-      <button class="btn btn--primary btn--large" id="cta-btn" type="button">
-        Be the First to Try
+      <button class="btn btn--hero" id="cta-btn" type="button">
+        <span class="btn__label">Be the First to Try</span>
+        <span class="btn__arrow" aria-hidden="true">→</span>
       </button>
     </div>
 
-    <img
-      class="hero__mascots"
-      src="assets/Girls.png"
-      alt="NOODS mascots enjoying noodles"
-    />
-
     <a href="#products" class="hero__scroll" aria-label="Scroll to learn more">
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <span class="hero__scroll-text">Scroll</span>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
     </a>
   </section>
 
-  <!-- Post-hero content with noodle background -->
+  <!-- Marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Prebiotic Fiber</span><span class="marquee__dot">✦</span>
+      <span>Clean Ingredients</span><span class="marquee__dot">✦</span>
+      <span>Gut Healthy</span><span class="marquee__dot">✦</span>
+      <span>Ready in 3 Minutes</span><span class="marquee__dot">✦</span>
+      <span>Zero Artificial Colors</span><span class="marquee__dot">✦</span>
+      <span>Prebiotic Fiber</span><span class="marquee__dot">✦</span>
+      <span>Clean Ingredients</span><span class="marquee__dot">✦</span>
+      <span>Gut Healthy</span><span class="marquee__dot">✦</span>
+      <span>Ready in 3 Minutes</span><span class="marquee__dot">✦</span>
+      <span>Zero Artificial Colors</span><span class="marquee__dot">✦</span>
+    </div>
+  </div>
+
+  <!-- Wave divider -->
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="var(--cream)"/>
+    </svg>
+  </div>
+
   <div class="page-content">
+
+    <!-- Stats band -->
+    <section class="stats reveal">
+      <div class="container stats__grid">
+        <div class="stat">
+          <span class="stat__number">3g+</span>
+          <span class="stat__label">Prebiotic Fiber</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number">0</span>
+          <span class="stat__label">Artificial Colors</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number">3 min</span>
+          <span class="stat__label">Ready to Eat</span>
+        </div>
+      </div>
+    </section>
 
     <!-- Product Info -->
     <section class="products" id="products">
       <div class="container">
-        <header class="section-header">
+        <header class="section-header reveal">
           <h2 class="section-title">
             <span class="section-title__text">Why NOODS?</span>
           </h2>
@@ -70,9 +99,10 @@
         </header>
 
         <div class="products__grid">
-          <article class="product-card">
+          <article class="product-card reveal">
+            <span class="product-card__number">01</span>
             <div class="product-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" width="72" height="72">
+              <svg viewBox="0 0 64 64" width="64" height="64">
                 <circle cx="32" cy="32" r="28" fill="#FFC90A" stroke="#111" stroke-width="3"/>
                 <path d="M16 28 Q32 18 48 28 Q32 38 16 28" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
                 <path d="M18 36 Q32 26 46 36 Q32 46 18 36" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
@@ -83,9 +113,10 @@
             <p class="product-card__text">Packed with prebiotic fiber that feeds the good bacteria in your gut — so every slurp works for you, not against you.</p>
           </article>
 
-          <article class="product-card">
+          <article class="product-card reveal reveal--delay">
+            <span class="product-card__number">02</span>
             <div class="product-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" width="72" height="72">
+              <svg viewBox="0 0 64 64" width="64" height="64">
                 <rect x="8" y="16" width="48" height="40" rx="6" fill="#F8E7C8" stroke="#111" stroke-width="3"/>
                 <path d="M16 28 L48 28 M16 36 L40 36 M16 44 L44 44" stroke="#5A3424" stroke-width="2.5" stroke-linecap="round"/>
                 <circle cx="48" cy="44" r="10" fill="#FF8A00" stroke="#111" stroke-width="2.5"/>
@@ -96,9 +127,10 @@
             <p class="product-card__text">No artificial flavors, colors, or preservatives. Just real, recognizable ingredients you can actually pronounce.</p>
           </article>
 
-          <article class="product-card">
+          <article class="product-card reveal">
+            <span class="product-card__number">03</span>
             <div class="product-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" width="72" height="72">
+              <svg viewBox="0 0 64 64" width="64" height="64">
                 <ellipse cx="32" cy="44" rx="22" ry="10" fill="#E63220" stroke="#111" stroke-width="3"/>
                 <path d="M14 44 Q32 20 50 44" fill="#FFC90A" stroke="#111" stroke-width="2"/>
                 <path d="M18 40 Q32 24 46 40" fill="#F8E7C8" stroke="#111" stroke-width="1.5"/>
@@ -109,9 +141,10 @@
             <p class="product-card__text">All the comfort and convenience of instant noodles — without the guilt. Quick, delicious, and actually good for you.</p>
           </article>
 
-          <article class="product-card">
+          <article class="product-card reveal reveal--delay">
+            <span class="product-card__number">04</span>
             <div class="product-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" width="72" height="72">
+              <svg viewBox="0 0 64 64" width="64" height="64">
                 <circle cx="32" cy="32" r="24" fill="#FF8A00" stroke="#111" stroke-width="3"/>
                 <path d="M20 32 Q32 16 44 32 Q32 48 20 32" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
                 <circle cx="26" cy="30" r="3" fill="#E63220" stroke="#111" stroke-width="1.5"/>
@@ -124,8 +157,8 @@
           </article>
         </div>
 
-        <div class="mascot-accent" aria-hidden="true">
-          <img src="assets/Girls.png" alt="NOODS mascots enjoying noodles" />
+        <div class="mascot-band reveal">
+          <img src="assets/Girls mascot NOODS.png" alt="NOODS mascots enjoying noodles" />
         </div>
       </div>
     </section>
@@ -133,7 +166,7 @@
     <!-- Team -->
     <section class="team" id="team">
       <div class="container">
-        <header class="section-header">
+        <header class="section-header reveal">
           <h2 class="section-title">
             <span class="section-title__text">Meet the Team</span>
           </h2>
@@ -141,10 +174,10 @@
         </header>
 
         <div class="team__grid">
-          <article class="team-card">
+          <article class="team-card reveal">
             <div class="team-card__image">
               <div class="team-card__placeholder">
-                <svg viewBox="0 0 80 80" width="56" height="56" aria-hidden="true">
+                <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
                   <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
                   <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
                 </svg>
@@ -155,10 +188,10 @@
             <p class="team-card__bio">Passionate about gut health and making better-for-you food accessible to everyone. Believes instant noodles deserve a glow-up.</p>
           </article>
 
-          <article class="team-card">
+          <article class="team-card reveal reveal--delay">
             <div class="team-card__image">
               <div class="team-card__placeholder">
-                <svg viewBox="0 0 80 80" width="56" height="56" aria-hidden="true">
+                <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
                   <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
                   <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
                 </svg>
@@ -169,10 +202,10 @@
             <p class="team-card__bio">Food scientist turned entrepreneur. Obsessed with creating the perfect noodle texture without compromising on nutrition.</p>
           </article>
 
-          <article class="team-card">
+          <article class="team-card reveal reveal--delay-2">
             <div class="team-card__image">
               <div class="team-card__placeholder">
-                <svg viewBox="0 0 80 80" width="56" height="56" aria-hidden="true">
+                <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
                   <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
                   <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
                 </svg>
@@ -189,13 +222,21 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="container footer__inner">
-        <img class="footer__logo-img" src="assets/Logo.png" alt="NOODS" />
+        <img class="footer__logo-img" src="assets/NOODS LOGO.png" alt="NOODS" />
         <p class="footer__tagline">Prebiotic Instant Noodles</p>
+        <button class="btn btn--primary btn--footer" type="button" id="footer-cta-btn">
+          Be the First to Try
+        </button>
         <p class="footer__copy">&copy; 2026 NOODS. All rights reserved.</p>
       </div>
     </footer>
 
   </div>
+
+  <!-- Floating CTA (appears after scrolling past hero) -->
+  <button class="floating-cta" id="floating-cta" type="button" hidden>
+    Be the First to Try
+  </button>
 
   <!-- Signup Modal -->
   <div class="modal" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
@@ -208,7 +249,7 @@
       </button>
 
       <div class="modal__header">
-        <img class="modal__logo-img" src="assets/Logo.png" alt="NOODS" />
+        <img class="modal__logo-img" src="assets/NOODS LOGO.png" alt="NOODS" />
         <h2 class="modal__title" id="modal-title">Be the First to Try</h2>
         <p class="modal__subtitle">Join the waitlist and get early access to prebiotic instant noodles.</p>
       </div>
