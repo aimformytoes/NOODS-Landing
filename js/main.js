@@ -107,6 +107,20 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  /* Fixed logo appears after scrolling past hero */
+  const siteLogo = document.getElementById('site-logo');
+  if (siteLogo && hero) {
+    const logoObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          siteLogo.classList.toggle('site-logo--hidden', entry.isIntersecting);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    logoObserver.observe(hero);
+  }
+
   /* Floating CTA after hero */
   if (floatingCta && hero) {
     const heroObserver = new IntersectionObserver(
