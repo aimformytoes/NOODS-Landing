@@ -4,21 +4,19 @@ A playful, retro CPG-style landing page for **NOODS** — prebiotic instant nood
 
 ## Required brand assets
 
-Add your official PNG files to `assets/` before previewing:
+Add your **official** PNG files to `assets/`:
 
-| File | Description |
-|------|-------------|
-| `assets/logo.png` | Official NOODS logo (sticky top-left header) |
-| `assets/mascots.png` | Official three-girl mascot illustration |
+| Save as | Your file |
+|---------|-----------|
+| `assets/logo.png` | First attached PNG — NOODS logo |
+| `assets/mascots.png` | Second attached PNG — three mascot girls |
 
-These files are **not** included in the repo. Use your final brand PNGs exactly as provided — do not substitute AI-generated artwork.
+The landing page references these paths directly with no filters or modifications. Drag both files into `assets/` in your editor, or run:
 
-Optional:
-
-| File | Description |
-|------|-------------|
-| `assets/noodle-background.png` | Noodle pattern background (post-hero sections) |
-| `assets/hero-placeholder.mp4` | Hero video background |
+```bash
+cp /path/to/your-logo.png assets/logo.png
+cp /path/to/your-mascots.png assets/mascots.png
+```
 
 ## Quick Start
 
