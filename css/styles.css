@@ -12,8 +12,9 @@
   --black: #111111;
   --white: #FFFFFF;
 
-  --font-display: 'Fredoka', system-ui, sans-serif;
-  --font-headline: 'Roboto Slab', Georgia, serif;
+  --font-display: 'Baloo 2', system-ui, sans-serif;
+  --font-headline: 'Baloo 2', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
 
   --shadow-cartoon: 4px 4px 0 var(--black);
   --shadow-cartoon-lg: 6px 6px 0 var(--black);
@@ -38,11 +39,13 @@ html {
 }
 
 body {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   color: var(--black);
   background: var(--cream);
   overflow-x: hidden;
   line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: 0.005em;
 }
 
 img,
@@ -117,8 +120,10 @@ a {
   align-items: center;
   justify-content: center;
   padding: 18px 40px;
+  font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.01em;
   border-radius: var(--radius-pill);
   border: 3px solid var(--black);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -203,13 +208,13 @@ a {
 }
 
 .hero__headline {
-  font-family: var(--font-headline);
-  font-size: clamp(1.35rem, 4.5vw, 2.25rem);
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 2.6rem);
+  font-weight: 800;
   color: var(--red);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  line-height: 1.25;
+  letter-spacing: 0.015em;
+  line-height: 1.1;
 }
 
 .hero__mascots {
@@ -275,19 +280,21 @@ a {
 .section-title__text {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 3.75rem);
-  font-weight: 700;
+  font-size: clamp(2.6rem, 6.5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.005em;
   color: var(--yellow);
   -webkit-text-stroke: 3px var(--black);
   paint-order: stroke fill;
   text-shadow: 4px 4px 0 var(--black);
-  line-height: 1.1;
+  line-height: 1.05;
 }
 
 .section-subtitle {
+  font-family: var(--font-body);
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   color: var(--brown);
-  font-weight: 600;
+  font-weight: 700;
   max-width: 640px;
   margin: 0 auto;
   line-height: 1.5;
@@ -324,18 +331,20 @@ a {
 }
 
 .product-card__title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
   color: var(--brown);
   margin-bottom: 16px;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .product-card__text {
+  font-family: var(--font-body);
   font-size: 1.125rem;
   line-height: 1.7;
   color: var(--black);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .mascot-accent {
@@ -399,26 +408,29 @@ a {
 }
 
 .team-card__name {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
   color: var(--black);
   margin-bottom: 6px;
 }
 
 .team-card__role {
+  font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--red);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   margin-bottom: 16px;
 }
 
 .team-card__bio {
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.7;
   color: var(--brown);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* ---- Footer ---- */
@@ -438,19 +450,20 @@ a {
 }
 
 .footer__tagline {
-  font-family: var(--font-headline);
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--red);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   margin-bottom: 20px;
 }
 
 .footer__copy {
+  font-family: var(--font-body);
   font-size: 1rem;
-  opacity: 0.55;
-  font-weight: 400;
+  opacity: 0.6;
+  font-weight: 600;
 }
 
 /* ---- Modal ---- */
@@ -522,18 +535,19 @@ a {
 }
 
 .modal__title {
-  font-family: var(--font-headline);
-  font-size: 1.75rem;
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 800;
   color: var(--red);
   margin-bottom: 10px;
 }
 
 .modal__subtitle {
+  font-family: var(--font-body);
   font-size: 1.125rem;
   color: var(--brown);
   line-height: 1.6;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .modal__form {
@@ -549,14 +563,16 @@ a {
 }
 
 .form-label {
+  font-family: var(--font-display);
   font-size: 1.0625rem;
   font-weight: 700;
   color: var(--brown);
 }
 
 .form-input {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 1.125rem;
+  font-weight: 600;
   padding: 16px 18px;
   border: 3px solid var(--black);
   border-radius: 14px;
@@ -580,9 +596,10 @@ a {
 }
 
 .form-error {
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   color: var(--red);
-  font-weight: 600;
+  font-weight: 700;
   min-height: 1.2em;
 }
 
