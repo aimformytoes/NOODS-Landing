@@ -226,7 +226,6 @@ a {
     0 8px 32px rgba(17, 17, 17, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
   letter-spacing: 0.03em;
-  animation: heroBtnIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
 }
 
 .btn--hero:hover {
@@ -303,10 +302,15 @@ a {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: clamp(18px, 3.5vw, 28px);
+  gap: clamp(16px, 3vw, 24px);
   padding: clamp(5vh, 8vw, 9vh) 24px 0;
   width: 100%;
+  max-width: 900px;
   animation: heroStackIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__stack .btn--hero {
+  animation: heroBtnIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
 }
 
 .hero__logo {
@@ -321,15 +325,15 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 0;
   width: fit-content;
-  max-width: min(720px, 92vw);
+  max-width: min(760px, 94vw);
   background: var(--card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: var(--border-subtle);
   border-radius: var(--radius);
-  padding: 10px 16px;
+  padding: 8px 12px;
   box-shadow: var(--shadow-cartoon);
   animation: heroStackIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
 }
@@ -337,29 +341,19 @@ a {
 .hero__banner-line {
   display: block;
   font-family: var(--font-headline);
-  font-size: clamp(1.2rem, 4vw, 2.25rem);
+  font-size: clamp(1.35rem, 4.8vw, 2.6rem);
   font-weight: 900;
   color: var(--red);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  line-height: 1.15;
-}
-
-.hero__actions {
-  position: absolute;
-  bottom: clamp(28px, 5vh, 48px);
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
-  z-index: 3;
-  animation: heroBtnInCenter 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
 }
 
 .hero__scroll {
   position: absolute;
   bottom: 24px;
-  left: 24px;
-  transform: none;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   display: flex;
   align-items: center;
@@ -389,16 +383,12 @@ a {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
 }
 
-/* ---- Marquee: flowing ramen stands ---- */
+/* ---- Marquee: flowing noodle strand ---- */
 
 .marquee {
-  background: linear-gradient(
-    180deg,
-    rgba(248, 231, 200, 0.6) 0%,
-    rgba(237, 220, 200, 0.85) 100%
-  );
+  background: rgba(248, 231, 200, 0.75);
   overflow: hidden;
-  padding: 12px 0 8px;
+  padding: 28px 0 14px;
   position: relative;
   z-index: 2;
   border-top: var(--border-subtle);
@@ -408,61 +398,82 @@ a {
 .marquee__track {
   display: flex;
   align-items: flex-end;
-  gap: 56px;
   width: max-content;
-  padding: 0 28px;
-  animation: marquee 70s linear infinite;
+  animation: marquee 65s linear infinite;
 }
 
-.ramen-stand {
-  flex-shrink: 0;
-  animation: standBob 4s ease-in-out infinite;
-}
-
-.ramen-stand:nth-child(2) { animation-delay: 0.5s; }
-.ramen-stand:nth-child(3) { animation-delay: 1s; }
-.ramen-stand:nth-child(4) { animation-delay: 1.5s; }
-.ramen-stand:nth-child(5) { animation-delay: 2s; }
-
-.ramen-stand__rig {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.ramen-stand__cart {
-  width: 110px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 4px 10px rgba(90, 52, 36, 0.12));
-}
-
-.ramen-stand__sign {
+.noodle-stream {
   position: relative;
-  margin-top: -6px;
-  padding: 6px 12px;
+  width: 1200px;
+  flex-shrink: 0;
+  padding: 0 8px;
+}
+
+.noodle-stream__tags {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 40px 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.noodle-tag {
+  position: relative;
+  padding: 5px 10px;
   background: var(--card-bg);
   border: var(--border-subtle);
   border-radius: 6px;
   font-family: var(--font-headline);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   color: var(--brown);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   white-space: nowrap;
   box-shadow: var(--shadow-cartoon);
 }
 
-.ramen-stand__sign::before {
+.noodle-tag::after {
   content: '';
   position: absolute;
-  top: -10px;
   left: 50%;
+  bottom: -14px;
   transform: translateX(-50%);
   width: 2px;
-  height: 10px;
+  height: 14px;
   background: var(--tan);
+}
+
+.noodle-stream__strand {
+  display: block;
+  width: 100%;
+  height: 36px;
+}
+
+.noodle-stream__shadow {
+  fill: none;
+  stroke: #C4A07A;
+  stroke-width: 16;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.noodle-stream__body {
+  fill: none;
+  stroke: var(--tan);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.noodle-stream__highlight {
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
 }
 
 /* ---- Page content (floats over fixed bg) ---- */
@@ -626,7 +637,7 @@ a {
 /* ---- Products ---- */
 
 .products {
-  padding: 64px 0 32px;
+  padding: 64px 0 16px;
   position: relative;
 }
 
@@ -653,16 +664,16 @@ a {
 .products__tagline {
   display: inline-block;
   width: fit-content;
-  max-width: min(760px, 94vw);
+  max-width: min(800px, 96vw);
   font-family: var(--font-headline);
-  font-size: clamp(1.2rem, 3.5vw, 2rem);
+  font-size: clamp(1.3rem, 4vw, 2.35rem);
   font-weight: 900;
   color: var(--red);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  line-height: 1.2;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
   margin: 0 auto;
-  padding: 10px 16px;
+  padding: 8px 12px;
   background: var(--card-bg);
   border: var(--border-subtle);
   border-radius: var(--radius);
@@ -712,7 +723,7 @@ a {
 }
 
 .products .section-mascots {
-  margin-top: 32px;
+  margin-top: 24px;
   margin-bottom: 0;
 }
 
@@ -723,7 +734,7 @@ a {
 /* ---- Team ---- */
 
 .team {
-  padding: 40px 0 88px;
+  padding: 24px 0 88px;
   background: transparent;
 }
 
@@ -1019,22 +1030,6 @@ a {
   }
 }
 
-@keyframes heroBtnInCenter {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(16px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-}
-
-@keyframes standBob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-
 @keyframes heroStackIn {
   from {
     opacity: 0;
@@ -1082,8 +1077,8 @@ a {
 }
 
 @keyframes bobDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
 }
 
 @keyframes marquee {
@@ -1137,38 +1132,30 @@ a {
   }
 
   .hero__banner {
-    padding: 8px 14px;
+    padding: 6px 10px;
   }
 
   .hero__banner-line {
-    font-size: clamp(0.95rem, 4.2vw, 1.35rem);
-    letter-spacing: 0.04em;
-  }
-
-  .hero__actions {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    bottom: 56px;
-  }
-
-  .hero__actions .btn--hero {
-    padding: 12px 28px;
-    font-size: 0.95rem;
+    font-size: clamp(1.05rem, 4.5vw, 1.5rem);
+    letter-spacing: 0.03em;
   }
 
   .products__tagline {
-    padding: 8px 14px;
-    font-size: clamp(1rem, 3.8vw, 1.35rem);
+    padding: 6px 10px;
+    font-size: clamp(1.05rem, 4vw, 1.45rem);
   }
 
-  .ramen-stand__cart {
-    width: 88px;
+  .noodle-stream {
+    width: 900px;
   }
 
-  .ramen-stand__sign {
-    font-size: 0.62rem;
-    padding: 5px 10px;
+  .noodle-tag {
+    font-size: 0.58rem;
+    padding: 4px 8px;
+  }
+
+  .noodle-stream__tags {
+    padding: 0 24px 8px;
   }
 
   .products__grid {
@@ -1231,9 +1218,5 @@ a {
   .reveal {
     opacity: 1;
     transform: none;
-  }
-
-  .ramen-stand {
-    animation: none;
   }
 }
