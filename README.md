@@ -6,7 +6,8 @@ A playful, retro CPG-style landing page for **NOODS** — prebiotic instant nood
 
 | File | Description |
 |------|-------------|
-| `assets/Logo.png` | Official NOODS logo |
+| `assets/LOGO.png` | Official NOODS logo |
+| `assets/Background.png` | Noodle pattern background |
 | `assets/Girls.png` | Official mascot illustration |
 | `assets/hero-video.mp4` | Hero background video |
 | `assets/background.jpeg` | Post-hero noodle background |
