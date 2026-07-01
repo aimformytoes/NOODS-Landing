@@ -2,21 +2,14 @@
 
 A playful, retro CPG-style landing page for **NOODS** — prebiotic instant noodles.
 
-## Required brand assets
+## Brand assets
 
-Add your **official** PNG files to `assets/`:
-
-| Save as | Your file |
-|---------|-----------|
-| `assets/logo.png` | First attached PNG — NOODS logo |
-| `assets/mascots.png` | Second attached PNG — three mascot girls |
-
-The landing page references these paths directly with no filters or modifications. Drag both files into `assets/` in your editor, or run:
-
-```bash
-cp /path/to/your-logo.png assets/logo.png
-cp /path/to/your-mascots.png assets/mascots.png
-```
+| File | Description |
+|------|-------------|
+| `assets/Logo.png` | Official NOODS logo |
+| `assets/Girls.png` | Official mascot illustration |
+| `assets/hero-video.mp4` | Hero background video |
+| `assets/background.jpeg` | Post-hero noodle background |
 
 ## Quick Start
 
