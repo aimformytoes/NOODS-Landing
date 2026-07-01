@@ -12,6 +12,13 @@
 </head>
 <body>
 
+  <!-- Sticky Logo -->
+  <header class="site-header" id="site-header">
+    <a href="#hero" class="site-header__logo" aria-label="NOODS — back to top">
+      <img src="assets/logo.png" alt="NOODS" width="160" height="64" />
+    </a>
+  </header>
+
   <!-- Hero -->
   <section class="hero" id="hero">
     <video
@@ -27,193 +34,171 @@
     <div class="hero__overlay"></div>
 
     <div class="hero__content">
-      <div class="hero__logo" aria-label="NOODS">
-        <span class="logo-text">NOODS</span>
-      </div>
-
       <div class="hero__headline-banner">
         <h1 class="hero__headline">Prebiotic Instant Noodles</h1>
       </div>
 
-      <button class="btn btn--primary" id="cta-btn" type="button">
+      <button class="btn btn--primary btn--large" id="cta-btn" type="button">
         Be the First to Try
       </button>
     </div>
 
-    <div class="hero__characters" aria-hidden="true">
-      <svg class="character character--left" viewBox="0 0 80 120" width="80" height="120">
-        <ellipse cx="40" cy="105" rx="22" ry="6" fill="#111" opacity="0.15"/>
-        <rect x="22" y="62" width="36" height="40" rx="8" fill="#FF8A00" stroke="#111" stroke-width="3"/>
-        <circle cx="40" cy="38" r="18" fill="#F8E7C8" stroke="#111" stroke-width="3"/>
-        <path d="M22 38 Q40 22 58 38" fill="#111"/>
-        <circle cx="33" cy="38" r="2.5" fill="#111"/>
-        <circle cx="47" cy="38" r="2.5" fill="#111"/>
-        <path d="M34 46 Q40 52 46 46" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-        <path d="M28 55 L18 35 M52 55 L62 35" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
-        <ellipse cx="40" cy="12" rx="16" ry="8" fill="#E63220" stroke="#111" stroke-width="2.5"/>
-        <path d="M30 12 Q40 4 50 12" fill="#FFC90A" stroke="#111" stroke-width="1.5"/>
-      </svg>
-      <svg class="character character--center" viewBox="0 0 80 120" width="80" height="120">
-        <ellipse cx="40" cy="105" rx="22" ry="6" fill="#111" opacity="0.15"/>
-        <rect x="22" y="62" width="36" height="40" rx="8" fill="#FF8A00" stroke="#111" stroke-width="3"/>
-        <circle cx="40" cy="38" r="18" fill="#F8E7C8" stroke="#111" stroke-width="3"/>
-        <path d="M22 38 Q40 22 58 38" fill="#111"/>
-        <circle cx="33" cy="38" r="2.5" fill="#111"/>
-        <circle cx="47" cy="38" r="2.5" fill="#111"/>
-        <path d="M34 46 Q40 52 46 46" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-        <ellipse cx="55" cy="55" rx="12" ry="8" fill="#E63220" stroke="#111" stroke-width="2.5"/>
-        <path d="M48 52 Q55 48 62 52" fill="none" stroke="#FFC90A" stroke-width="2"/>
-        <line x1="62" y1="52" x2="68" y2="44" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="62" y1="52" x2="70" y2="50" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
-      <svg class="character character--right" viewBox="0 0 80 120" width="80" height="120">
-        <ellipse cx="40" cy="105" rx="22" ry="6" fill="#111" opacity="0.15"/>
-        <rect x="22" y="62" width="36" height="40" rx="8" fill="#FF8A00" stroke="#111" stroke-width="3"/>
-        <circle cx="40" cy="38" r="18" fill="#F8E7C8" stroke="#111" stroke-width="3"/>
-        <path d="M22 38 Q40 22 58 38" fill="#111"/>
-        <circle cx="33" cy="36" r="2" fill="#111"/>
-        <circle cx="47" cy="36" r="2" fill="#111"/>
-        <path d="M30 44 Q40 54 50 44" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-        <ellipse cx="58" cy="90" rx="10" ry="6" fill="#E63220" stroke="#111" stroke-width="2"/>
-        <line x1="64" y1="88" x2="72" y2="82" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-        <line x1="64" y1="90" x2="74" y2="90" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </div>
+    <img
+      class="hero__mascots"
+      src="assets/mascots.png"
+      alt=""
+      aria-hidden="true"
+      width="480"
+      height="240"
+    />
 
     <a href="#products" class="hero__scroll" aria-label="Scroll to learn more">
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
     </a>
   </section>
 
-  <!-- Product Info -->
-  <section class="products" id="products">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="section-title__text">Why NOODS?</span>
-      </h2>
-      <p class="section-subtitle">Instant noodles, reimagined for your gut.</p>
+  <!-- Post-hero content with noodle background -->
+  <div class="page-content">
 
-      <div class="products__grid">
-        <article class="product-card">
-          <div class="product-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="64" height="64">
-              <circle cx="32" cy="32" r="28" fill="#FFC90A" stroke="#111" stroke-width="3"/>
-              <path d="M16 28 Q32 18 48 28 Q32 38 16 28" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
-              <path d="M18 36 Q32 26 46 36 Q32 46 18 36" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
-              <path d="M20 44 Q32 34 44 44 Q32 54 20 44" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
-            </svg>
-          </div>
-          <h3 class="product-card__title">Prebiotic Fiber</h3>
-          <p class="product-card__text">Packed with prebiotic fiber that feeds the good bacteria in your gut — so every slurp works for you, not against you.</p>
-        </article>
+    <!-- Product Info -->
+    <section class="products" id="products">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title">
+            <span class="section-title__text">Why NOODS?</span>
+          </h2>
+          <p class="section-subtitle">Instant noodles, reimagined for your gut.</p>
+        </header>
 
-        <article class="product-card">
-          <div class="product-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="64" height="64">
-              <rect x="8" y="16" width="48" height="40" rx="6" fill="#F8E7C8" stroke="#111" stroke-width="3"/>
-              <path d="M16 28 L48 28 M16 36 L40 36 M16 44 L44 44" stroke="#5A3424" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="48" cy="44" r="10" fill="#FF8A00" stroke="#111" stroke-width="2.5"/>
-              <path d="M44 44 L47 47 L52 41" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3 class="product-card__title">Clean Ingredients</h3>
-          <p class="product-card__text">No artificial flavors, colors, or preservatives. Just real, recognizable ingredients you can actually pronounce.</p>
-        </article>
+        <div class="products__grid">
+          <article class="product-card">
+            <div class="product-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="72" height="72">
+                <circle cx="32" cy="32" r="28" fill="#FFC90A" stroke="#111" stroke-width="3"/>
+                <path d="M16 28 Q32 18 48 28 Q32 38 16 28" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
+                <path d="M18 36 Q32 26 46 36 Q32 46 18 36" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
+                <path d="M20 44 Q32 34 44 44 Q32 54 20 44" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3 class="product-card__title">Prebiotic Fiber</h3>
+            <p class="product-card__text">Packed with prebiotic fiber that feeds the good bacteria in your gut — so every slurp works for you, not against you.</p>
+          </article>
 
-        <article class="product-card">
-          <div class="product-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="64" height="64">
-              <ellipse cx="32" cy="44" rx="22" ry="10" fill="#E63220" stroke="#111" stroke-width="3"/>
-              <path d="M14 44 Q32 20 50 44" fill="#FFC90A" stroke="#111" stroke-width="2"/>
-              <path d="M18 40 Q32 24 46 40" fill="#F8E7C8" stroke="#111" stroke-width="1.5"/>
-              <path d="M22 36 Q32 22 42 36" fill="#D99A55" stroke="#111" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <h3 class="product-card__title">Better-for-You Instant Noodles</h3>
-          <p class="product-card__text">All the comfort and convenience of instant noodles — without the guilt. Quick, delicious, and actually good for you.</p>
-        </article>
+          <article class="product-card">
+            <div class="product-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="72" height="72">
+                <rect x="8" y="16" width="48" height="40" rx="6" fill="#F8E7C8" stroke="#111" stroke-width="3"/>
+                <path d="M16 28 L48 28 M16 36 L40 36 M16 44 L44 44" stroke="#5A3424" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="48" cy="44" r="10" fill="#FF8A00" stroke="#111" stroke-width="2.5"/>
+                <path d="M44 44 L47 47 L52 41" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="product-card__title">Clean Ingredients</h3>
+            <p class="product-card__text">No artificial flavors, colors, or preservatives. Just real, recognizable ingredients you can actually pronounce.</p>
+          </article>
 
-        <article class="product-card">
-          <div class="product-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="64" height="64">
-              <circle cx="32" cy="32" r="24" fill="#FF8A00" stroke="#111" stroke-width="3"/>
-              <path d="M20 32 Q32 16 44 32 Q32 48 20 32" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
-              <circle cx="26" cy="30" r="3" fill="#E63220" stroke="#111" stroke-width="1.5"/>
-              <circle cx="38" cy="30" r="3" fill="#E63220" stroke="#111" stroke-width="1.5"/>
-              <path d="M24 38 Q32 44 40 38" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="product-card__title">Healthy Gut, Happy You</h3>
-          <p class="product-card__text">Made with ingredients specifically chosen to promote a healthy gut microbiome. Feel the difference from the inside out.</p>
-        </article>
+          <article class="product-card">
+            <div class="product-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="72" height="72">
+                <ellipse cx="32" cy="44" rx="22" ry="10" fill="#E63220" stroke="#111" stroke-width="3"/>
+                <path d="M14 44 Q32 20 50 44" fill="#FFC90A" stroke="#111" stroke-width="2"/>
+                <path d="M18 40 Q32 24 46 40" fill="#F8E7C8" stroke="#111" stroke-width="1.5"/>
+                <path d="M22 36 Q32 22 42 36" fill="#D99A55" stroke="#111" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3 class="product-card__title">Better-for-You Instant Noodles</h3>
+            <p class="product-card__text">All the comfort and convenience of instant noodles — without the guilt. Quick, delicious, and actually good for you.</p>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" width="72" height="72">
+                <circle cx="32" cy="32" r="24" fill="#FF8A00" stroke="#111" stroke-width="3"/>
+                <path d="M20 32 Q32 16 44 32 Q32 48 20 32" fill="#F8E7C8" stroke="#111" stroke-width="2"/>
+                <circle cx="26" cy="30" r="3" fill="#E63220" stroke="#111" stroke-width="1.5"/>
+                <circle cx="38" cy="30" r="3" fill="#E63220" stroke="#111" stroke-width="1.5"/>
+                <path d="M24 38 Q32 44 40 38" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="product-card__title">Healthy Gut, Happy You</h3>
+            <p class="product-card__text">Made with ingredients specifically chosen to promote a healthy gut microbiome. Feel the difference from the inside out.</p>
+          </article>
+        </div>
+
+        <div class="mascot-accent" aria-hidden="true">
+          <img src="assets/mascots.png" alt="" width="360" height="180" />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Team -->
-  <section class="team" id="team">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="section-title__text">Meet the Team</span>
-      </h2>
-      <p class="section-subtitle">The noodle-obsessed founders behind NOODS.</p>
+    <!-- Team -->
+    <section class="team" id="team">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title">
+            <span class="section-title__text">Meet the Team</span>
+          </h2>
+          <p class="section-subtitle">The noodle-obsessed founders behind NOODS.</p>
+        </header>
 
-      <div class="team__grid">
-        <article class="team-card">
-          <div class="team-card__image">
-            <div class="team-card__placeholder">
-              <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
-                <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
-                <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
-              </svg>
+        <div class="team__grid">
+          <article class="team-card">
+            <div class="team-card__image">
+              <div class="team-card__placeholder">
+                <svg viewBox="0 0 80 80" width="56" height="56" aria-hidden="true">
+                  <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
+                  <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <h3 class="team-card__name">Founder Name</h3>
-          <p class="team-card__role">Co-Founder &amp; CEO</p>
-          <p class="team-card__bio">Passionate about gut health and making better-for-you food accessible to everyone. Believes instant noodles deserve a glow-up.</p>
-        </article>
+            <h3 class="team-card__name">Founder Name</h3>
+            <p class="team-card__role">Co-Founder &amp; CEO</p>
+            <p class="team-card__bio">Passionate about gut health and making better-for-you food accessible to everyone. Believes instant noodles deserve a glow-up.</p>
+          </article>
 
-        <article class="team-card">
-          <div class="team-card__image">
-            <div class="team-card__placeholder">
-              <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
-                <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
-                <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
-              </svg>
+          <article class="team-card">
+            <div class="team-card__image">
+              <div class="team-card__placeholder">
+                <svg viewBox="0 0 80 80" width="56" height="56" aria-hidden="true">
+                  <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
+                  <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <h3 class="team-card__name">Founder Name</h3>
-          <p class="team-card__role">Co-Founder &amp; CPO</p>
-          <p class="team-card__bio">Food scientist turned entrepreneur. Obsessed with creating the perfect noodle texture without compromising on nutrition.</p>
-        </article>
+            <h3 class="team-card__name">Founder Name</h3>
+            <p class="team-card__role">Co-Founder &amp; CPO</p>
+            <p class="team-card__bio">Food scientist turned entrepreneur. Obsessed with creating the perfect noodle texture without compromising on nutrition.</p>
+          </article>
 
-        <article class="team-card">
-          <div class="team-card__image">
-            <div class="team-card__placeholder">
-              <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
-                <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
-                <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
-              </svg>
+          <article class="team-card">
+            <div class="team-card__image">
+              <div class="team-card__placeholder">
+                <svg viewBox="0 0 80 80" width="56" height="56" aria-hidden="true">
+                  <circle cx="40" cy="30" r="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
+                  <ellipse cx="40" cy="62" rx="20" ry="14" fill="#D99A55" stroke="#111" stroke-width="2"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <h3 class="team-card__name">Founder Name</h3>
-          <p class="team-card__role">Co-Founder &amp; CMO</p>
-          <p class="team-card__bio">Brand builder and noodle enthusiast. On a mission to make healthy eating fun, bold, and unapologetically delicious.</p>
-        </article>
+            <h3 class="team-card__name">Founder Name</h3>
+            <p class="team-card__role">Co-Founder &amp; CMO</p>
+            <p class="team-card__bio">Brand builder and noodle enthusiast. On a mission to make healthy eating fun, bold, and unapologetically delicious.</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__logo">NOODS</span>
-      <p class="footer__tagline">Prebiotic Instant Noodles</p>
-      <p class="footer__copy">&copy; 2026 NOODS. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <img class="footer__logo-img" src="assets/logo.png" alt="NOODS" width="140" height="56" />
+        <p class="footer__tagline">Prebiotic Instant Noodles</p>
+        <p class="footer__copy">&copy; 2026 NOODS. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </div>
 
   <!-- Signup Modal -->
   <div class="modal" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
@@ -226,7 +211,7 @@
       </button>
 
       <div class="modal__header">
-        <span class="modal__logo">NOODS</span>
+        <img class="modal__logo-img" src="assets/logo.png" alt="NOODS" width="120" height="48" />
         <h2 class="modal__title" id="modal-title">Be the First to Try</h2>
         <p class="modal__subtitle">Join the waitlist and get early access to prebiotic instant noodles.</p>
       </div>
@@ -260,7 +245,7 @@
           <span class="form-error" id="email-error"></span>
         </div>
 
-        <button class="btn btn--primary btn--full" type="submit">
+        <button class="btn btn--primary btn--full btn--large" type="submit">
           Join the Waitlist
         </button>
       </form>

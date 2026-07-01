@@ -84,4 +84,13 @@
       /* Autoplay may be blocked; video element still shows first frame */
     });
   }
+
+  const siteHeader = document.getElementById('site-header');
+  if (siteHeader) {
+    function updateHeader() {
+      siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
+    }
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
 })();
