@@ -44,6 +44,36 @@ body {
   line-height: 1.6;
 }
 
+/* ---- Fixed site background ---- */
+
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('../assets/Background-image.jpeg') center center / cover no-repeat;
+  pointer-events: none;
+}
+
+.hero,
+.marquee,
+.page-content,
+.floating-cta,
+.site-logo,
+.modal {
+  position: relative;
+  z-index: 1;
+}
+
+.site-logo,
+.floating-cta,
+.modal {
+  z-index: 300;
+}
+
+.modal {
+  z-index: 1000;
+}
+
 img,
 video {
   display: block;
@@ -229,6 +259,7 @@ a {
   min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
+  z-index: 2;
 }
 
 .hero__video {
@@ -323,7 +354,7 @@ a {
   overflow: hidden;
   padding: 14px 0;
   position: relative;
-  z-index: 10;
+  z-index: 2;
 }
 
 .marquee__track {
@@ -344,41 +375,25 @@ a {
   font-size: 0.75rem;
 }
 
-/* ---- Wave divider ---- */
-
-.wave-divider {
-  position: relative;
-  z-index: 10;
-  margin-top: -1px;
-  line-height: 0;
-  background: var(--black);
-}
-
-.wave-divider svg {
-  display: block;
-  width: 100%;
-  height: 60px;
-}
-
-/* ---- Page content ---- */
+/* ---- Page content (floats over fixed bg) ---- */
 
 .page-content {
   position: relative;
-  background: var(--cream) url('../assets/Background-image.jpeg') center top / 100% auto fixed;
+  z-index: 2;
+  background: transparent;
 }
 
-.page-content::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(248, 231, 200, 0.42);
-  pointer-events: none;
-  z-index: 0;
-}
+/* ---- Floating cards shared style ---- */
 
-.page-content > * {
-  position: relative;
-  z-index: 1;
+.float-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 2.5px solid var(--black);
+  border-radius: 28px;
+  box-shadow:
+    0 4px 6px rgba(17, 17, 17, 0.04),
+    0 20px 48px rgba(17, 17, 17, 0.12),
+    var(--shadow-cartoon);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
 
 /* ---- Stats ---- */
@@ -396,30 +411,16 @@ a {
 .stat {
   text-align: center;
   padding: 32px 20px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(16px);
-  border: 2.5px solid var(--black);
-  border-radius: 28px;
-  box-shadow: var(--shadow-cartoon);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-.stat::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 201, 10, 0.12) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.stat:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: var(--shadow-soft), var(--shadow-cartoon-lg);
+.stat.float-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 8px 12px rgba(17, 17, 17, 0.06),
+    0 28px 56px rgba(17, 17, 17, 0.16),
+    var(--shadow-cartoon-lg);
 }
 
 .stat__number {
@@ -494,6 +495,26 @@ a {
   line-height: 1.5;
 }
 
+.section-mascots {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.section-mascots img {
+  width: min(480px, 82vw);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(17, 17, 17, 0.15));
+  animation: mascotBob 4s ease-in-out infinite;
+}
+
+@keyframes mascotBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 /* ---- Products ---- */
 
 .products {
@@ -508,14 +529,16 @@ a {
 
 .product-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
-  border: 2.5px solid var(--black);
-  border-radius: 28px;
   padding: 40px 36px 36px;
-  box-shadow: var(--shadow-cartoon);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
   overflow: hidden;
+}
+
+.product-card.float-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 8px 12px rgba(17, 17, 17, 0.06),
+    0 32px 64px rgba(17, 17, 17, 0.18),
+    var(--shadow-cartoon-lg);
 }
 
 .product-card::before {
@@ -551,8 +574,7 @@ a {
 }
 
 .product-card:hover {
-  transform: translateY(-8px) rotate(-0.5deg);
-  box-shadow: var(--shadow-soft), var(--shadow-cartoon-lg);
+  transform: translateY(-10px);
 }
 
 .product-card__number {
@@ -589,27 +611,7 @@ a {
 }
 
 .mascot-band {
-  display: flex;
-  justify-content: center;
-  margin-top: 72px;
-  padding: 48px 40px;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(16px);
-  border: 2.5px solid var(--black);
-  border-radius: 32px;
-  box-shadow: var(--shadow-cartoon);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.mascot-band:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-soft), var(--shadow-cartoon-lg);
-}
-
-.mascot-band img {
-  width: min(520px, 88vw);
-  height: auto;
-  object-fit: contain;
+  display: none;
 }
 
 /* ---- Team ---- */
@@ -625,19 +627,16 @@ a {
 }
 
 .team-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
-  border: 2.5px solid var(--black);
-  border-radius: 28px;
   padding: 40px 28px;
   text-align: center;
-  box-shadow: var(--shadow-cartoon);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
 
-.team-card:hover {
-  transform: translateY(-8px) rotate(0.5deg);
-  box-shadow: var(--shadow-soft), var(--shadow-cartoon-lg);
+.team-card.float-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 8px 12px rgba(17, 17, 17, 0.06),
+    0 32px 64px rgba(17, 17, 17, 0.18),
+    var(--shadow-cartoon-lg);
 }
 
 .team-card__image {
@@ -683,11 +682,12 @@ a {
 /* ---- Footer ---- */
 
 .footer {
-  background: rgba(17, 17, 17, 0.94);
+  background: rgba(17, 17, 17, 0.96);
   color: var(--cream);
   padding: 64px 0 48px;
   text-align: center;
   border-top: 3px solid var(--black);
+  margin-top: 24px;
 }
 
 .footer__logo-img {
@@ -1041,16 +1041,20 @@ a {
   }
 
   .mascot-band {
-    padding: 24px;
-    margin-top: 48px;
+    display: none;
+  }
+
+  .site-bg {
+    position: absolute;
+    height: 100%;
   }
 
   .modal__dialog {
     padding: 36px 24px;
   }
 
-  .page-content {
-    background-attachment: scroll;
+  .section-mascots img {
+    width: min(340px, 92vw);
   }
 
   .floating-cta {
@@ -1081,5 +1085,9 @@ a {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .section-mascots img {
+    animation: none;
   }
 }

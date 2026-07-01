@@ -12,9 +12,12 @@
 </head>
 <body>
 
+  <!-- Fixed noodle background (stays in place while content scrolls) -->
+  <div class="site-bg" aria-hidden="true"></div>
+
   <!-- Fixed logo — appears after scrolling past hero -->
   <a href="#hero" class="site-logo site-logo--hidden" id="site-logo" aria-label="NOODS — back to top">
-    <img src="assets/NOODS LOGO.png" alt="NOODS" />
+    <img src="assets/Logo.png" alt="NOODS" />
   </a>
 
   <!-- Hero -->
@@ -35,10 +38,8 @@
 
       <img
         class="hero__logo"
-        src="assets/NOODS LOGO.png"
+        src="assets/Logo.png"
         alt="NOODS"
-        width="1346"
-        height="279"
       />
 
       <button class="btn btn--hero" id="cta-btn" type="button">
@@ -72,27 +73,20 @@
     </div>
   </div>
 
-  <!-- Wave divider -->
-  <div class="wave-divider" aria-hidden="true">
-    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="var(--cream)"/>
-    </svg>
-  </div>
-
   <div class="page-content">
 
     <!-- Stats band -->
-    <section class="stats reveal">
+    <section class="stats">
       <div class="container stats__grid">
-        <div class="stat">
+        <div class="stat float-card reveal">
           <span class="stat__number">7g</span>
           <span class="stat__label">Prebiotic Fiber</span>
         </div>
-        <div class="stat">
+        <div class="stat float-card reveal">
           <span class="stat__number">0</span>
           <span class="stat__label">Artificial Colors</span>
         </div>
-        <div class="stat">
+        <div class="stat float-card reveal">
           <span class="stat__number">3 min</span>
           <span class="stat__label">Ready to Eat</span>
         </div>
@@ -107,10 +101,13 @@
             <span class="section-title__text">Why NOODS?</span>
           </h2>
           <p class="section-subtitle">Instant noodles, reimagined for your gut.</p>
+          <div class="section-mascots" aria-hidden="true">
+            <img src="assets/Girls mascot NOODS.png" alt="" />
+          </div>
         </header>
 
         <div class="products__grid">
-          <article class="product-card reveal">
+          <article class="product-card float-card reveal">
             <span class="product-card__number">01</span>
             <div class="product-card__icon" aria-hidden="true">
               <svg viewBox="0 0 64 64" width="64" height="64">
@@ -124,7 +121,7 @@
             <p class="product-card__text">Packed with prebiotic fiber that feeds the good bacteria in your gut — so every slurp works for you, not against you.</p>
           </article>
 
-          <article class="product-card reveal reveal--delay">
+          <article class="product-card float-card reveal reveal--delay">
             <span class="product-card__number">02</span>
             <div class="product-card__icon" aria-hidden="true">
               <svg viewBox="0 0 64 64" width="64" height="64">
@@ -138,7 +135,7 @@
             <p class="product-card__text">No artificial flavors, colors, or preservatives. Just real, recognizable ingredients you can actually pronounce.</p>
           </article>
 
-          <article class="product-card reveal">
+          <article class="product-card float-card reveal">
             <span class="product-card__number">03</span>
             <div class="product-card__icon" aria-hidden="true">
               <svg viewBox="0 0 64 64" width="64" height="64">
@@ -152,7 +149,7 @@
             <p class="product-card__text">All the comfort and convenience of instant noodles — without the guilt. Quick, delicious, and actually good for you.</p>
           </article>
 
-          <article class="product-card reveal reveal--delay">
+          <article class="product-card float-card reveal reveal--delay">
             <span class="product-card__number">04</span>
             <div class="product-card__icon" aria-hidden="true">
               <svg viewBox="0 0 64 64" width="64" height="64">
@@ -166,10 +163,6 @@
             <h3 class="product-card__title">Healthy Gut, Happy You</h3>
             <p class="product-card__text">Made with ingredients specifically chosen to promote a healthy gut microbiome. Feel the difference from the inside out.</p>
           </article>
-        </div>
-
-        <div class="mascot-band reveal">
-          <img src="assets/Girls mascot NOODS.png" alt="NOODS mascots enjoying noodles" />
         </div>
       </div>
     </section>
@@ -185,7 +178,7 @@
         </header>
 
         <div class="team__grid">
-          <article class="team-card reveal">
+          <article class="team-card float-card reveal">
             <div class="team-card__image">
               <div class="team-card__placeholder">
                 <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
@@ -199,7 +192,7 @@
             <p class="team-card__bio">Passionate about gut health and making better-for-you food accessible to everyone. Believes instant noodles deserve a glow-up.</p>
           </article>
 
-          <article class="team-card reveal reveal--delay">
+          <article class="team-card float-card reveal reveal--delay">
             <div class="team-card__image">
               <div class="team-card__placeholder">
                 <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
@@ -213,7 +206,7 @@
             <p class="team-card__bio">Food scientist turned entrepreneur. Obsessed with creating the perfect noodle texture without compromising on nutrition.</p>
           </article>
 
-          <article class="team-card reveal reveal--delay-2">
+          <article class="team-card float-card reveal reveal--delay-2">
             <div class="team-card__image">
               <div class="team-card__placeholder">
                 <svg viewBox="0 0 80 80" width="48" height="48" aria-hidden="true">
@@ -233,7 +226,7 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="container footer__inner">
-        <img class="footer__logo-img" src="assets/NOODS LOGO.png" alt="NOODS" />
+        <img class="footer__logo-img" src="assets/Logo.png" alt="NOODS" />
         <p class="footer__tagline">Prebiotic Instant Noodles</p>
         <button class="btn btn--primary btn--footer" type="button" id="footer-cta-btn">
           Be the First to Try
@@ -260,7 +253,7 @@
       </button>
 
       <div class="modal__header">
-        <img class="modal__logo-img" src="assets/NOODS LOGO.png" alt="NOODS" />
+        <img class="modal__logo-img" src="assets/Logo.png" alt="NOODS" />
         <h2 class="modal__title" id="modal-title">Be the First to Try</h2>
         <p class="modal__subtitle">Join the waitlist and get early access to prebiotic instant noodles.</p>
       </div>
