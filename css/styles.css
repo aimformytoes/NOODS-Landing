@@ -300,17 +300,17 @@ a {
 .hero__layout {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: flex-start;
   flex: 1;
   width: 100%;
   max-width: 920px;
   margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: clamp(10vh, 14vh, 18vh) 24px clamp(118px, 16vh, 172px);
+  padding: clamp(10vh, 14vh, 18vh) 24px 0;
 }
 
 .hero__stack {
@@ -321,13 +321,18 @@ a {
   text-align: center;
   gap: var(--hero-stack-gap);
   width: 100%;
-  align-self: center;
   animation: heroStackIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero__cta {
-  align-self: end;
-  animation: heroBtnIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(260px, 38vh, 440px);
+  transform: translateX(-50%);
+  z-index: 3;
+  width: max-content;
+  max-width: calc(100% - 48px);
+  animation: heroCtaIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
 .hero__logo {
@@ -1061,6 +1066,17 @@ a {
   }
 }
 
+@keyframes heroCtaIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 @keyframes heroStackIn {
   from {
     opacity: 0;
@@ -1155,7 +1171,7 @@ a {
   }
 
   .hero__layout {
-    padding: clamp(8vh, 12vh, 16vh) 20px clamp(100px, 14vh, 150px);
+    padding: clamp(8vh, 12vh, 16vh) 20px 0;
   }
 
   .hero__stack {
@@ -1167,7 +1183,9 @@ a {
   }
 
   .hero__cta {
-    width: 100%;
+    bottom: clamp(220px, 34vh, 340px);
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
     display: flex;
     justify-content: center;
   }
