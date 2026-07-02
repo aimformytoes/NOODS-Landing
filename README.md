@@ -2,23 +2,27 @@
 
 A playful, retro CPG-style landing page for **NOODS** — prebiotic instant noodles.
 
-## Brand assets
-
-| File | Description |
-|------|-------------|
-| `assets/LOGO.png` | Official NOODS logo |
-| `assets/Background.jpeg` | Noodle pattern background |
-| `assets/Girls.png` | Official mascot illustration |
-| `assets/hero-video.mp4` | Hero background video |
-| `assets/background.jpeg` | Post-hero noodle background |
-
 ## Quick Start
+
+Open `index.html` in a browser, or serve locally:
 
 ```bash
 python3 -m http.server 8080
 ```
 
 Then visit [http://localhost:8080](http://localhost:8080).
+
+## Brand assets
+
+| File | Description |
+|------|-------------|
+| `assets/LOGO.png` | Official NOODS logo |
+| `assets/Background.jpeg` | Noodle pattern background |
+| `assets/Girls mascot NOODS.png` | Official mascot illustration |
+| `assets/hero-video.mp4` | Hero background video |
+| `assets/Amy To.jpeg` | Team headshot — Amy To |
+| `assets/Francis Press.jpeg` | Team headshot — Francis Press |
+| `assets/Cien Khong.jpeg` | Team headshot — Cien Khong |
 
 ## Brand Palette
 
