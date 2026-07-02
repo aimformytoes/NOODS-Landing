@@ -12,9 +12,17 @@ python3 -m http.server 8080
 
 Then visit [http://localhost:8080](http://localhost:8080).
 
-## Replace Placeholder Video
+## Brand assets
 
-Swap `assets/hero-placeholder.mp4` with your brand hero video. The video is set to autoplay, loop, muted, and plays inline.
+| File | Description |
+|------|-------------|
+| `assets/LOGO.png` | Official NOODS logo |
+| `assets/Background.jpeg` | Noodle pattern background |
+| `assets/Girls mascot NOODS.png` | Official mascot illustration |
+| `assets/hero-video.mp4` | Hero background video |
+| `assets/Amy To.jpeg` | Team headshot — Amy To |
+| `assets/Francis Press.jpeg` | Team headshot — Francis Press |
+| `assets/Cien Khong.jpeg` | Team headshot — Cien Khong |
 
 ## Brand Palette
 

@@ -3,6 +3,8 @@
 
   const modal = document.getElementById('signup-modal');
   const ctaBtn = document.getElementById('cta-btn');
+  const footerCtaBtn = document.getElementById('footer-cta-btn');
+  const floatingCta = document.getElementById('floating-cta');
   const modalClose = document.getElementById('modal-close');
   const modalBackdrop = document.getElementById('modal-backdrop');
   const signupForm = document.getElementById('signup-form');
@@ -11,6 +13,7 @@
   const emailInput = document.getElementById('email');
   const nameError = document.getElementById('name-error');
   const emailError = document.getElementById('email-error');
+  const hero = document.getElementById('hero');
 
   let lastFocused = null;
 
@@ -62,7 +65,10 @@
     return valid;
   }
 
-  ctaBtn.addEventListener('click', openModal);
+  [ctaBtn, footerCtaBtn, floatingCta].forEach(function (btn) {
+    if (btn) btn.addEventListener('click', openModal);
+  });
+
   modalClose.addEventListener('click', closeModal);
   modalBackdrop.addEventListener('click', closeModal);
 
@@ -73,24 +79,58 @@
   signupForm.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!validate()) return;
-
     signupForm.hidden = true;
     modalSuccess.hidden = false;
   });
 
   const heroVideo = document.querySelector('.hero__video');
   if (heroVideo) {
-    heroVideo.play().catch(function () {
-      /* Autoplay may be blocked; video element still shows first frame */
-    });
+    heroVideo.play().catch(function () {});
   }
 
-  const siteHeader = document.getElementById('site-header');
-  if (siteHeader) {
-    function updateHeader() {
-      siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
-    }
-    updateHeader();
-    window.addEventListener('scroll', updateHeader, { passive: true });
+  /* Scroll reveal */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* Fixed logo appears after scrolling past hero */
+  const siteLogo = document.getElementById('site-logo');
+  if (siteLogo && hero) {
+    const logoObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          siteLogo.classList.toggle('site-logo--hidden', entry.isIntersecting);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    logoObserver.observe(hero);
+  }
+
+  /* Floating CTA after hero */
+  if (floatingCta && hero) {
+    const heroObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          floatingCta.hidden = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.05 }
+    );
+    heroObserver.observe(hero);
   }
 })();
