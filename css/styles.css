@@ -217,9 +217,9 @@ a {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--white);
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
   font-weight: 700;
-  padding: 16px 40px;
+  padding: 12px 32px;
   border: 2px solid rgba(255, 255, 255, 0.45);
   border-radius: var(--radius-pill);
   box-shadow:
@@ -303,18 +303,18 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex: 1;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 0 20px clamp(235px, 33vh, 390px);
+  padding: 0 20px clamp(200px, 28vh, 310px);
 }
 
 .hero__group {
-  --hero-stack-gap: clamp(6px, 1vh, 10px);
+  --hero-stack-gap: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -419,7 +419,8 @@ a {
 .marquee {
   background: transparent;
   overflow: hidden;
-  padding: 10px 0 4px;
+  margin-top: 48px;
+  padding: 40px 0 8px;
   position: relative;
   z-index: 2;
 }
@@ -676,41 +677,63 @@ a {
 
 .products__header {
   text-align: center;
-  margin-bottom: 36px;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.products__label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tan);
+  margin-bottom: 14px;
 }
 
 .products__title {
   font-family: var(--font-headline);
-  font-size: clamp(1.85rem, 4.8vw, 3rem);
-  font-weight: 900;
+  font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+  font-weight: 700;
   color: var(--brown);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  line-height: 1.15;
-  margin-bottom: 20px;
+  text-transform: none;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+  margin-bottom: 18px;
 }
 
 .products__title-accent {
   color: var(--red);
+  font-weight: 800;
+  font-style: italic;
 }
 
 .products__tagline {
-  display: inline-block;
-  width: fit-content;
-  max-width: min(800px, 96vw);
-  font-family: var(--font-headline);
-  font-size: clamp(1.3rem, 4vw, 2.35rem);
-  font-weight: 900;
-  color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  line-height: 1.1;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  font-weight: 500;
+  color: var(--brown);
+  text-transform: none;
+  letter-spacing: 0.01em;
+  line-height: 1.55;
   margin: 0 auto;
-  padding: 8px 12px;
-  background: var(--card-bg);
-  border: var(--border-subtle);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-cartoon);
+  max-width: 420px;
+  opacity: 0.72;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.products__header::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1.5px;
+  margin: 22px auto 0;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  border-radius: 1px;
 }
 
 .products__grid {
@@ -784,7 +807,10 @@ a {
 }
 
 .team-card {
-  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 28px 32px;
   text-align: center;
 }
 
@@ -793,16 +819,21 @@ a {
 }
 
 .team-card__image {
-  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 22px;
 }
 
 .team-card__photo {
-  width: 112px;
-  height: 112px;
-  margin: 0 auto;
-  border-radius: 10px;
+  width: 180px;
+  height: 180px;
+  aspect-ratio: 1;
+  margin: 0;
+  border-radius: 18px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   border: var(--border-subtle);
   display: block;
   box-shadow: var(--shadow-cartoon);
@@ -1186,11 +1217,11 @@ a {
   }
 
   .hero__layout {
-    padding: 0 16px clamp(210px, 31vh, 320px);
+    padding: 0 16px clamp(195px, 27vh, 290px);
   }
 
   .hero__group {
-    --hero-stack-gap: 6px;
+    --hero-stack-gap: 4px;
   }
 
   .hero__logo {
@@ -1204,8 +1235,8 @@ a {
   }
 
   .hero__cta .btn--hero {
-    padding: 14px 28px;
-    font-size: 0.95rem;
+    padding: 11px 26px;
+    font-size: 0.9rem;
   }
 
   .hero__banner-line {
@@ -1218,9 +1249,24 @@ a {
     letter-spacing: 0.02em;
   }
 
+  .products__title {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
   .products__tagline {
-    padding: 6px 10px;
-    font-size: clamp(1.05rem, 4vw, 1.45rem);
+    font-size: 0.95rem;
+    max-width: 320px;
+  }
+
+  .marquee {
+    margin-top: 32px;
+    padding-top: 28px;
+  }
+
+  .team-card__photo {
+    width: 148px;
+    height: 148px;
+    border-radius: 16px;
   }
 
   .noodle-loop {
