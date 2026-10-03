@@ -769,6 +769,13 @@ a {
   opacity: 0.92;
 }
 
+.product-card__icon-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  display: block;
+}
+
 .product-card__title {
   font-family: var(--font-headline);
   font-size: clamp(1rem, 1.8vw, 1.15rem);
