@@ -698,7 +698,7 @@ a {
 .products__title-line {
   display: block;
   font-family: var(--font-headline);
-  font-size: clamp(2.85rem, 9vw, 5rem);
+  font-size: clamp(3rem, 10vw, 5.5rem);
   font-weight: 900;
   color: var(--brown);
   text-transform: uppercase;
@@ -708,12 +708,13 @@ a {
 
 .products__subtitle {
   font-family: var(--font-headline);
-  font-size: clamp(2.25rem, 7.5vw, 5.25rem);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
   font-weight: 900;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: 0.02em;
-  max-width: min(920px, 94vw);
-  opacity: 1;
+  max-width: min(960px, 94vw);
+  margin: 0 auto;
+  color: var(--brown);
   text-transform: none;
 }
 
