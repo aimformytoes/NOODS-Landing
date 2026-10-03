@@ -691,29 +691,30 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 28px;
 }
 
 .products__title-line {
   display: block;
   font-family: var(--font-headline);
-  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  font-size: clamp(2.85rem, 9vw, 5rem);
   font-weight: 900;
   color: var(--brown);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  line-height: 0.98;
+  line-height: 0.95;
 }
 
 .products__subtitle {
   font-family: var(--font-headline);
-  font-size: clamp(1.2rem, 3vw, 1.75rem);
-  font-weight: 800;
-  line-height: 1.35;
+  font-size: clamp(2.25rem, 7.5vw, 5.25rem);
+  font-weight: 900;
+  line-height: 1.2;
   letter-spacing: 0.02em;
-  max-width: 640px;
+  max-width: min(920px, 94vw);
   opacity: 1;
+  text-transform: none;
 }
 
 .products__grid {
