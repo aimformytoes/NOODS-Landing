@@ -684,13 +684,36 @@ a {
 }
 
 .products__header {
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
-.products__header .section-title__text {
+.products__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.products__title-line {
+  display: block;
+  font-family: var(--font-headline);
+  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  font-weight: 900;
+  color: var(--brown);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.1;
+  letter-spacing: 0.05em;
+  line-height: 0.98;
+}
+
+.products__subtitle {
+  font-family: var(--font-headline);
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  max-width: 640px;
+  opacity: 1;
 }
 
 .products__grid {
