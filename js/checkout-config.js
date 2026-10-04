@@ -1,13 +1,13 @@
 /**
  * Checkout & email capture — set these before going live.
  *
- * Stripe: Dashboard → Payment Links → create a link for your First Bundle product.
+ * Stripe: Payment Link at $14.25 — enable Automatic tax + shipping in the link settings.
  * Formspree: https://formspree.io — create a form and paste the endpoint URL.
  */
 window.NOODS_CHECKOUT = {
   productName: 'First Bundle Release + PR Launch Box',
   priceLabel: '$14.25',
-  priceNote: 'before tax · shipping added at checkout',
+  priceNote: 'Tax and shipping calculated at checkout',
   stripePaymentLink: '',
   formEndpoint: '',
   bundleItems: [
