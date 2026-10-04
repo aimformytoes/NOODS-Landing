@@ -33,5 +33,7 @@ Then visit [http://localhost:8080](http://localhost:8080).
 | Red    | #E63220 |
 | Cream  | #F8E7C8 |
 | Tan    | #D99A55 |
-| Brown  | #5A3424 |
+| Nude brown (text) | #7A5C45 |
+| Nude brown deep   | #6B4E3A |
+| Nude brown muted  | #9A7F68 |
 | Black  | #111111 |
