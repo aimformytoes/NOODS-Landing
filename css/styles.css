@@ -860,8 +860,8 @@ a {
   transform: translate3d(0, -8px, 0) scale(1.03);
   box-shadow: var(--shadow-cartoon-lg);
   transition:
-    transform 0.14s cubic-bezier(0.22, 1.12, 0.36, 1),
-    box-shadow 0.14s ease;
+    transform 0.05s cubic-bezier(0.22, 1.2, 0.36, 1),
+    box-shadow 0.05s ease;
 }
 
 .product-card__icon {
@@ -874,7 +874,7 @@ a {
 
 .product-card.float-card:hover .product-card__icon {
   transform: translateY(-4px) scale(1.06);
-  transition: transform 0.14s cubic-bezier(0.22, 1.12, 0.36, 1);
+  transition: transform 0.08s cubic-bezier(0.22, 1.18, 0.36, 1);
 }
 
 .product-card__icon-img {
