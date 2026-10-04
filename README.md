@@ -12,6 +12,25 @@ python3 -m http.server 8080
 
 Then visit [http://localhost:8080](http://localhost:8080).
 
+## First bundle checkout (email + payment)
+
+The **Be the First to Try** modal collects name and email, then sends customers to **Stripe Checkout** for the First Bundle Release + PR Launch Box.
+
+Edit `js/checkout-config.js`:
+
+| Setting | Purpose |
+|---------|---------|
+| `stripePaymentLink` | Your [Stripe Payment Link](https://dashboard.stripe.com/payment-links) URL |
+| `formEndpoint` | [Formspree](https://formspree.io) form URL (JSON) to store leads |
+| `priceLabel` | Price shown in the modal (e.g. `$49`) |
+| `bundleItems` | Bullet list of what’s included |
+
+**Stripe setup:** Create a product for the first bundle + PR Launch box, enable Payment Link, and paste the link. The site passes `prefilled_email` and `client_reference_id` (name) into checkout.
+
+**Formspree setup:** Create a form, allow JSON posts, and paste `https://formspree.io/f/your-id`. Submissions include `name`, `email`, and `product`.
+
+Until both URLs are set, the modal still opens but shows a setup message after submit.
+
 ## Brand assets
 
 | File | Description |

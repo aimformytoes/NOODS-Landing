@@ -197,7 +197,13 @@
       <div class="modal__header">
         <img class="modal__logo-img" src="assets/LOGO.png" alt="NOODS" />
         <h2 class="modal__title" id="modal-title">Be the First to Try</h2>
-        <p class="modal__subtitle">Join the waitlist and get early access to prebiotic instant noodles.</p>
+        <p class="modal__subtitle">Reserve your place in the first bundle release — payment secures your spot and founding-member perks.</p>
+      </div>
+
+      <div class="modal__bundle" id="modal-bundle" aria-label="What's included">
+        <p class="modal__bundle-title" id="modal-bundle-title">First Bundle Release + PR Launch Box</p>
+        <p class="modal__bundle-price" id="modal-bundle-price">Reserve your spot</p>
+        <ul class="modal__bundle-list" id="modal-bundle-list"></ul>
       </div>
 
       <form class="modal__form" id="signup-form" novalidate>
@@ -229,19 +235,23 @@
           <span class="form-error" id="email-error"></span>
         </div>
 
-        <button class="btn btn--primary btn--full btn--large" type="submit">
-          Join the Waitlist
+        <p class="modal__fine-print">You'll complete secure checkout on Stripe. We use your email for order updates and launch news.</p>
+
+        <button class="btn btn--primary btn--full btn--large" type="submit" id="signup-submit">
+          Continue to payment
         </button>
+        <p class="modal__form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
 
       <div class="modal__success" id="modal-success" hidden>
         <div class="modal__success-icon" aria-hidden="true">🍜</div>
-        <h2 class="modal__title">You're on the list!</h2>
-        <p class="modal__subtitle">We'll be in touch soon with exclusive early access.</p>
+        <h2 class="modal__title">You're in!</h2>
+        <p class="modal__subtitle" id="modal-success-text">Thanks — we'll email you next steps for your first bundle and PR Launch box.</p>
       </div>
     </div>
   </div>
 
+  <script src="js/checkout-config.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

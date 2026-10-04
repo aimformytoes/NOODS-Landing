@@ -1046,7 +1046,9 @@ a {
   border-radius: var(--radius);
   padding: 48px 40px;
   width: 100%;
-  max-width: 460px;
+  max-width: 500px;
+  max-height: min(92vh, 720px);
+  overflow-y: auto;
   box-shadow: 0 24px 64px rgba(17, 17, 17, 0.2);
   animation: scaleIn 0.3s ease;
 }
@@ -1096,6 +1098,76 @@ a {
   color: var(--brown);
   line-height: 1.6;
   font-weight: 400;
+}
+
+.modal__bundle {
+  background: var(--card-bg);
+  border: var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-cartoon);
+}
+
+.modal__bundle-title {
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--brown);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.modal__bundle-price {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+
+.modal__bundle-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal__bundle-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--brown);
+  font-weight: 500;
+}
+
+.modal__bundle-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.modal__fine-print {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--brown);
+  opacity: 0.85;
+  margin: -8px 0 0;
+}
+
+.modal__form-status {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--red);
+  min-height: 1.25em;
+  text-align: center;
 }
 
 .modal__form {
