@@ -351,31 +351,35 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   width: fit-content;
   max-width: min(760px, 94vw);
-  padding: 0;
-  margin: 0;
+  margin: 4px 0 0;
+  padding: 14px 28px 16px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-cartoon);
   animation: heroStackIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
 }
 
 .hero__banner-line {
   display: block;
   font-family: var(--font-headline);
-  font-size: clamp(1.35rem, 4.8vw, 2.6rem);
+  font-size: clamp(1.2rem, 4.2vw, 2.35rem);
   font-weight: 900;
   color: var(--brown);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  line-height: 1;
-  text-shadow:
-    0 1px 2px rgba(255, 255, 255, 0.45),
-    0 1px 8px rgba(248, 231, 200, 0.25);
+  line-height: 1.05;
+  text-shadow: none;
 }
 
 .hero__banner-line:first-child {
   white-space: nowrap;
-  font-size: clamp(1.1rem, 4.2vw, 2.6rem);
+  font-size: clamp(1.05rem, 3.8vw, 2.35rem);
   letter-spacing: 0.03em;
 }
 
@@ -383,8 +387,14 @@ a {
   margin-top: 0;
 }
 
+.hero__cta {
+  margin-top: 6px;
+}
+
 .hero__cta .btn--hero {
   line-height: 1.2;
+  font-size: clamp(0.9rem, 2vw, 1.08rem);
+  padding: 11px 28px;
 }
 
 .hero__scroll {
@@ -876,7 +886,7 @@ a {
 /* ---- Footer ---- */
 
 .footer {
-  background: rgba(107, 78, 58, 0.96);
+  background: rgba(90, 52, 36, 0.96);
   color: var(--cream);
   padding: 28px 0 24px;
   text-align: center;
