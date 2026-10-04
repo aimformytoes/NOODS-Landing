@@ -787,102 +787,6 @@ a {
   display: none;
 }
 
-/* ---- Team ---- */
-
-.team {
-  padding: 16px 0 64px;
-  background: transparent;
-}
-
-.team .section-header {
-  margin-bottom: 32px;
-}
-
-.team__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-
-.team-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 36px 28px 32px;
-  text-align: center;
-}
-
-.team-card.float-card:hover {
-  transform: translateY(-3px);
-}
-
-.team-card__image {
-  width: 220px;
-  height: 220px;
-  flex-shrink: 0;
-  margin: 0 auto 24px;
-  border-radius: 20px;
-  overflow: hidden;
-  border: var(--border-subtle);
-  box-shadow: var(--shadow-cartoon);
-  display: block;
-}
-
-.team-card__photo {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  border-radius: 0;
-  object-fit: cover;
-  object-position: center center;
-  border: none;
-  display: block;
-  box-shadow: none;
-}
-
-.team-card__avatar {
-  width: 112px;
-  height: 112px;
-  margin: 0 auto;
-  border-radius: 10px;
-  background: var(--nude-deep);
-  border: var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-headline);
-  font-size: 1.75rem;
-  font-weight: 900;
-  color: var(--brown);
-  letter-spacing: 0.04em;
-}
-
-.team-card__name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--black);
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.team-card__role {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 14px;
-}
-
-.team-card__bio {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--brown);
-  font-weight: 400;
-  text-align: left;
-}
-
 /* ---- Footer ---- */
 
 .footer {
@@ -1255,12 +1159,12 @@ a {
   }
 
   .hero__banner-line {
-    font-size: clamp(1.05rem, 4.5vw, 1.5rem);
+    font-size: clamp(0.98rem, 4.1vw, 1.4rem);
     letter-spacing: 0.03em;
   }
 
   .hero__banner-line:first-child {
-    font-size: clamp(0.82rem, 3.6vw, 1.5rem);
+    font-size: clamp(0.78rem, 3.3vw, 1.4rem);
     letter-spacing: 0.02em;
   }
 
