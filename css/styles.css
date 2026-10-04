@@ -697,7 +697,7 @@ a {
 .products__title-line {
   display: block;
   font-family: var(--font-headline);
-  font-size: clamp(1.5rem, 5vw, 2.75rem);
+  font-size: clamp(calc(1.5rem + 10px), calc(5vw + 10px), calc(2.75rem + 10px));
   font-weight: 900;
   color: var(--brown);
   text-transform: uppercase;
