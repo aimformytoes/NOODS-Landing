@@ -28,6 +28,7 @@
     const cfg = getCheckoutConfig();
     const titleEl = document.getElementById('modal-bundle-title');
     const priceEl = document.getElementById('modal-bundle-price');
+    const priceNoteEl = document.getElementById('modal-bundle-price-note');
     const listEl = document.getElementById('modal-bundle-list');
 
     if (titleEl && cfg.productName) {
@@ -35,6 +36,9 @@
     }
     if (priceEl && cfg.priceLabel) {
       priceEl.textContent = cfg.priceLabel;
+    }
+    if (priceNoteEl && cfg.priceNote) {
+      priceNoteEl.textContent = cfg.priceNote;
     }
     if (listEl && Array.isArray(cfg.bundleItems)) {
       listEl.innerHTML = '';
