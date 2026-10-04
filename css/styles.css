@@ -11,18 +11,15 @@
   --nude: #EDDCC8;
   --nude-deep: #E2C9AD;
   --tan: #D99A55;
-  /* Nude brown text (replaces #5A3424 chocolate) */
-  --brown: #7A5C45;
-  --brown-deep: #6B4E3A;
-  --brown-muted: #9A7F68;
+  --brown: #5A3424;
   --black: #111111;
   --white: #FFFFFF;
 
   --font-display: 'Fredoka', system-ui, sans-serif;
   --font-headline: 'Roboto Slab', Georgia, serif;
 
-  --shadow-cartoon: 0 2px 16px rgba(122, 92, 69, 0.08);
-  --shadow-cartoon-lg: 0 8px 32px rgba(122, 92, 69, 0.11);
+  --shadow-cartoon: 0 2px 16px rgba(90, 52, 36, 0.07);
+  --shadow-cartoon-lg: 0 8px 32px rgba(90, 52, 36, 0.1);
   --shadow-soft: 0 12px 40px rgba(17, 17, 17, 0.08);
   --radius: 12px;
   --radius-pill: 999px;
