@@ -22,11 +22,19 @@ Edit `js/checkout-config.js`:
 |---------|---------|
 | `stripePaymentLink` | Your [Stripe Payment Link](https://dashboard.stripe.com/payment-links) URL |
 | `formEndpoint` | [Formspree](https://formspree.io) form URL (JSON) to store leads |
-| `priceLabel` | Price shown in the modal (currently `$14.25` before tax) |
-| `priceNote` | Line under price (e.g. shipping at checkout) |
+| `priceLabel` | Base price in the modal (`$14.25`) |
+| `priceNote` | Under-price line (`Tax and shipping calculated at checkout`) |
 | `bundleItems` | Bullet list of what’s included |
 
-**Stripe setup:** Create a product for the first bundle + PR Launch box, enable Payment Link, and paste the link. The site passes `prefilled_email` and `client_reference_id` (name) into checkout.
+**Stripe setup (typical checkout):**
+
+1. Create a **$14.25** product for the First Bundle + PR Launch box.
+2. Create a **Payment Link** for that product.
+3. In the Payment Link settings, turn on **Collect taxes automatically** ([Stripe Tax](https://stripe.com/tax)) so sales tax is added when the customer’s address requires it.
+4. Under **Shipping**, collect a shipping address and add your **shipping rate(s)** (flat rate, by state, or carrier rates).
+5. Paste the Payment Link URL into `stripePaymentLink`.
+
+The landing page shows the **$14.25** item price; Stripe Checkout shows the final total with tax and shipping before they pay. The site passes `prefilled_email` and `client_reference_id` (name) into checkout.
 
 **Formspree setup:** Create a form, allow JSON posts, and paste `https://formspree.io/f/your-id`. Submissions include `name`, `email`, and `product`.
 
