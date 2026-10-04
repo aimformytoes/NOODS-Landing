@@ -646,22 +646,41 @@ a {
 
 .product-reveal .product-card {
   opacity: 0;
-  transform: translate3d(-44px, 32px, 0) scale(0.88) rotateY(14deg);
+  transform: translate3d(-40px, 48px, 0) scale(0.9) rotateY(12deg);
   transform-origin: center left;
-  filter: blur(10px);
   transition:
-    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.34, 1.45, 0.64, 1),
-    filter 0.55s ease,
-    box-shadow 0.75s ease;
-  box-shadow: 0 4px 0 rgba(90, 52, 36, 0);
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.7s ease;
+  box-shadow: 0 16px 0 rgba(90, 52, 36, 0.06);
+  overflow: hidden;
+}
+
+.product-reveal .product-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 62%
+  );
+  transform: translateX(-130%);
+  pointer-events: none;
+  opacity: 0;
 }
 
 .product-reveal.is-visible .product-card {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
-  filter: blur(0);
   box-shadow: var(--shadow-cartoon);
+}
+
+.product-reveal.is-visible .product-card::after {
+  opacity: 1;
+  animation: product-card-shine 0.7s ease forwards;
 }
 
 .product-reveal.is-visible .product-card:nth-child(1) {
@@ -681,12 +700,12 @@ a {
 }
 
 .product-reveal .product-card__icon {
-  transform: scale(0.55) rotate(-10deg);
-  transition: transform 0.75s cubic-bezier(0.34, 1.5, 0.64, 1);
+  transform: translateY(20px) scale(0.75);
+  transition: transform 0.75s cubic-bezier(0.34, 1.45, 0.64, 1);
 }
 
 .product-reveal.is-visible .product-card__icon {
-  transform: scale(1) rotate(0deg);
+  transform: translateY(0) scale(1);
 }
 
 .product-reveal.is-visible .product-card:nth-child(1) .product-card__icon {
@@ -703,6 +722,31 @@ a {
 
 .product-reveal.is-visible .product-card:nth-child(4) .product-card__icon {
   transition-delay: 0.44s;
+}
+
+.product-reveal.is-visible .product-card:nth-child(1)::after {
+  animation-delay: 0.12s;
+}
+
+.product-reveal.is-visible .product-card:nth-child(2)::after {
+  animation-delay: 0.22s;
+}
+
+.product-reveal.is-visible .product-card:nth-child(3)::after {
+  animation-delay: 0.32s;
+}
+
+.product-reveal.is-visible .product-card:nth-child(4)::after {
+  animation-delay: 0.42s;
+}
+
+@keyframes product-card-shine {
+  from {
+    transform: translateX(-130%);
+  }
+  to {
+    transform: translateX(130%);
+  }
 }
 
 /* ---- Section headers ---- */
