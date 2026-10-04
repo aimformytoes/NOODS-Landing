@@ -640,33 +640,69 @@ a {
   transition-delay: 0.24s;
 }
 
+.product-reveal {
+  perspective: 1400px;
+}
+
 .product-reveal .product-card {
   opacity: 0;
-  transform: translateX(-36px);
+  transform: translate3d(-44px, 32px, 0) scale(0.88) rotateY(14deg);
+  transform-origin: center left;
+  filter: blur(10px);
   transition:
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.34, 1.45, 0.64, 1),
+    filter 0.55s ease,
+    box-shadow 0.75s ease;
+  box-shadow: 0 4px 0 rgba(90, 52, 36, 0);
 }
 
 .product-reveal.is-visible .product-card {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
+  filter: blur(0);
+  box-shadow: var(--shadow-cartoon);
 }
 
 .product-reveal.is-visible .product-card:nth-child(1) {
-  transition-delay: 0s;
+  transition-delay: 0.04s;
 }
 
 .product-reveal.is-visible .product-card:nth-child(2) {
-  transition-delay: 0.1s;
+  transition-delay: 0.14s;
 }
 
 .product-reveal.is-visible .product-card:nth-child(3) {
-  transition-delay: 0.2s;
+  transition-delay: 0.24s;
 }
 
 .product-reveal.is-visible .product-card:nth-child(4) {
-  transition-delay: 0.3s;
+  transition-delay: 0.34s;
+}
+
+.product-reveal .product-card__icon {
+  transform: scale(0.55) rotate(-10deg);
+  transition: transform 0.75s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+
+.product-reveal.is-visible .product-card__icon {
+  transform: scale(1) rotate(0deg);
+}
+
+.product-reveal.is-visible .product-card:nth-child(1) .product-card__icon {
+  transition-delay: 0.14s;
+}
+
+.product-reveal.is-visible .product-card:nth-child(2) .product-card__icon {
+  transition-delay: 0.24s;
+}
+
+.product-reveal.is-visible .product-card:nth-child(3) .product-card__icon {
+  transition-delay: 0.34s;
+}
+
+.product-reveal.is-visible .product-card:nth-child(4) .product-card__icon {
+  transition-delay: 0.44s;
 }
 
 /* ---- Section headers ---- */
@@ -771,7 +807,8 @@ a {
 }
 
 .product-card.float-card:hover {
-  transform: translateY(-3px);
+  transform: translate3d(0, -4px, 0) scale(1.02);
+  box-shadow: var(--shadow-cartoon-lg);
 }
 
 .product-card__icon {
