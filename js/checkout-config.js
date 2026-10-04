@@ -6,7 +6,8 @@
  */
 window.NOODS_CHECKOUT = {
   productName: 'First Bundle Release + PR Launch Box',
-  priceLabel: 'Reserve your spot',
+  priceLabel: '$14.25',
+  priceNote: 'before tax · shipping added at checkout',
   stripePaymentLink: '',
   formEndpoint: '',
   bundleItems: [

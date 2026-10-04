@@ -22,7 +22,8 @@ Edit `js/checkout-config.js`:
 |---------|---------|
 | `stripePaymentLink` | Your [Stripe Payment Link](https://dashboard.stripe.com/payment-links) URL |
 | `formEndpoint` | [Formspree](https://formspree.io) form URL (JSON) to store leads |
-| `priceLabel` | Price shown in the modal (e.g. `$49`) |
+| `priceLabel` | Price shown in the modal (currently `$14.25` before tax) |
+| `priceNote` | Line under price (e.g. shipping at checkout) |
 | `bundleItems` | Bullet list of what’s included |
 
 **Stripe setup:** Create a product for the first bundle + PR Launch box, enable Payment Link, and paste the link. The site passes `prefilled_email` and `client_reference_id` (name) into checkout.
