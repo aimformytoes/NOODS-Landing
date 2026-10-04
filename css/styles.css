@@ -1308,9 +1308,11 @@ a {
   }
 
   .reveal,
-  .product-reveal .product-card {
+  .product-reveal .product-card,
+  .product-reveal .product-card__icon {
     opacity: 1;
     transform: none;
+    filter: none;
     transition-delay: 0s !important;
   }
 }
