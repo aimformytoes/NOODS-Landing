@@ -89,7 +89,7 @@
   }
 
   /* Scroll reveal */
-  const revealEls = document.querySelectorAll('.reveal');
+  const revealEls = document.querySelectorAll('.reveal, .product-reveal');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       function (entries) {
