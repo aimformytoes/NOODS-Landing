@@ -403,4 +403,38 @@
   }
 
   initProductsNoodleBorder();
+
+  function fitProductsSubtitleBubble() {
+    const wrap = document.querySelector('.products__subtitle-wrap');
+    const bubble = document.querySelector('.products__subtitle');
+    const text = document.querySelector('.products__subtitle__text');
+    if (!wrap || !bubble || !text) return;
+
+    const maxWidth = Math.max(120, wrap.clientWidth - 4);
+    text.style.fontSize = '';
+    let sizePx = parseFloat(window.getComputedStyle(text).fontSize);
+    const minPx = 10;
+
+    while (bubble.getBoundingClientRect().width > maxWidth && sizePx > minPx) {
+      sizePx -= 0.5;
+      text.style.fontSize = sizePx + 'px';
+    }
+  }
+
+  function initProductsSubtitleBubble() {
+    fitProductsSubtitleBubble();
+    window.addEventListener('resize', fitProductsSubtitleBubble);
+    if ('ResizeObserver' in window) {
+      const wrap = document.querySelector('.products__subtitle-wrap');
+      if (wrap) {
+        const ro = new ResizeObserver(fitProductsSubtitleBubble);
+        ro.observe(wrap);
+      }
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitProductsSubtitleBubble);
+    }
+  }
+
+  initProductsSubtitleBubble();
 })();

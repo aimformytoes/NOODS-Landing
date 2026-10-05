@@ -935,21 +935,16 @@ a {
   width: 100%;
   max-width: min(920px, 94vw);
   margin: 0 auto;
-  padding: 0 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0 16px;
+  text-align: center;
   box-sizing: border-box;
 }
 
 .products__subtitle {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  padding: 0.5em 1.05em;
+  display: inline-block;
+  width: auto;
+  margin: 0 auto;
+  padding: 0.55em 1.15em;
   font-family: var(--font-headline);
   font-weight: 900;
   line-height: 1.15;
@@ -959,13 +954,14 @@ a {
   border-radius: 0.65em;
   box-shadow: inset 0 0 0 1px rgba(217, 154, 85, 0.22);
   box-sizing: border-box;
+  vertical-align: top;
 }
 
 .products__subtitle__text {
-  display: block;
+  display: inline;
   white-space: nowrap;
   letter-spacing: 0.01em;
-  font-size: clamp(0.68rem, min(2.75rem, 3.35vw), 2.75rem);
+  font-size: clamp(0.72rem, min(2.75rem, 3.2vw), 2.75rem);
 }
 
 .products__grid {
