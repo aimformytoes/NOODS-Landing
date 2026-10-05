@@ -931,23 +931,32 @@ a {
   line-height: 1.05;
 }
 
-.products__subtitle {
-  display: block;
-  width: fit-content;
+.products__subtitle-wrap {
+  width: 100%;
   max-width: min(920px, 94vw);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.products__subtitle {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
   margin: 0;
-  padding: clamp(10px, 1.8vw, 14px) clamp(18px, 3.2vw, 32px);
+  padding: 0.45em 0.95em;
   font-family: var(--font-headline);
   font-size: clamp(0.82rem, 2.9vw, 2.75rem);
   font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
   text-align: center;
   color: var(--brown);
   text-transform: none;
   white-space: nowrap;
   background: var(--products-bubble-bg);
-  border-radius: 14px;
+  border-radius: 0.65em;
   box-shadow: inset 0 0 0 1px rgba(217, 154, 85, 0.22);
   box-sizing: border-box;
 }
