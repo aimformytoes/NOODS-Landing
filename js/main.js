@@ -285,7 +285,7 @@
     }
 
     function buildWavyLoop(width, height, phaseOffset, ampScale) {
-      const inset = 14;
+      const inset = 16;
       const frameW = Math.max(40, width - inset * 2);
       const frameH = Math.max(40, height - inset * 2);
       const radius = Math.min(24, frameW * 0.12, frameH * 0.22);
@@ -294,9 +294,9 @@
 
       measurePath.setAttribute('d', roundedRectD(x, y, frameW, frameH, radius));
       const total = measurePath.getTotalLength();
-      const samples = Math.max(140, Math.floor(total / 2.5));
-      const amp = 7 * ampScale;
-      const waves = 11;
+      const samples = Math.max(160, Math.floor(total / 2));
+      const amp = 13 * ampScale;
+      const waves = 17;
       const parts = [];
 
       for (let i = 0; i < samples; i += 1) {
@@ -336,7 +336,7 @@
 
     function tick() {
       if (!motionQuery.matches) {
-        phase += 0.07;
+        phase += 0.15;
       }
       render();
       rafId = window.requestAnimationFrame(tick);
