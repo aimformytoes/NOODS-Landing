@@ -836,21 +836,27 @@ a {
 
 .products__header {
   margin-bottom: 44px;
+  --products-bubble-bg: #f8e7c8;
 }
 
-/* Products header bubbles (title fill + subtitle pill) */
-.products__header {
-  --products-bubble-bg: rgba(248, 231, 200, 0.88);
+.products__header-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: clamp(12px, 2.5vw, 18px);
 }
 
 /* Continuous wavy noodle loop around products title */
 .products__noodle-box {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
   max-width: min(920px, 94vw);
-  margin: 0 auto 24px;
+  margin: 0;
   padding: clamp(30px, 5vw, 40px) clamp(34px, 6vw, 52px);
 }
 
@@ -926,23 +932,24 @@ a {
 }
 
 .products__subtitle {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  max-width: min(920px, 94vw);
+  margin: 0;
+  padding: clamp(10px, 1.8vw, 14px) clamp(18px, 3.2vw, 32px);
   font-family: var(--font-headline);
   font-size: clamp(0.82rem, 2.9vw, 2.75rem);
   font-weight: 900;
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: 0.02em;
-  max-width: none;
-  margin: 8px auto 0;
-  padding: clamp(8px, 1.6vw, 14px) clamp(14px, 3vw, 28px);
+  text-align: center;
   color: var(--brown);
   text-transform: none;
   white-space: nowrap;
   background: var(--products-bubble-bg);
   border-radius: 14px;
-  box-shadow: inset 0 0 0 1px rgba(217, 154, 85, 0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgba(217, 154, 85, 0.22);
+  box-sizing: border-box;
 }
 
 .products__grid {
