@@ -838,6 +838,11 @@ a {
   margin-bottom: 44px;
 }
 
+/* Products header bubbles (title fill + subtitle pill) */
+.products__header {
+  --products-bubble-bg: rgba(248, 231, 200, 0.88);
+}
+
 /* Continuous wavy noodle loop around products title */
 .products__noodle-box {
   position: relative;
@@ -875,7 +880,7 @@ a {
 
 /* Match scrolling marquee noodle strand colors */
 .products__noodle-loop__fill {
-  fill: var(--cream);
+  fill: var(--products-bubble-bg);
   stroke: none;
 }
 
@@ -921,17 +926,23 @@ a {
 }
 
 .products__subtitle {
+  display: inline-block;
   font-family: var(--font-headline);
   font-size: clamp(0.82rem, 2.9vw, 2.75rem);
   font-weight: 900;
   line-height: 1.25;
   letter-spacing: 0.02em;
   max-width: none;
-  margin: 0 auto;
+  margin: 8px auto 0;
+  padding: clamp(8px, 1.6vw, 14px) clamp(14px, 3vw, 28px);
   color: var(--brown);
   text-transform: none;
   white-space: nowrap;
-  opacity: 0.92;
+  background: var(--products-bubble-bg);
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(217, 154, 85, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .products__grid {
