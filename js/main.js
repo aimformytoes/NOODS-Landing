@@ -251,4 +251,128 @@
     );
     heroObserver.observe(hero);
   }
+
+  /* Products title: one continuous noodle worm around the full border */
+  function initProductsNoodleBorder() {
+    const box = document.querySelector('[data-noodle-border]');
+    if (!box) return;
+
+    const svg = box.querySelector('.products__noodle-loop');
+    const shadowPath = box.querySelector('.products__noodle-loop__shadow');
+    const bodyPath = box.querySelector('.products__noodle-loop__body');
+    const highlightPath = box.querySelector('.products__noodle-loop__highlight');
+    if (!svg || !shadowPath || !bodyPath || !highlightPath) return;
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const measurePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    let phase = 0;
+    let rafId = 0;
+    let running = false;
+
+    function roundedRectD(x, y, w, h, r) {
+      return (
+        'M ' + (x + r) + ' ' + y +
+        ' H ' + (x + w - r) +
+        ' A ' + r + ' ' + r + ' 0 0 1 ' + (x + w) + ' ' + (y + r) +
+        ' V ' + (y + h - r) +
+        ' A ' + r + ' ' + r + ' 0 0 1 ' + (x + w - r) + ' ' + (y + h) +
+        ' H ' + (x + r) +
+        ' A ' + r + ' ' + r + ' 0 0 1 ' + x + ' ' + (y + h - r) +
+        ' V ' + (y + r) +
+        ' A ' + r + ' ' + r + ' 0 0 1 ' + (x + r) + ' ' + y +
+        ' Z'
+      );
+    }
+
+    function buildWavyLoop(width, height, phaseOffset, ampScale) {
+      const inset = 14;
+      const frameW = Math.max(40, width - inset * 2);
+      const frameH = Math.max(40, height - inset * 2);
+      const radius = Math.min(24, frameW * 0.12, frameH * 0.22);
+      const x = inset;
+      const y = inset;
+
+      measurePath.setAttribute('d', roundedRectD(x, y, frameW, frameH, radius));
+      const total = measurePath.getTotalLength();
+      const samples = Math.max(140, Math.floor(total / 2.5));
+      const amp = 7 * ampScale;
+      const waves = 11;
+      const parts = [];
+
+      for (let i = 0; i < samples; i += 1) {
+        const t = i / samples;
+        const len = t * total;
+        const p = measurePath.getPointAtLength(len);
+        const pNext = measurePath.getPointAtLength((len + total / samples) % total);
+        const dx = pNext.x - p.x;
+        const dy = pNext.y - p.y;
+        const mag = Math.hypot(dx, dy) || 1;
+        const nx = dy / mag;
+        const ny = -dx / mag;
+        const wave = amp * Math.sin(t * waves * Math.PI * 2 + phaseOffset);
+        const px = p.x + nx * wave;
+        const py = p.y + ny * wave;
+        parts.push((i === 0 ? 'M ' : ' L ') + px.toFixed(2) + ' ' + py.toFixed(2));
+      }
+
+      return parts.join('') + ' Z';
+    }
+
+    function render() {
+      const rect = box.getBoundingClientRect();
+      const width = Math.max(1, Math.round(rect.width));
+      const height = Math.max(1, Math.round(rect.height));
+
+      svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+
+      const dBody = buildWavyLoop(width, height, phase, 1);
+      const dShadow = buildWavyLoop(width, height, phase + 0.35, 1.08);
+      const dHighlight = buildWavyLoop(width, height, phase + 0.12, 0.92);
+
+      bodyPath.setAttribute('d', dBody);
+      shadowPath.setAttribute('d', dShadow);
+      highlightPath.setAttribute('d', dHighlight);
+    }
+
+    function tick() {
+      if (!motionQuery.matches) {
+        phase += 0.07;
+      }
+      render();
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function stop() {
+      running = false;
+      window.cancelAnimationFrame(rafId);
+    }
+
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(function () {
+        render();
+      });
+      ro.observe(box);
+    } else {
+      window.addEventListener('resize', render);
+    }
+
+    motionQuery.addEventListener('change', render);
+    start();
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    });
+  }
+
+  initProductsNoodleBorder();
 })();

@@ -838,18 +838,28 @@ a {
   margin-bottom: 44px;
 }
 
-/* Animated instant-noodle strand border */
+/* Continuous wavy noodle loop around products title */
 .products__noodle-box {
   position: relative;
   display: inline-block;
   max-width: min(920px, 94vw);
   margin: 0 auto 24px;
-  padding: 12px 14px;
+}
+
+.products__noodle-loop {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
 
 .products__noodle-box__panel {
   position: relative;
   z-index: 1;
+  margin: 18px;
   padding: clamp(22px, 4vw, 38px) clamp(28px, 6vw, 56px);
   border-radius: 20px;
   background: linear-gradient(
@@ -870,117 +880,27 @@ a {
   gap: 4px;
 }
 
-.products__noodle-edge {
-  position: absolute;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
+.products__noodle-loop__shadow {
+  stroke: #9a6b3d;
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.4;
 }
 
-.products__noodle-edge svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.products__noodle-edge--top {
-  top: 2px;
-  left: 18px;
-  right: 18px;
-  height: 16px;
-}
-
-.products__noodle-edge--bottom {
-  bottom: 2px;
-  left: 18px;
-  right: 18px;
-  height: 16px;
-}
-
-.products__noodle-edge--left {
-  left: 2px;
-  top: 18px;
-  bottom: 18px;
-  width: 16px;
-}
-
-.products__noodle-edge--right {
-  right: 2px;
-  top: 18px;
-  bottom: 18px;
-  width: 16px;
-}
-
-.products__noodle-strand__shadow {
-  fill: none;
-  stroke: #b07d45;
+.products__noodle-loop__body {
+  stroke: var(--orange);
   stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.45;
 }
 
-.products__noodle-strand__body {
-  fill: none;
-  stroke: var(--orange);
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.products__noodle-strand__highlight {
-  fill: none;
+.products__noodle-loop__highlight {
   stroke: var(--yellow);
-  stroke-width: 2.75;
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0.95;
-}
-
-.products__noodle-strand--pan-x {
-  animation: noodle-pan-x 22s linear infinite;
-}
-
-.products__noodle-strand--pan-x-rev {
-  animation: noodle-pan-x-rev 22s linear infinite;
-}
-
-.products__noodle-strand--pan-y {
-  animation: noodle-pan-y 22s linear infinite;
-}
-
-.products__noodle-strand--pan-y-rev {
-  animation: noodle-pan-y-rev 22s linear infinite;
-}
-
-@keyframes noodle-pan-x {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@keyframes noodle-pan-x-rev {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes noodle-pan-y {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
-}
-
-@keyframes noodle-pan-y-rev {
-  from { transform: translateY(-50%); }
-  to { transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .products__noodle-strand--pan-x,
-  .products__noodle-strand--pan-x-rev,
-  .products__noodle-strand--pan-y,
-  .products__noodle-strand--pan-y-rev {
-    animation: none;
-  }
 }
 
 .products__title {

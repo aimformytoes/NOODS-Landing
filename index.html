@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20251005-noodle-border" />
+  <link rel="stylesheet" href="css/styles.css?v=20251005-noodle-worm" />
 </head>
 <body>
 
@@ -106,43 +106,12 @@
     <section class="products" id="products">
       <div class="container">
         <header class="section-header products__header reveal">
-          <div class="products__noodle-box">
-            <div class="products__noodle-edge products__noodle-edge--top" aria-hidden="true">
-              <svg viewBox="0 0 240 28" preserveAspectRatio="none" focusable="false">
-                <g class="products__noodle-strand products__noodle-strand--pan-x">
-                  <path class="products__noodle-strand__shadow" d="M0 16 C13 8 27 24 40 16 S67 8 80 16 S93 24 106 16 S120 16 M120 16 C133 8 147 24 160 16 S187 8 200 16 S213 24 226 16 S240 16" />
-                  <path class="products__noodle-strand__body" d="M0 14 C13 6 27 22 40 14 S67 6 80 14 S93 22 106 14 S120 14 M120 14 C133 6 147 22 160 14 S187 6 200 14 S213 22 226 14 S240 14" />
-                  <path class="products__noodle-strand__highlight" d="M0 14 C13 6 27 22 40 14 S67 6 80 14 S93 22 106 14 S120 14 M120 14 C133 6 147 22 160 14 S187 6 200 14 S213 22 226 14 S240 14" />
-                </g>
-              </svg>
-            </div>
-            <div class="products__noodle-edge products__noodle-edge--right" aria-hidden="true">
-              <svg viewBox="0 0 28 240" preserveAspectRatio="none" focusable="false">
-                <g class="products__noodle-strand products__noodle-strand--pan-y">
-                  <path class="products__noodle-strand__shadow" d="M16 0 C8 13 24 27 16 40 S8 67 24 80 S16 93 24 106 S16 120 M16 120 C8 133 24 147 16 160 S8 187 24 200 S16 213 24 226 S16 240" />
-                  <path class="products__noodle-strand__body" d="M14 0 C6 13 22 27 14 40 S6 67 22 80 S14 93 22 106 S14 120 M14 120 C6 133 22 147 14 160 S6 187 22 200 S14 213 22 226 S14 240" />
-                  <path class="products__noodle-strand__highlight" d="M14 0 C6 13 22 27 14 40 S6 67 22 80 S14 93 22 106 S14 120 M14 120 C6 133 22 147 14 160 S6 187 22 200 S14 213 22 226 S14 240" />
-                </g>
-              </svg>
-            </div>
-            <div class="products__noodle-edge products__noodle-edge--bottom" aria-hidden="true">
-              <svg viewBox="0 0 240 28" preserveAspectRatio="none" focusable="false">
-                <g class="products__noodle-strand products__noodle-strand--pan-x-rev">
-                  <path class="products__noodle-strand__shadow" d="M0 16 C13 8 27 24 40 16 S67 8 80 16 S93 24 106 16 S120 16 M120 16 C133 8 147 24 160 16 S187 8 200 16 S213 24 226 16 S240 16" />
-                  <path class="products__noodle-strand__body" d="M0 14 C13 6 27 22 40 14 S67 6 80 14 S93 22 106 14 S120 14 M120 14 C133 6 147 22 160 14 S187 6 200 14 S213 22 226 14 S240 14" />
-                  <path class="products__noodle-strand__highlight" d="M0 14 C13 6 27 22 40 14 S67 6 80 14 S93 22 106 14 S120 14 M120 14 C133 6 147 22 160 14 S187 6 200 14 S213 22 226 14 S240 14" />
-                </g>
-              </svg>
-            </div>
-            <div class="products__noodle-edge products__noodle-edge--left" aria-hidden="true">
-              <svg viewBox="0 0 28 240" preserveAspectRatio="none" focusable="false">
-                <g class="products__noodle-strand products__noodle-strand--pan-y-rev">
-                  <path class="products__noodle-strand__shadow" d="M16 0 C8 13 24 27 16 40 S8 67 24 80 S16 93 24 106 S16 120 M16 120 C8 133 24 147 16 160 S8 187 24 200 S16 213 24 226 S16 240" />
-                  <path class="products__noodle-strand__body" d="M14 0 C6 13 22 27 14 40 S6 67 22 80 S14 93 22 106 S14 120 M14 120 C6 133 22 147 14 160 S6 187 22 200 S14 213 22 226 S14 240" />
-                  <path class="products__noodle-strand__highlight" d="M14 0 C6 13 22 27 14 40 S6 67 22 80 S14 93 22 106 S14 120 M14 120 C6 133 22 147 14 160 S6 187 22 200 S14 213 22 226 S14 240" />
-                </g>
-              </svg>
-            </div>
+          <div class="products__noodle-box" data-noodle-border>
+            <svg class="products__noodle-loop" aria-hidden="true" focusable="false">
+              <path class="products__noodle-loop__shadow" fill="none" />
+              <path class="products__noodle-loop__body" fill="none" />
+              <path class="products__noodle-loop__highlight" fill="none" />
+            </svg>
             <div class="products__noodle-box__panel">
               <h2 class="section-title products__title">
                 <span class="products__title-line">Instant Noodles</span>
@@ -293,6 +262,6 @@
   </div>
 
   <script src="js/checkout-config.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20251005-noodle-worm"></script>
 </body>
 </html>
