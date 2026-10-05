@@ -258,9 +258,11 @@
     if (!box) return;
 
     const svg = box.querySelector('.products__noodle-loop');
+    const fillPath = box.querySelector('.products__noodle-loop__fill');
+    const shadowPath = box.querySelector('.products__noodle-loop__shadow');
     const bodyPath = box.querySelector('.products__noodle-loop__body');
-    const sheenPath = box.querySelector('.products__noodle-loop__sheen');
-    if (!svg || !bodyPath || !sheenPath) return;
+    const highlightPath = box.querySelector('.products__noodle-loop__highlight');
+    if (!svg || !fillPath || !shadowPath || !bodyPath || !highlightPath) return;
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const measurePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -306,8 +308,13 @@
       );
     }
 
-    function buildWavyLoop(width, height, phaseOffset) {
-      const inset = 16;
+    const LOOP_INSET = 16;
+    const LOOP_AMP = 12;
+    const LOOP_WAVES = 14;
+    const FILL_PULL_IN = 10.5;
+
+    function buildWavyLoop(width, height, phaseOffset, pullInward) {
+      const inset = LOOP_INSET;
       const frameW = Math.max(40, width - inset * 2);
       const frameH = Math.max(40, height - inset * 2);
       const radius = Math.min(24, frameW * 0.12, frameH * 0.22);
@@ -317,8 +324,6 @@
       measurePath.setAttribute('d', roundedRectD(x, y, frameW, frameH, radius));
       const total = measurePath.getTotalLength();
       const samples = Math.max(72, Math.min(120, Math.floor(total / 4)));
-      const amp = 12;
-      const waves = 14;
       const points = [];
 
       for (let i = 0; i < samples; i += 1) {
@@ -331,8 +336,9 @@
         const mag = Math.hypot(dx, dy) || 1;
         const nx = dy / mag;
         const ny = -dx / mag;
-        const wave = amp * Math.sin(t * waves * Math.PI * 2 + phaseOffset);
-        points.push({ x: p.x + nx * wave, y: p.y + ny * wave });
+        const wave = LOOP_AMP * Math.sin(t * LOOP_WAVES * Math.PI * 2 + phaseOffset);
+        const radial = wave - pullInward;
+        points.push({ x: p.x + nx * radial, y: p.y + ny * radial });
       }
 
       return closedSplinePath(points);
@@ -345,9 +351,13 @@
 
       svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
-      const d = buildWavyLoop(width, height, phase);
-      bodyPath.setAttribute('d', d);
-      sheenPath.setAttribute('d', d);
+      const dFill = buildWavyLoop(width, height, phase, FILL_PULL_IN);
+      const dNoodle = buildWavyLoop(width, height, phase, 0);
+
+      fillPath.setAttribute('d', dFill);
+      shadowPath.setAttribute('d', dNoodle);
+      bodyPath.setAttribute('d', dNoodle);
+      highlightPath.setAttribute('d', dNoodle);
     }
 
     function tick(now) {

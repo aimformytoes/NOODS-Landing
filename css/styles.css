@@ -841,15 +841,18 @@ a {
 /* Continuous wavy noodle loop around products title */
 .products__noodle-box {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   max-width: min(920px, 94vw);
   margin: 0 auto 24px;
+  padding: clamp(30px, 5vw, 40px) clamp(34px, 6vw, 52px);
 }
 
 .products__noodle-loop {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 0;
   width: 100%;
   height: 100%;
   overflow: visible;
@@ -859,20 +862,10 @@ a {
 .products__noodle-box__panel {
   position: relative;
   z-index: 1;
-  margin: 22px;
-  padding: clamp(22px, 4vw, 38px) clamp(28px, 6vw, 56px);
-  border-radius: 20px;
-  background: linear-gradient(
-    165deg,
-    rgba(251, 244, 230, 0.98) 0%,
-    rgba(248, 231, 200, 0.95) 48%,
-    rgba(237, 220, 200, 0.93) 100%
-  );
-  box-shadow:
-    inset 0 0 0 1px rgba(217, 154, 85, 0.28),
-    0 10px 28px rgba(90, 52, 36, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  margin: 0;
+  padding: clamp(8px, 1.5vw, 14px) clamp(6px, 1.2vw, 12px);
+  background: transparent;
+  box-shadow: none;
 }
 
 .products__noodle-box .products__title {
@@ -880,19 +873,32 @@ a {
   gap: 4px;
 }
 
-.products__noodle-loop__body {
-  stroke: #e2cc94;
-  stroke-width: 13;
+/* Match scrolling marquee noodle strand colors */
+.products__noodle-loop__fill {
+  fill: var(--cream);
+  stroke: none;
+}
+
+.products__noodle-loop__shadow {
+  stroke: #c4a07a;
+  stroke-width: 15;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.products__noodle-loop__sheen {
-  stroke: #edd9a6;
-  stroke-width: 5;
+.products__noodle-loop__body {
+  stroke: var(--tan);
+  stroke-width: 12;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.85;
+}
+
+.products__noodle-loop__highlight {
+  stroke: var(--cream);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
 }
 
 .products__title {
