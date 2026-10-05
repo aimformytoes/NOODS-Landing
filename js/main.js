@@ -258,16 +258,38 @@
     if (!box) return;
 
     const svg = box.querySelector('.products__noodle-loop');
-    const shadowPath = box.querySelector('.products__noodle-loop__shadow');
     const bodyPath = box.querySelector('.products__noodle-loop__body');
-    const highlightPath = box.querySelector('.products__noodle-loop__highlight');
-    if (!svg || !shadowPath || !bodyPath || !highlightPath) return;
+    const sheenPath = box.querySelector('.products__noodle-loop__sheen');
+    if (!svg || !bodyPath || !sheenPath) return;
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const measurePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    let phase = 0;
+    const WIGGLE_SPEED = 2.4;
     let rafId = 0;
     let running = false;
+    let lastPhase = 0;
+
+    function closedSplinePath(points) {
+      const n = points.length;
+      if (n < 4) return '';
+
+      let d = 'M ' + points[0].x.toFixed(2) + ' ' + points[0].y.toFixed(2);
+      for (let i = 0; i < n; i += 1) {
+        const p0 = points[(i - 1 + n) % n];
+        const p1 = points[i];
+        const p2 = points[(i + 1) % n];
+        const p3 = points[(i + 2) % n];
+        const cp1x = p1.x + (p2.x - p0.x) / 6;
+        const cp1y = p1.y + (p2.y - p0.y) / 6;
+        const cp2x = p2.x - (p3.x - p1.x) / 6;
+        const cp2y = p2.y - (p3.y - p1.y) / 6;
+        d += ' C ' +
+          cp1x.toFixed(2) + ' ' + cp1y.toFixed(2) + ', ' +
+          cp2x.toFixed(2) + ' ' + cp2y.toFixed(2) + ', ' +
+          p2.x.toFixed(2) + ' ' + p2.y.toFixed(2);
+      }
+      return d + ' Z';
+    }
 
     function roundedRectD(x, y, w, h, r) {
       return (
@@ -284,7 +306,7 @@
       );
     }
 
-    function buildWavyLoop(width, height, phaseOffset, ampScale) {
+    function buildWavyLoop(width, height, phaseOffset) {
       const inset = 16;
       const frameW = Math.max(40, width - inset * 2);
       const frameH = Math.max(40, height - inset * 2);
@@ -294,10 +316,10 @@
 
       measurePath.setAttribute('d', roundedRectD(x, y, frameW, frameH, radius));
       const total = measurePath.getTotalLength();
-      const samples = Math.max(160, Math.floor(total / 2));
-      const amp = 13 * ampScale;
-      const waves = 17;
-      const parts = [];
+      const samples = Math.max(72, Math.min(120, Math.floor(total / 4)));
+      const amp = 12;
+      const waves = 14;
+      const points = [];
 
       for (let i = 0; i < samples; i += 1) {
         const t = i / samples;
@@ -310,35 +332,27 @@
         const nx = dy / mag;
         const ny = -dx / mag;
         const wave = amp * Math.sin(t * waves * Math.PI * 2 + phaseOffset);
-        const px = p.x + nx * wave;
-        const py = p.y + ny * wave;
-        parts.push((i === 0 ? 'M ' : ' L ') + px.toFixed(2) + ' ' + py.toFixed(2));
+        points.push({ x: p.x + nx * wave, y: p.y + ny * wave });
       }
 
-      return parts.join('') + ' Z';
+      return closedSplinePath(points);
     }
 
-    function render() {
+    function render(phase) {
       const rect = box.getBoundingClientRect();
       const width = Math.max(1, Math.round(rect.width));
       const height = Math.max(1, Math.round(rect.height));
 
       svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
-      const dBody = buildWavyLoop(width, height, phase, 1);
-      const dShadow = buildWavyLoop(width, height, phase + 0.35, 1.08);
-      const dHighlight = buildWavyLoop(width, height, phase + 0.12, 0.92);
-
-      bodyPath.setAttribute('d', dBody);
-      shadowPath.setAttribute('d', dShadow);
-      highlightPath.setAttribute('d', dHighlight);
+      const d = buildWavyLoop(width, height, phase);
+      bodyPath.setAttribute('d', d);
+      sheenPath.setAttribute('d', d);
     }
 
-    function tick() {
-      if (!motionQuery.matches) {
-        phase += 0.15;
-      }
-      render();
+    function tick(now) {
+      lastPhase = motionQuery.matches ? 0 : (now / 1000) * WIGGLE_SPEED;
+      render(lastPhase);
       rafId = window.requestAnimationFrame(tick);
     }
 
@@ -355,14 +369,18 @@
 
     if ('ResizeObserver' in window) {
       const ro = new ResizeObserver(function () {
-        render();
+        render(lastPhase);
       });
       ro.observe(box);
     } else {
-      window.addEventListener('resize', render);
+      window.addEventListener('resize', function () {
+        render(lastPhase);
+      });
     }
 
-    motionQuery.addEventListener('change', render);
+    motionQuery.addEventListener('change', function () {
+      render(lastPhase);
+    });
     start();
 
     document.addEventListener('visibilitychange', function () {
