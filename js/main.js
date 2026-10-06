@@ -30,15 +30,26 @@
     const priceEl = document.getElementById('modal-bundle-price');
     const priceNoteEl = document.getElementById('modal-bundle-price-note');
     const listEl = document.getElementById('modal-bundle-list');
+    const subtitleEl = document.querySelector('#signup-modal .modal__header .modal__subtitle');
+    const finePrintEl = document.querySelector('.modal__fine-print');
 
     if (titleEl && cfg.productName) {
       titleEl.textContent = cfg.productName;
     }
-    if (priceEl && cfg.priceLabel) {
-      priceEl.textContent = cfg.priceLabel;
+    if (priceEl) {
+      priceEl.hidden = true;
     }
-    if (priceNoteEl && cfg.priceNote) {
-      priceNoteEl.textContent = cfg.priceNote;
+    if (priceNoteEl) {
+      priceNoteEl.hidden = true;
+    }
+    if (subtitleEl && cfg.modalSubtitle) {
+      subtitleEl.textContent = cfg.modalSubtitle;
+    }
+    if (finePrintEl && cfg.finePrint) {
+      finePrintEl.textContent = cfg.finePrint;
+    }
+    if (signupSubmit && cfg.submitLabel) {
+      signupSubmit.textContent = cfg.submitLabel;
     }
     if (listEl && Array.isArray(cfg.bundleItems)) {
       listEl.innerHTML = '';
@@ -111,7 +122,7 @@
 
   async function saveLead(name, email, cfg) {
     if (!cfg.formEndpoint) {
-      return;
+      throw new Error('Waitlist is not connected yet. Add your Formspree URL in js/checkout-config.js.');
     }
 
     const response = await fetch(cfg.formEndpoint, {
@@ -131,15 +142,6 @@
     if (!response.ok) {
       throw new Error('We could not save your email. Please try again.');
     }
-  }
-
-  function redirectToStripe(name, email, paymentLink) {
-    const url = new URL(paymentLink);
-    url.searchParams.set('prefilled_email', email);
-    if (name) {
-      url.searchParams.set('client_reference_id', name.slice(0, 200));
-    }
-    window.location.href = url.toString();
   }
 
   function showSuccess(message) {
@@ -170,30 +172,15 @@
     const cfg = getCheckoutConfig();
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
-    const hasStripe = Boolean(cfg.stripePaymentLink);
-    const hasForm = Boolean(cfg.formEndpoint);
 
     if (signupSubmit) signupSubmit.disabled = true;
-    setFormStatus(hasStripe ? 'Saving your details…' : 'Submitting…');
+    setFormStatus('Submitting…');
 
     try {
       await saveLead(name, email, cfg);
-
-      if (hasStripe) {
-        setFormStatus('Redirecting to secure checkout…');
-        redirectToStripe(name, email, cfg.stripePaymentLink);
-        return;
-      }
-
-      if (hasForm) {
-        showSuccess(
-          "You're reserved! We'll email you about your first bundle and PR Launch box."
-        );
-        return;
-      }
-
       showSuccess(
-        'Thanks! Connect Stripe and email in js/checkout-config.js to enable payments.'
+        cfg.successMessage ||
+          "You're on the list! We'll email you about the first bundle and PR Launch box."
       );
     } catch (err) {
       setFormStatus(err.message || 'Something went wrong. Please try again.');

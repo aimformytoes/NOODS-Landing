@@ -213,13 +213,13 @@
       <div class="modal__header">
         <img class="modal__logo-img" src="assets/LOGO.png" alt="NOODS" />
         <h2 class="modal__title" id="modal-title">Be the First to Try</h2>
-        <p class="modal__subtitle">Reserve your place in the first bundle release — payment secures your spot and founding-member perks.</p>
+        <p class="modal__subtitle">Drop your name and email to join the first bundle waitlist — no payment required.</p>
       </div>
 
       <div class="modal__bundle" id="modal-bundle" aria-label="What's included">
         <p class="modal__bundle-title" id="modal-bundle-title">First Bundle Release + PR Launch Box</p>
-        <p class="modal__bundle-price" id="modal-bundle-price">$14.25</p>
-        <p class="modal__bundle-price-note" id="modal-bundle-price-note">Tax and shipping calculated at checkout</p>
+        <p class="modal__bundle-price" id="modal-bundle-price" hidden>$14.25</p>
+        <p class="modal__bundle-price-note" id="modal-bundle-price-note" hidden>Tax and shipping calculated at checkout</p>
         <ul class="modal__bundle-list" id="modal-bundle-list"></ul>
       </div>
 
@@ -252,10 +252,10 @@
           <span class="form-error" id="email-error"></span>
         </div>
 
-        <p class="modal__fine-print">Tax (if applicable) and shipping are added on the secure Stripe checkout page. We use your email for receipts and launch updates.</p>
+        <p class="modal__fine-print">We only use your info for launch updates. Unsubscribe anytime.</p>
 
         <button class="btn btn--primary btn--full btn--large" type="submit" id="signup-submit">
-          Continue to payment
+          Join the waitlist
         </button>
         <p class="modal__form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
@@ -269,6 +269,6 @@
   </div>
 
   <script src="js/checkout-config.js"></script>
-  <script src="js/main.js?v=20251005-subtitle-fit"></script>
+  <script src="js/main.js?v=20251006-waitlist"></script>
 </body>
 </html>
