@@ -1015,7 +1015,6 @@ a {
   height: auto;
   display: block;
   border-radius: 8px;
-  background: var(--pale);
 }
 
 .products__grid {
