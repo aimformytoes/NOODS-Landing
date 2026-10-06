@@ -837,6 +837,7 @@ a {
 .products__header {
   margin-bottom: 44px;
   --products-bubble-bg: #f8e7c8;
+  --products-bubble-bg-opaque: #f8e7c8;
 }
 
 .products__header-stack {
@@ -886,7 +887,8 @@ a {
 
 /* Match scrolling marquee noodle strand colors */
 .products__noodle-loop__fill {
-  fill: var(--products-bubble-bg);
+  fill: var(--products-bubble-bg-opaque);
+  fill-opacity: 1;
   stroke: none;
 }
 
@@ -950,7 +952,8 @@ a {
   line-height: 1.15;
   text-align: center;
   color: var(--brown);
-  background: var(--products-bubble-bg);
+  background-color: var(--products-bubble-bg-opaque);
+  opacity: 1;
   border-radius: 0.65em;
   box-shadow: inset 0 0 0 1px rgba(217, 154, 85, 0.22);
   box-sizing: border-box;
