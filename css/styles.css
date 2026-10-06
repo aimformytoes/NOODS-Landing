@@ -967,6 +967,57 @@ a {
   font-size: clamp(0.72rem, min(2.75rem, 3.2vw), 2.75rem);
 }
 
+/* ---- Founder story ---- */
+
+.founder-story {
+  padding: 48px 0 56px;
+  position: relative;
+}
+
+.founder-story__header {
+  margin-bottom: 32px;
+}
+
+.founder-story__title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  font-weight: 900;
+  color: var(--brown);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.founder-story__intro {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: var(--brown);
+  opacity: 0.88;
+  max-width: 36rem;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.founder-story__comic {
+  margin: 0 auto;
+  max-width: min(980px, 94vw);
+  padding: clamp(12px, 2vw, 18px);
+  border-radius: calc(var(--radius) + 4px);
+}
+
+.founder-story__comic picture {
+  display: block;
+  line-height: 0;
+}
+
+.founder-story__comic-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  background: var(--pale);
+}
+
 .products__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

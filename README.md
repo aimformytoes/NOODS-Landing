@@ -41,6 +41,7 @@ Until `formEndpoint` is set, the modal opens but shows a configuration message i
 | `assets/Amy To.jpeg` | Team headshot — Amy To |
 | `assets/Francis Press.jpeg` | Team headshot — Francis Press |
 | `assets/Cien Khong.jpeg` | Team headshot — Cien Khong |
+| `assets/founder-comic-strip.png` | Founder story comic strip (PNG or JPG — update `src` in `index.html` if you use `.jpg`) |
 
 ## Brand Palette
 
