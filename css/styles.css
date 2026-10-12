@@ -933,45 +933,69 @@ a {
   line-height: 1.05;
 }
 
-.products__subtitle-wrap {
+.products__clouds {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: clamp(10px, 2.4vw, 28px);
   width: 100%;
-  max-width: min(920px, 94vw);
-  margin: clamp(6px, 1.2vw, 10px) auto clamp(18px, 3.5vw, 32px);
-  padding: clamp(14px, 2.8vw, 22px) 16px;
-  text-align: center;
-  box-sizing: border-box;
+  max-width: min(1000px, 96vw);
+  margin: clamp(18px, 3vw, 28px) auto clamp(18px, 3.5vw, 32px);
+  padding: 0;
+  filter: drop-shadow(0 6px 14px rgba(90, 52, 36, 0.16));
 }
 
-.products__subtitle {
-  display: inline-block;
-  width: auto;
-  margin: 0 auto;
-  padding: 0.55em 1.15em;
+/* Cloud = pill body plus two round puffs rising from its top edge */
+.products__cloud {
+  --cloud-bg: var(--products-bubble-bg-opaque);
+  position: relative;
+  isolation: isolate;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 2vw, 20px) clamp(10px, 2vw, 22px) clamp(12px, 1.8vw, 18px);
+  background: var(--cloud-bg);
+  border-radius: 999px;
+  text-align: center;
+}
+
+.products__cloud::before,
+.products__cloud::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: var(--cloud-bg);
+  border-radius: 50%;
+}
+
+.products__cloud::before {
+  width: 42%;
+  aspect-ratio: 1;
+  left: 14%;
+  top: -34%;
+}
+
+.products__cloud::after {
+  width: 30%;
+  aspect-ratio: 1;
+  right: 16%;
+  top: -22%;
+}
+
+.products__cloud-text {
+  position: relative;
   font-family: var(--font-headline);
   font-weight: 900;
-  line-height: 1.15;
-  text-align: center;
+  font-size: clamp(0.62rem, 1.35vw, 0.98rem);
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-wrap: balance;
   color: var(--brown);
-  background-color: var(--products-bubble-bg-opaque);
-  opacity: 1;
-  border-radius: 0.65em;
-  box-shadow: inset 0 0 0 1px rgba(217, 154, 85, 0.22);
-  box-sizing: border-box;
-  vertical-align: top;
-}
-
-.products__subtitle__text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2em;
-  letter-spacing: 0.01em;
-  font-size: clamp(0.95rem, 3vw, 1.85rem);
-}
-
-.products__subtitle__line {
-  display: block;
-  white-space: nowrap;
 }
 
 /* ---- Founder story ---- */
