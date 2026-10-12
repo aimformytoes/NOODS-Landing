@@ -961,10 +961,17 @@ a {
 }
 
 .products__subtitle__text {
-  display: inline;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
   letter-spacing: 0.01em;
-  font-size: clamp(0.72rem, min(2.75rem, 3.2vw), 2.75rem);
+  font-size: clamp(0.95rem, 3vw, 1.85rem);
+}
+
+.products__subtitle__line {
+  display: block;
+  white-space: nowrap;
 }
 
 /* ---- Founder story ---- */
