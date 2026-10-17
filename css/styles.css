@@ -1025,14 +1025,14 @@ a {
 
 .flavors__carousel {
   position: relative;
-  max-width: 1160px;
+  max-width: 1320px;
   margin: 0 auto;
   touch-action: pan-y;
 }
 
 /* Cups are positioned by js/main.js along an elliptical orbit */
 .flavors__stage {
-  --cup-w: clamp(220px, 53vw, 484px);
+  --cup-w: clamp(253px, 61vw, 557px);
   position: relative;
   height: calc(var(--cup-w) * 0.9);
 }
@@ -1062,7 +1062,7 @@ a {
 }
 
 .flavors__carousel.is-popped .flavor-cup__pop {
-  animation: flavor-pop 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: flavor-pop 0.9s ease-in-out both;
 }
 
 .flavors__carousel.is-popped .flavor-cup[data-flavor="1"] .flavor-cup__pop {
@@ -1078,15 +1078,9 @@ a {
     opacity: 0;
     transform: translateY(120px) scale(0.3) rotate(-14deg);
   }
-  45% {
+  55% {
     opacity: 1;
-    transform: translateY(-28px) scale(1.12) rotate(8deg);
-  }
-  65% {
-    transform: translateY(8px) scale(0.94) rotate(-5deg);
-  }
-  82% {
-    transform: translateY(-6px) scale(1.03) rotate(2deg);
+    transform: translateY(-20px) scale(1.12) rotate(3deg);
   }
   100% {
     opacity: 1;
