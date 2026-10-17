@@ -370,7 +370,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(1.1rem, 3.9vw, 2.15rem);
   font-weight: 900;
-  color: var(--brown);
+  color: var(--red);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.05;
@@ -379,8 +379,6 @@ a {
 
 .hero__banner-line:first-child {
   white-space: nowrap;
-  font-size: clamp(0.98rem, 3.5vw, 2.15rem);
-  letter-spacing: 0.03em;
 }
 
 .hero__banner-line--sub {
@@ -1592,11 +1590,6 @@ a {
   .hero__banner-line {
     font-size: clamp(0.98rem, 4.1vw, 1.4rem);
     letter-spacing: 0.03em;
-  }
-
-  .hero__banner-line:first-child {
-    font-size: clamp(0.78rem, 3.3vw, 1.4rem);
-    letter-spacing: 0.02em;
   }
 
   .marquee {
