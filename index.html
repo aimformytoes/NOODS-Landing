@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20251017-title-gut" />
+  <link rel="stylesheet" href="css/styles.css?v=20251017-flavors" />
 </head>
 <body>
 
@@ -182,6 +182,41 @@
       </div>
     </section>
 
+    <!-- Flavors carousel -->
+    <section class="flavors" id="flavors" aria-labelledby="flavors-title">
+      <div class="container">
+        <header class="section-header flavors__header reveal">
+          <h2 class="flavors__title" id="flavors-title">Meet the Flavors</h2>
+        </header>
+
+        <div class="flavors__carousel" data-flavor-carousel aria-roledescription="carousel">
+          <div class="flavors__stage">
+            <div class="flavor-cup" data-flavor="0" data-name="Hot and Spicy">
+              <div class="flavor-cup__pop">
+                <img src="assets/flavors/hot-and-spicy-cutout.png" alt="NOODS Hot and Spicy instant noodle cup" width="900" height="599" />
+              </div>
+            </div>
+            <div class="flavor-cup" data-flavor="1" data-name="Savoury Beef">
+              <div class="flavor-cup__pop">
+                <img src="assets/flavors/beef-cutout.png" alt="NOODS Savoury Beef instant noodle cup" width="900" height="622" />
+              </div>
+            </div>
+            <div class="flavor-cup" data-flavor="2" data-name="Chicken Broth">
+              <div class="flavor-cup__pop">
+                <img src="assets/flavors/chicken-cutout.png" alt="NOODS Chicken Broth instant noodle cup" width="900" height="611" />
+              </div>
+            </div>
+          </div>
+
+          <div class="flavors__controls">
+            <button class="flavors__arrow" type="button" data-flavor-prev aria-label="Previous flavor">&larr;</button>
+            <p class="flavors__name" aria-live="polite">Hot and Spicy</p>
+            <button class="flavors__arrow" type="button" data-flavor-next aria-label="Next flavor">&rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Founder story (comic strip: assets/founder-comic-strip.png or .jpg) -->
     <section class="founder-story" id="founder-story" aria-labelledby="founder-story-title">
       <div class="container founder-story__box">
@@ -291,6 +326,6 @@
   </div>
 
   <script src="js/checkout-config.js"></script>
-  <script src="js/main.js?v=20251012-clouds"></script>
+  <script src="js/main.js?v=20251017-flavors"></script>
 </body>
 </html>

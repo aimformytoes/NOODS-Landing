@@ -390,4 +390,151 @@
   }
 
   initProductsNoodleBorder();
+
+  /* Flavors: three cups orbiting on an ellipse, front cup in the middle */
+  function initFlavorCarousel() {
+    const carousel = document.querySelector('[data-flavor-carousel]');
+    if (!carousel) return;
+
+    const stage = carousel.querySelector('.flavors__stage');
+    const cups = Array.prototype.slice.call(carousel.querySelectorAll('.flavor-cup'));
+    const nameEl = carousel.querySelector('.flavors__name');
+    const prevBtn = carousel.querySelector('[data-flavor-prev]');
+    const nextBtn = carousel.querySelector('[data-flavor-next]');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const count = cups.length;
+    const step = 360 / count;
+    const SPIN_MS = 1100;
+    const AUTOPLAY_MS = 3400;
+
+    let rotation = 0;
+    let index = 0;
+    let animId = 0;
+    let autoplayId = 0;
+    let paused = false;
+    let inView = false;
+
+    function easeOutBack(t) {
+      const c1 = 1.3;
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+    }
+
+    function layout() {
+      const rx = stage.clientWidth * 0.34;
+      const ry = stage.clientHeight * 0.1;
+
+      cups.forEach(function (cup, i) {
+        const theta = ((i * step - rotation) * Math.PI) / 180;
+        const depth = (Math.cos(theta) + 1) / 2;
+        const x = Math.sin(theta) * rx;
+        const y = -(1 - depth) * ry * 2;
+        const scale = 0.5 + 0.5 * depth;
+        const tilt = Math.sin(theta) * -10;
+
+        cup.style.transform =
+          'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) ' +
+          'scale(' + scale.toFixed(3) + ') rotate(' + tilt.toFixed(2) + 'deg)';
+        cup.style.zIndex = String(Math.round(depth * 100));
+        cup.style.filter = 'brightness(' + (0.82 + 0.18 * depth).toFixed(3) + ')';
+        cup.setAttribute('aria-hidden', depth > 0.95 ? 'false' : 'true');
+      });
+    }
+
+    function spinTo(target) {
+      window.cancelAnimationFrame(animId);
+      index = ((Math.round(target / step) % count) + count) % count;
+      if (nameEl) nameEl.textContent = cups[index].getAttribute('data-name');
+
+      if (motionQuery.matches) {
+        rotation = target;
+        layout();
+        return;
+      }
+
+      const from = rotation;
+      const start = performance.now();
+
+      function frame(now) {
+        const t = Math.min(1, (now - start) / SPIN_MS);
+        rotation = from + (target - from) * easeOutBack(t);
+        layout();
+        if (t < 1) animId = window.requestAnimationFrame(frame);
+      }
+      animId = window.requestAnimationFrame(frame);
+    }
+
+    function go(delta) {
+      const base = Math.round(rotation / step) * step;
+      spinTo(base + delta * step);
+    }
+
+    function goToCup(i) {
+      let delta = (i - index + count) % count;
+      if (delta > count / 2) delta -= count;
+      if (delta !== 0) go(delta);
+    }
+
+    function stopAutoplay() {
+      window.clearInterval(autoplayId);
+      autoplayId = 0;
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      if (motionQuery.matches || paused || !inView || document.hidden) return;
+      autoplayId = window.setInterval(function () { go(1); }, AUTOPLAY_MS);
+    }
+
+    function userGo(fn) {
+      fn();
+      startAutoplay();
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { userGo(function () { go(-1); }); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { userGo(function () { go(1); }); });
+
+    cups.forEach(function (cup, i) {
+      cup.addEventListener('click', function () { userGo(function () { goToCup(i); }); });
+    });
+
+    carousel.addEventListener('mouseenter', function () { paused = true; stopAutoplay(); });
+    carousel.addEventListener('mouseleave', function () { paused = false; startAutoplay(); });
+
+    let swipeX = null;
+    stage.addEventListener('pointerdown', function (e) { swipeX = e.clientX; });
+    stage.addEventListener('pointerup', function (e) {
+      if (swipeX === null) return;
+      const dx = e.clientX - swipeX;
+      swipeX = null;
+      if (Math.abs(dx) > 40) userGo(function () { go(dx < 0 ? 1 : -1); });
+    });
+
+    document.addEventListener('visibilitychange', startAutoplay);
+    window.addEventListener('resize', layout);
+    layout();
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          inView = entry.isIntersecting;
+          if (inView && !carousel.classList.contains('is-popped')) {
+            carousel.classList.add('is-popped');
+            window.setTimeout(startAutoplay, 1600);
+          } else if (inView) {
+            startAutoplay();
+          } else {
+            stopAutoplay();
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(carousel);
+    } else {
+      carousel.classList.add('is-popped');
+      inView = true;
+      startAutoplay();
+    }
+  }
+
+  initFlavorCarousel();
 })();
