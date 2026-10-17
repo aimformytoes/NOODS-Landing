@@ -1048,8 +1048,25 @@ a {
 }
 
 .flavor-cup__pop {
+  position: relative;
+  isolation: isolate;
   opacity: 0;
   transform: translateY(120px) scale(0.3) rotate(-14deg);
+}
+
+.flavor-cup__pop::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5%;
+  z-index: -1;
+  width: 70%;
+  height: 10%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(60, 30, 16, 0.38);
+  box-shadow: 0 0 18px 10px rgba(60, 30, 16, 0.3);
+  pointer-events: none;
 }
 
 .flavor-cup img {
