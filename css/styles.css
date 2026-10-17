@@ -1005,7 +1005,7 @@ a {
 }
 
 .flavors__header {
-  margin-bottom: clamp(8px, 2vw, 20px);
+  margin-bottom: clamp(28px, 4vw, 36px);
 }
 
 .flavors__title {
@@ -1025,14 +1025,14 @@ a {
 
 .flavors__carousel {
   position: relative;
-  max-width: 1000px;
+  max-width: 1160px;
   margin: 0 auto;
   touch-action: pan-y;
 }
 
 /* Cups are positioned by js/main.js along an elliptical orbit */
 .flavors__stage {
-  --cup-w: clamp(200px, 48vw, 440px);
+  --cup-w: clamp(220px, 53vw, 484px);
   position: relative;
   height: calc(var(--cup-w) * 0.9);
 }

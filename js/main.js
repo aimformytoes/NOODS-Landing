@@ -421,7 +421,7 @@
     }
 
     function layout() {
-      const rx = stage.clientWidth * 0.34;
+      const rx = stage.clientWidth * 0.36;
       const ry = stage.clientHeight * 0.1;
 
       cups.forEach(function (cup, i) {
@@ -429,7 +429,7 @@
         const depth = (Math.cos(theta) + 1) / 2;
         const x = Math.sin(theta) * rx;
         const y = -(1 - depth) * ry * 2;
-        const scale = 0.5 + 0.5 * depth;
+        const scale = 0.8 + 0.2 * depth;
         const tilt = Math.sin(theta) * -10;
 
         cup.style.transform =
