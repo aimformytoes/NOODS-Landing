@@ -1537,6 +1537,11 @@ a {
     font-size: 16px;
   }
 
+  .products__title-line {
+    white-space: nowrap;
+    font-size: clamp(1.15rem, 6.6vw, 2.25rem);
+  }
+
   .container {
     padding: 0 20px;
   }
