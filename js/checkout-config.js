@@ -4,17 +4,13 @@
  * Formspree: https://formspree.io — create a form and paste the endpoint URL.
  */
 window.NOODS_CHECKOUT = {
-  productName: 'First Bundle Release + PR Launch Box',
+  productName: 'PR Launch Box',
   formEndpoint: '',
   submitLabel: 'Join the waitlist',
   successMessage:
     "You're on the list! We'll email you about the first bundle and PR Launch box.",
-  modalSubtitle:
-    'Drop your name and email to join the first bundle waitlist — no payment required.',
+  modalSubtitle: 'Be part of the very first people to try NOODS',
   finePrint: 'We only use your info for launch updates. Unsubscribe anytime.',
-  bundleItems: [
-    'Early access to the first NOODS bundle release',
-    'PR Launch box (launch kit + first-run noodles)',
-    'Founding member updates before public launch',
-  ],
+  bundleText:
+    'First launch will include a special PR Launch BOX with our 3 flavors: Chicken Broth, Savoury Beef, and Hot and Spicy + Extra Goodies!',
 };

@@ -26,21 +26,12 @@
 
   function applyCheckoutConfig() {
     const cfg = getCheckoutConfig();
-    const titleEl = document.getElementById('modal-bundle-title');
-    const priceEl = document.getElementById('modal-bundle-price');
-    const priceNoteEl = document.getElementById('modal-bundle-price-note');
-    const listEl = document.getElementById('modal-bundle-list');
+    const bundleTextEl = document.getElementById('modal-bundle-text');
     const subtitleEl = document.querySelector('#signup-modal .modal__header .modal__subtitle');
     const finePrintEl = document.querySelector('.modal__fine-print');
 
-    if (titleEl && cfg.productName) {
-      titleEl.textContent = cfg.productName;
-    }
-    if (priceEl) {
-      priceEl.hidden = true;
-    }
-    if (priceNoteEl) {
-      priceNoteEl.hidden = true;
+    if (bundleTextEl && cfg.bundleText) {
+      bundleTextEl.textContent = cfg.bundleText;
     }
     if (subtitleEl && cfg.modalSubtitle) {
       subtitleEl.textContent = cfg.modalSubtitle;
@@ -50,14 +41,6 @@
     }
     if (signupSubmit && cfg.submitLabel) {
       signupSubmit.textContent = cfg.submitLabel;
-    }
-    if (listEl && Array.isArray(cfg.bundleItems)) {
-      listEl.innerHTML = '';
-      cfg.bundleItems.forEach(function (item) {
-        const li = document.createElement('li');
-        li.textContent = item;
-        listEl.appendChild(li);
-      });
     }
   }
 

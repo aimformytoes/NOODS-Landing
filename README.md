@@ -24,7 +24,8 @@ Edit `js/checkout-config.js`:
 | `submitLabel` | Button text (default: `Join the waitlist`) |
 | `successMessage` | Shown after a successful signup |
 | `modalSubtitle` / `finePrint` | Modal copy |
-| `bundleItems` | Bullet list of what’s included |
+| `bundleText` | Launch box description shown in the modal |
+| `productName` | Sent with each signup as `product` |
 
 **Formspree setup:** Create a form, allow JSON posts, and paste `https://formspree.io/f/your-id`. Submissions include `name`, `email`, `product`, and `source`.
 
