@@ -26,16 +26,8 @@
 
   function applyCheckoutConfig() {
     const cfg = getCheckoutConfig();
-    const bundleTextEl = document.getElementById('modal-bundle-text');
-    const subtitleEl = document.querySelector('#signup-modal .modal__header .modal__subtitle');
     const finePrintEl = document.querySelector('.modal__fine-print');
 
-    if (bundleTextEl && cfg.bundleText) {
-      bundleTextEl.textContent = cfg.bundleText;
-    }
-    if (subtitleEl && cfg.modalSubtitle) {
-      subtitleEl.textContent = cfg.modalSubtitle;
-    }
     if (finePrintEl && cfg.finePrint) {
       finePrintEl.textContent = cfg.finePrint;
     }

@@ -23,8 +23,7 @@ Edit `js/checkout-config.js`:
 | `formEndpoint` | [Formspree](https://formspree.io) form URL (JSON) to store leads |
 | `submitLabel` | Button text (default: `Join the waitlist`) |
 | `successMessage` | Shown after a successful signup |
-| `modalSubtitle` / `finePrint` | Modal copy |
-| `bundleText` | Launch box description shown in the modal |
+| `finePrint` | Small print under the form |
 | `productName` | Sent with each signup as `product` |
 
 **Formspree setup:** Create a form, allow JSON posts, and paste `https://formspree.io/f/your-id`. Submissions include `name`, `email`, `product`, and `source`.
