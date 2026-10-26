@@ -16,6 +16,9 @@
   const emailInput = document.getElementById('email');
   const nameError = document.getElementById('name-error');
   const emailError = document.getElementById('email-error');
+  const consentInput = document.getElementById('consent');
+  const consentError = document.getElementById('consent-error');
+  const websiteInput = document.getElementById('website');
   const hero = document.getElementById('hero');
 
   let lastFocused = null;
@@ -67,8 +70,23 @@
   function clearErrors() {
     nameError.textContent = '';
     emailError.textContent = '';
+    consentError.textContent = '';
     nameInput.classList.remove('is-error');
     emailInput.classList.remove('is-error');
+    consentInput.classList.remove('is-error');
+  }
+
+  function showFieldError(field, message) {
+    const map = {
+      name: [nameInput, nameError],
+      email: [emailInput, emailError],
+      consent: [consentInput, consentError],
+    };
+    const entry = map[field];
+    if (!entry) return false;
+    entry[1].textContent = message;
+    entry[0].classList.add('is-error');
+    return true;
   }
 
   function validate() {
@@ -92,34 +110,61 @@
       valid = false;
     }
 
+    if (!consentInput.checked) {
+      showFieldError('consent', 'Please tick the box so we can email you about the launch.');
+      valid = false;
+    }
+
     return valid;
   }
 
+  function SignupError(message, field) {
+    this.message = message;
+    this.field = field || null;
+  }
+
   async function saveLead(name, email, cfg) {
-    if (!cfg.formEndpoint) {
-      throw new Error('Waitlist is not connected yet. Add your Formspree URL in js/checkout-config.js.');
+    if (!cfg.signupEndpoint) {
+      throw new SignupError('Signups are not open yet. Please check back soon.');
     }
 
-    const response = await fetch(cfg.formEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        product: cfg.productName || 'First Bundle Release + PR Launch Box',
-        source: 'noods-landing',
-      }),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(function () { controller.abort(); }, 20000);
+    let response;
+    let data = null;
 
-    if (!response.ok) {
-      throw new Error('We could not save your email. Please try again.');
+    try {
+      response = await fetch(cfg.signupEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          consent: consentInput.checked === true,
+          website: websiteInput ? websiteInput.value : '',
+        }),
+        signal: controller.signal,
+      });
+      data = await response.json().catch(function () { return null; });
+    } catch (err) {
+      throw new SignupError('We could not reach our signup server. Check your connection and try again.');
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    if (!response.ok || !data || data.ok !== true) {
+      throw new SignupError(
+        (data && data.error) || 'We could not save your signup. Please try again.',
+        data && data.field
+      );
     }
   }
 
   function showSuccess(message) {
+    setFormStatus('');
     signupForm.hidden = true;
     modalSuccess.hidden = false;
     if (modalSuccessText && message) {
@@ -158,7 +203,12 @@
           "You're on the list! We'll email you about the first bundle and PR Launch box."
       );
     } catch (err) {
-      setFormStatus(err.message || 'Something went wrong. Please try again.');
+      const message = (err && err.message) || 'Something went wrong. Please try again.';
+      if (err && err.field && showFieldError(err.field, message)) {
+        setFormStatus('');
+      } else {
+        setFormStatus(message);
+      }
       if (signupSubmit) signupSubmit.disabled = false;
     }
   });

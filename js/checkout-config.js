@@ -1,11 +1,12 @@
 /**
- * Waitlist signup — set formEndpoint before going live.
+ * Waitlist signup → Shopify customers.
  *
- * Formspree: https://formspree.io — create a form and paste the endpoint URL.
+ * signupEndpoint is the URL of the deployed Cloudflare Worker in
+ * shopify-waitlist-worker/ (e.g. https://noods-waitlist.<you>.workers.dev).
+ * It is public; Shopify credentials live only in the Worker's secrets.
  */
 window.NOODS_CHECKOUT = {
-  productName: 'PR Launch Box',
-  formEndpoint: '',
+  signupEndpoint: '',
   submitLabel: 'Join the waitlist',
   successMessage:
     "You're on the list! We'll email you about the first bundle and PR Launch box.",

@@ -1531,6 +1531,11 @@ a {
   gap: 24px;
 }
 
+.modal__form[hidden],
+.modal__success[hidden] {
+  display: none;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -1575,6 +1580,39 @@ a {
   color: var(--red);
   font-weight: 600;
   min-height: 1.2em;
+}
+
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--brown);
+  cursor: pointer;
+}
+
+.form-consent__input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+
+.form-consent__input.is-error {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .modal__success {
