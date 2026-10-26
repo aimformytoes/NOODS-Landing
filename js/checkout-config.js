@@ -9,5 +9,5 @@ window.NOODS_CHECKOUT = {
   submitLabel: 'Join the waitlist',
   successMessage:
     "You're on the list! We'll email you about the first bundle and PR Launch box.",
-  finePrint: 'We only use your info for launch updates. Unsubscribe anytime.',
+  finePrint: 'We only use your info for launch updates.',
 };
