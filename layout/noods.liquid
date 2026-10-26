@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{ page_description | default: 'NOODS — Prebiotic Instant Noodles. Better-for-you instant noodles made with clean ingredients to promote a healthy gut.' | escape }}" />
+  <title>{% if request.page_type == 'index' %}NOODS — Prebiotic Instant Noodles{% else %}{{ page_title }} — {{ shop.name }}{% endif %}</title>
+  <link rel="canonical" href="{{ canonical_url }}" />
+  <meta property="og:site_name" content="{{ shop.name | escape }}" />
+  <meta property="og:title" content="NOODS — Prebiotic Instant Noodles" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ canonical_url }}" />
+  <meta property="og:image" content="https:{{ 'noods-logo.png' | asset_url }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --noods-bg-image: url('{{ 'noods-background.jpg' | asset_url }}');
+    }
+  </style>
+  {{ 'noods.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+</head>
+<body>
+
+  <div class="site-bg" aria-hidden="true"></div>
+
+  <a href="#hero" class="site-logo site-logo--hidden" id="site-logo" aria-label="NOODS — back to top">
+    <img src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
+  </a>
+
+  {{ content_for_layout }}
+
+  <button class="floating-cta" id="floating-cta" type="button" hidden>
+    Be the First to Try
+  </button>
+
+  {% render 'noods-signup-modal' %}
+
+  <script src="{{ 'noods.js' | asset_url }}" defer></script>
+</body>
+</html>

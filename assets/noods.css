@@ -58,7 +58,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: var(--cream);
-  background-image: url('../assets/Background.jpeg');
+  background-image: var(--noods-bg-image);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1605,14 +1605,6 @@ a {
 .form-consent__input.is-error {
   outline: 2px solid var(--red);
   outline-offset: 2px;
-}
-
-.form-honeypot {
-  position: absolute;
-  left: -10000px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
 }
 
 .modal__success {

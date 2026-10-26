@@ -1,0 +1,53 @@
+<div class="page-content">
+  <section class="flavors" id="flavors" aria-labelledby="flavors-title">
+    <div class="container">
+      <header class="section-header flavors__header reveal">
+        <h2 class="flavors__title" id="flavors-title">Meet the Flavors</h2>
+      </header>
+
+      <div class="flavors__carousel" data-flavor-carousel aria-roledescription="carousel">
+        <div class="flavors__stage">
+          <div class="flavor-cup" data-flavor="0" data-name="Hot and Spicy">
+            <div class="flavor-cup__pop">
+              <img src="{{ 'noods-flavor-hot-and-spicy.png' | asset_url }}" alt="NOODS Hot and Spicy instant noodle cup" width="900" height="599" />
+            </div>
+          </div>
+          <div class="flavor-cup" data-flavor="1" data-name="Savoury Beef">
+            <div class="flavor-cup__pop">
+              <img src="{{ 'noods-flavor-savoury-beef.png' | asset_url }}" alt="NOODS Savoury Beef instant noodle cup" width="900" height="622" />
+            </div>
+          </div>
+          <div class="flavor-cup" data-flavor="2" data-name="Chicken Broth">
+            <div class="flavor-cup__pop">
+              <img src="{{ 'noods-flavor-chicken-broth.png' | asset_url }}" alt="NOODS Chicken Broth instant noodle cup" width="900" height="611" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flavors__controls">
+          <button class="flavors__arrow" type="button" data-flavor-prev aria-label="Previous flavor">&larr;</button>
+          <p class="flavors__name" aria-live="polite">Hot and Spicy</p>
+          <button class="flavors__arrow" type="button" data-flavor-next aria-label="Next flavor">&rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS flavors",
+  "tag": "div",
+  "class": "noods-section",
+  "presets": [
+    {
+      "name": "NOODS flavors"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  }
+}
+{% endschema %}

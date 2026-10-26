@@ -1,0 +1,32 @@
+{
+  "layout": "noods",
+  "sections": {
+    "hero": {
+      "type": "noods-hero",
+      "settings": {}
+    },
+    "products": {
+      "type": "noods-products",
+      "settings": {}
+    },
+    "flavors": {
+      "type": "noods-flavors",
+      "settings": {}
+    },
+    "founder_story": {
+      "type": "noods-founder-story",
+      "settings": {}
+    },
+    "footer": {
+      "type": "noods-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "products",
+    "flavors",
+    "founder_story",
+    "footer"
+  ]
+}

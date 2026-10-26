@@ -1,0 +1,108 @@
+{%- comment -%}
+  Waitlist signup using Shopify's native customer (newsletter) form.
+  A successful POST creates or updates the customer in Shopify Customers,
+  marks them as accepting email marketing, and adds the NOODS-WAITLIST tag.
+  Shopify then reloads the page with form.posted_successfully? = true, and
+  noods.js reopens this modal in its success state.
+{%- endcomment -%}
+<div class="modal" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal__backdrop" id="modal-backdrop"></div>
+  <div class="modal__dialog">
+    <button class="modal__close" id="modal-close" type="button" aria-label="Close signup form">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+
+    <div class="modal__header">
+      <img class="modal__logo-img" src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
+      <h2 class="modal__title" id="modal-title">Be the First to Try</h2>
+      <p class="modal__subtitle modal__subtitle--lead">Be part of the very first people to try NOODS</p>
+      <p class="modal__subtitle">Sign up for the waitlist for information on our first launch.</p>
+    </div>
+
+    <div class="modal__bundle" id="modal-bundle" aria-label="What's included">
+      <p class="modal__bundle-title">First launch will include:</p>
+      <ul class="modal__bundle-list">
+        <li>Special PR Launch BOX with our 3 flavors: Chicken Broth, Savoury Beef, and Hot and Spicy</li>
+        <li>NOODS Swag</li>
+        <li>Extra Goodies!</li>
+      </ul>
+    </div>
+
+    {%- form 'customer', id: 'signup-form', class: 'modal__form', novalidate: 'novalidate' -%}
+      <input type="hidden" name="contact[tags]" value="NOODS-WAITLIST" />
+      <input type="hidden" name="contact[first_name]" id="signup-first-name" value="" />
+      <input type="hidden" name="contact[last_name]" id="signup-last-name" value="" />
+
+      {%- if form.posted_successfully? -%}
+        <span hidden data-signup-result="success"></span>
+      {%- elsif form.errors -%}
+        {%- capture signup_error -%}
+          {%- if form.errors contains 'email' -%}
+            {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+          {%- else -%}
+            {{ form.errors | default_errors | strip_html | strip }}
+          {%- endif -%}
+        {%- endcapture -%}
+        <span
+          hidden
+          data-signup-result="error"
+          data-signup-field="{% if form.errors contains 'email' %}email{% endif %}"
+          data-signup-message="{{ signup_error | strip | escape }}"
+        ></span>
+      {%- endif -%}
+
+      <div class="form-group">
+        <label class="form-label" for="name">Name</label>
+        <input
+          class="form-input"
+          type="text"
+          id="name"
+          placeholder="Your name"
+          required
+          autocomplete="name"
+        />
+        <span class="form-error" id="name-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input
+          class="form-input"
+          type="email"
+          id="email"
+          name="contact[email]"
+          value="{{ form.email }}"
+          placeholder="you@email.com"
+          required
+          autocomplete="email"
+          autocapitalize="off"
+          spellcheck="false"
+        />
+        <span class="form-error" id="email-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-consent" for="consent">
+          <input class="form-consent__input" type="checkbox" id="consent" required />
+          <span>Yes, I&rsquo;d like to receive emails from NOODS about the launch.</span>
+        </label>
+        <span class="form-error" id="consent-error"></span>
+      </div>
+
+      <p class="modal__fine-print">We only use your info for launch updates.</p>
+
+      <button class="btn btn--primary btn--full btn--large" type="submit" id="signup-submit">
+        Join the waitlist
+      </button>
+      <p class="modal__form-status" id="form-status" role="status" aria-live="polite"></p>
+    {%- endform -%}
+
+    <div class="modal__success" id="modal-success" hidden>
+      <div class="modal__success-icon" aria-hidden="true">🍜</div>
+      <h2 class="modal__title">You're in!</h2>
+      <p class="modal__subtitle" id="modal-success-text">You're on the list! We'll email you about the first bundle and PR Launch box.</p>
+    </div>
+  </div>
+</div>

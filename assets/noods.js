@@ -2,8 +2,6 @@
   'use strict';
 
   const modal = document.getElementById('signup-modal');
-  const ctaBtn = document.getElementById('cta-btn');
-  const footerCtaBtn = document.getElementById('footer-cta-btn');
   const floatingCta = document.getElementById('floating-cta');
   const modalClose = document.getElementById('modal-close');
   const modalBackdrop = document.getElementById('modal-backdrop');
@@ -11,33 +9,18 @@
   const modalSuccess = document.getElementById('modal-success');
   const signupSubmit = document.getElementById('signup-submit');
   const formStatus = document.getElementById('form-status');
-  const modalSuccessText = document.getElementById('modal-success-text');
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('email');
   const nameError = document.getElementById('name-error');
   const emailError = document.getElementById('email-error');
   const consentInput = document.getElementById('consent');
   const consentError = document.getElementById('consent-error');
-  const websiteInput = document.getElementById('website');
-  const hero = document.getElementById('hero');
+  const firstNameField = document.getElementById('signup-first-name');
+  const lastNameField = document.getElementById('signup-last-name');
+  const siteLogo = document.getElementById('site-logo');
+  const OPEN_SELECTOR = '#cta-btn, #footer-cta-btn, #floating-cta';
 
   let lastFocused = null;
-
-  function getCheckoutConfig() {
-    return window.NOODS_CHECKOUT || {};
-  }
-
-  function applyCheckoutConfig() {
-    const cfg = getCheckoutConfig();
-    const finePrintEl = document.querySelector('.modal__fine-print');
-
-    if (finePrintEl && cfg.finePrint) {
-      finePrintEl.textContent = cfg.finePrint;
-    }
-    if (signupSubmit && cfg.submitLabel) {
-      signupSubmit.textContent = cfg.submitLabel;
-    }
-  }
 
   function setFormStatus(message) {
     if (formStatus) {
@@ -50,7 +33,7 @@
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     setFormStatus('');
-    nameInput.focus();
+    if (!signupForm.hidden) nameInput.focus();
   }
 
   function closeModal() {
@@ -118,64 +101,37 @@
     return valid;
   }
 
-  function SignupError(message, field) {
-    this.message = message;
-    this.field = field || null;
-  }
-
-  async function saveLead(name, email, cfg) {
-    if (!cfg.signupEndpoint) {
-      throw new SignupError('Signups are not open yet. Please check back soon.');
-    }
-
-    const controller = new AbortController();
-    const timeout = setTimeout(function () { controller.abort(); }, 20000);
-    let response;
-    let data = null;
-
-    try {
-      response = await fetch(cfg.signupEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          consent: consentInput.checked === true,
-          website: websiteInput ? websiteInput.value : '',
-        }),
-        signal: controller.signal,
-      });
-      data = await response.json().catch(function () { return null; });
-    } catch (err) {
-      throw new SignupError('We could not reach our signup server. Check your connection and try again.');
-    } finally {
-      clearTimeout(timeout);
-    }
-
-    if (!response.ok || !data || data.ok !== true) {
-      throw new SignupError(
-        (data && data.error) || 'We could not save your signup. Please try again.',
-        data && data.field
-      );
-    }
-  }
-
-  function showSuccess(message) {
+  function showSuccess() {
     setFormStatus('');
     signupForm.hidden = true;
     modalSuccess.hidden = false;
-    if (modalSuccessText && message) {
-      modalSuccessText.textContent = message;
+  }
+
+  // Shopify re-renders the page after the native customer form posts; the
+  // result marker tells us whether Shopify saved the signup.
+  function restoreSignupResult() {
+    const result = signupForm.querySelector('[data-signup-result]');
+    if (!result) return;
+
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.hash.replace(/^#signup-form$/, ''));
+    }
+
+    openModal();
+    if (result.getAttribute('data-signup-result') === 'success') {
+      showSuccess();
+      return;
+    }
+
+    const message = result.getAttribute('data-signup-message') || 'We could not save your signup. Please try again.';
+    const field = result.getAttribute('data-signup-field');
+    if (!(field && showFieldError(field, message))) {
+      setFormStatus(message);
     }
   }
 
-  applyCheckoutConfig();
-
-  [ctaBtn, footerCtaBtn, floatingCta].forEach(function (btn) {
-    if (btn) btn.addEventListener('click', openModal);
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest(OPEN_SELECTOR)) openModal();
   });
 
   modalClose.addEventListener('click', closeModal);
@@ -185,88 +141,100 @@
     if (!modal.hidden && e.key === 'Escape') closeModal();
   });
 
-  signupForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    if (!validate()) return;
-
-    const cfg = getCheckoutConfig();
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-
-    if (signupSubmit) signupSubmit.disabled = true;
-    setFormStatus('Submitting…');
-
-    try {
-      await saveLead(name, email, cfg);
-      showSuccess(
-        cfg.successMessage ||
-          "You're on the list! We'll email you about the first bundle and PR Launch box."
-      );
-    } catch (err) {
-      const message = (err && err.message) || 'Something went wrong. Please try again.';
-      if (err && err.field && showFieldError(err.field, message)) {
-        setFormStatus('');
-      } else {
-        setFormStatus(message);
-      }
-      if (signupSubmit) signupSubmit.disabled = false;
+  signupForm.noValidate = true;
+  signupForm.addEventListener('submit', function (e) {
+    if (!validate()) {
+      e.preventDefault();
+      return;
     }
+
+    const parts = nameInput.value.trim().replace(/\s+/g, ' ').split(' ');
+    firstNameField.value = parts.shift();
+    lastNameField.value = parts.join(' ');
+    emailInput.value = emailInput.value.trim();
+
+    setFormStatus('Submitting…');
+    window.setTimeout(function () {
+      if (signupSubmit) signupSubmit.disabled = true;
+    }, 0);
   });
 
-  const heroVideo = document.querySelector('.hero__video');
-  if (heroVideo) {
-    heroVideo.play().catch(function () {});
+  window.addEventListener('pageshow', function () {
+    if (signupSubmit) signupSubmit.disabled = false;
+  });
+
+  restoreSignupResult();
+
+  function initHeroVideo(root) {
+    const heroVideo = root.querySelector('.hero__video');
+    if (heroVideo) {
+      heroVideo.play().catch(function () {});
+    }
   }
 
   /* Scroll reveal */
-  const revealEls = document.querySelectorAll('.reveal, .product-reveal');
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
+  const revealObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.12, rootMargin: '0px 0px -24px 0px' }
-    );
-    revealEls.forEach(function (el) { observer.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    )
+    : null;
+
+  function initReveal(root) {
+    root.querySelectorAll('.reveal, .product-reveal').forEach(function (el) {
+      if (revealObserver) {
+        revealObserver.observe(el);
+      } else {
+        el.classList.add('is-visible');
+      }
+    });
   }
 
-  /* Fixed logo appears after scrolling past hero */
-  const siteLogo = document.getElementById('site-logo');
-  if (siteLogo && hero) {
-    const logoObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          siteLogo.classList.toggle('site-logo--hidden', entry.isIntersecting);
-        });
-      },
-      { threshold: 0.15 }
-    );
-    logoObserver.observe(hero);
-  }
+  /* Fixed logo and floating CTA appear after scrolling past the hero */
+  let heroObservers = [];
+  function initHeroWatch() {
+    const hero = document.getElementById('hero');
+    heroObservers.forEach(function (observer) { observer.disconnect(); });
+    heroObservers = [];
+    if (!hero || !('IntersectionObserver' in window)) return;
 
-  /* Floating CTA after hero */
-  if (floatingCta && hero) {
-    const heroObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          floatingCta.hidden = entry.isIntersecting;
-        });
-      },
-      { threshold: 0.05 }
-    );
-    heroObserver.observe(hero);
+    if (siteLogo) {
+      const logoObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            siteLogo.classList.toggle('site-logo--hidden', entry.isIntersecting);
+          });
+        },
+        { threshold: 0.15 }
+      );
+      logoObserver.observe(hero);
+      heroObservers.push(logoObserver);
+    }
+
+    if (floatingCta) {
+      const ctaObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            floatingCta.hidden = entry.isIntersecting;
+          });
+        },
+        { threshold: 0.05 }
+      );
+      ctaObserver.observe(hero);
+      heroObservers.push(ctaObserver);
+    }
   }
 
   /* Products title: one continuous noodle worm around the full border */
-  function initProductsNoodleBorder() {
-    const box = document.querySelector('[data-noodle-border]');
+  function initProductsNoodleBorder(root) {
+    const box = root.querySelector('[data-noodle-border]');
     if (!box) return;
 
     const svg = box.querySelector('.products__noodle-loop');
@@ -373,6 +341,10 @@
     }
 
     function tick(now) {
+      if (!box.isConnected) {
+        stop();
+        return;
+      }
       lastPhase = motionQuery.matches ? 0 : (now / 1000) * WIGGLE_SPEED;
       render(lastPhase);
       rafId = window.requestAnimationFrame(tick);
@@ -414,11 +386,10 @@
     });
   }
 
-  initProductsNoodleBorder();
 
   /* Flavors: three cups orbiting on an ellipse, front cup in the middle */
-  function initFlavorCarousel() {
-    const carousel = document.querySelector('[data-flavor-carousel]');
+  function initFlavorCarousel(root) {
+    const carousel = root.querySelector('[data-flavor-carousel]');
     if (!carousel) return;
 
     const stage = carousel.querySelector('.flavors__stage');
@@ -508,7 +479,13 @@
     function startAutoplay() {
       stopAutoplay();
       if (motionQuery.matches || paused || !inView || document.hidden) return;
-      autoplayId = window.setInterval(function () { go(1); }, AUTOPLAY_MS);
+      autoplayId = window.setInterval(function () {
+        if (!carousel.isConnected) {
+          stopAutoplay();
+          return;
+        }
+        go(1);
+      }, AUTOPLAY_MS);
     }
 
     function userGo(fn) {
@@ -561,5 +538,24 @@
     }
   }
 
-  initFlavorCarousel();
+  function initSections(root) {
+    initHeroVideo(root);
+    initReveal(root);
+    initProductsNoodleBorder(root);
+    initFlavorCarousel(root);
+  }
+
+  initSections(document);
+  initHeroWatch();
+
+  // Theme editor: sections are re-rendered in place when edited.
+  document.addEventListener('shopify:section:load', function (e) {
+    initSections(e.target);
+    if (window.Shopify && window.Shopify.designMode) {
+      e.target.querySelectorAll('.reveal, .product-reveal').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    }
+    initHeroWatch();
+  });
 })();

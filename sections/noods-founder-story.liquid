@@ -1,0 +1,39 @@
+<div class="page-content">
+  <section class="founder-story" id="founder-story" aria-labelledby="founder-story-title">
+    <div class="container founder-story__box">
+      <header class="section-header founder-story__header reveal">
+        <h2 class="founder-story__title" id="founder-story-title">How NOODS Started</h2>
+        <p class="founder-story__intro">The noodles we wanted didn&rsquo;t exist, so we made our own.</p>
+      </header>
+      <figure class="founder-story__comic float-card reveal">
+        <img
+          class="founder-story__comic-img"
+          src="{{ 'noods-founder-comic.png' | asset_url }}"
+          alt="Comic strip: two friends crave instant noodles but hate feeling bloated from ultra-processed ones. Realizing they're food scientists, they decide to make noodles that support your gut. After endless testing, they introduce NOODS — prebiotic instant noodles with clean ingredients, air dried, no oils, less sodium, and amazing taste."
+          width="1882"
+          height="1124"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS founder story",
+  "tag": "div",
+  "class": "noods-section",
+  "presets": [
+    {
+      "name": "NOODS founder story"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  }
+}
+{% endschema %}
