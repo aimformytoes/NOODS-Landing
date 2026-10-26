@@ -53,7 +53,18 @@ Find signups in **Shopify admin → Customers**, filtered by tag `NOODS-WAITLIST
    updates it; edits made in the Shopify theme editor are committed back.
 4. Use **Preview**, then **Publish** when ready.
 
-### Option B: Shopify CLI
+### Option B: GitHub Action
+
+Add two repository secrets (Settings → Secrets and variables → Actions):
+
+| Secret | Value |
+|---|---|
+| `SHOPIFY_FLAG_STORE` | `your-store.myshopify.com` |
+| `SHOPIFY_CLI_THEME_TOKEN` | Password from the free **Theme Access** app |
+
+Pushes to this branch then upload an unpublished theme named **NOODS** (created on the first run, updated after that). The live theme is never changed. Until both secrets exist, the workflow skips.
+
+### Option C: Shopify CLI
 
 ```bash
 npm install -g @shopify/cli
