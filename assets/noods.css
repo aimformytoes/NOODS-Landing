@@ -2090,13 +2090,22 @@ a {
   .hero {
     min-height: 0;
     height: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 5 / 4;
     padding-bottom: 0;
   }
 
   .hero__video {
-    object-fit: contain;
-    object-position: center center;
+    inset: auto;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 50%;
+    width: 148%;
+    max-width: none;
+    height: auto;
+    transform: translateX(-50%);
+    object-fit: cover;
+    object-position: center bottom;
   }
 
   .hero__layout {
