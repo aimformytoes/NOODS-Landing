@@ -9,7 +9,7 @@ product pages, and cart use the NOODS design (`layout/noods.liquid`). Other page
 
 | What | File |
 |---|---|
-| Page shell, fonts, fixed logo, floating button | `layout/noods.liquid` |
+| Page shell, fonts, header, floating button | `layout/noods.liquid` |
 | Hero | `sections/noods-hero.liquid` |
 | "Instant noodles made better" + benefit cards | `sections/noods-products.liquid` |
 | Meet the Flavors carousel | `sections/noods-flavors.liquid` |

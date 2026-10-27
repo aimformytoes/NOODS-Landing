@@ -15,8 +15,9 @@
   const emailError = document.getElementById('email-error');
   const firstNameField = document.getElementById('signup-first-name');
   const lastNameField = document.getElementById('signup-last-name');
-  const siteLogo = document.getElementById('site-logo');
   const OPEN_SELECTOR = '#cta-btn, #footer-cta-btn, #floating-cta';
+  const menuBtn = document.getElementById('site-menu-btn');
+  const siteMenu = document.getElementById('site-menu');
 
   let lastFocused = null;
 
@@ -26,12 +27,21 @@
     }
   }
 
+  function setMenuOpen(open) {
+    if (!menuBtn || !siteMenu) return;
+    siteMenu.hidden = !open;
+    menuBtn.classList.toggle('is-open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
   function openModal() {
+    setMenuOpen(false);
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     setFormStatus('');
-    if (!signupForm.hidden) nameInput.focus();
+    if (signupForm && !signupForm.hidden && nameInput) nameInput.focus();
   }
 
   function closeModal() {
@@ -128,8 +138,27 @@
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
 
   document.addEventListener('keydown', function (e) {
-    if (modal && !modal.hidden && e.key === 'Escape') closeModal();
+    if (e.key !== 'Escape') return;
+    if (modal && !modal.hidden) {
+      closeModal();
+      return;
+    }
+    if (siteMenu && !siteMenu.hidden) setMenuOpen(false);
   });
+
+  if (menuBtn && siteMenu) {
+    menuBtn.addEventListener('click', function () {
+      setMenuOpen(siteMenu.hidden);
+    });
+    siteMenu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenuOpen(false);
+    });
+    document.addEventListener('click', function (e) {
+      if (siteMenu.hidden) return;
+      if (e.target.closest('#site-menu') || e.target.closest('#site-menu-btn')) return;
+      setMenuOpen(false);
+    });
+  }
 
   if (signupForm) {
     signupForm.noValidate = true;
@@ -196,19 +225,6 @@
     heroObservers.forEach(function (observer) { observer.disconnect(); });
     heroObservers = [];
     if (!hero || !('IntersectionObserver' in window)) return;
-
-    if (siteLogo) {
-      const logoObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            siteLogo.classList.toggle('site-logo--hidden', entry.isIntersecting);
-          });
-        },
-        { threshold: 0.15 }
-      );
-      logoObserver.observe(hero);
-      heroObservers.push(logoObserver);
-    }
 
     if (floatingCta) {
       const ctaObserver = new IntersectionObserver(

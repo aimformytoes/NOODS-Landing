@@ -26,9 +26,36 @@
 
   <div class="site-bg" aria-hidden="true"></div>
 
-  <a href="{% if request.page_type == 'index' %}#hero{% else %}{{ routes.root_url }}{% endif %}" class="site-logo{% if request.page_type == 'index' %} site-logo--hidden{% endif %}" id="site-logo" aria-label="{% if request.page_type == 'index' %}NOODS — back to top{% else %}NOODS home{% endif %}">
-    <img src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
-  </a>
+  {% assign home_url = routes.root_url | default: '/' %}
+  {% assign cart_url = routes.cart_url | default: '/cart' %}
+  {% assign cart_count = cart.item_count | default: 0 %}
+
+  <div class="site-nav">
+    <header class="site-header">
+      <button class="site-header__menu" id="site-menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+        <span class="site-header__lines" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <a class="site-header__logo" href="{% if request.page_type == 'index' %}#hero{% else %}{{ home_url }}{% endif %}" aria-label="{% if request.page_type == 'index' %}NOODS — back to top{% else %}NOODS home{% endif %}">
+        <img src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
+      </a>
+      <a class="site-header__cart" href="{{ cart_url }}" aria-label="{% if cart_count > 0 %}Cart, {{ cart_count }} {% if cart_count == 1 %}item{% else %}items{% endif %}{% else %}Cart{% endif %}">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="20" r="1.25" fill="currentColor" stroke="none"></circle>
+          <circle cx="18" cy="20" r="1.25" fill="currentColor" stroke="none"></circle>
+          <path d="M3 4h2.2l2.1 11.2a1 1 0 0 0 1 .8h9.4a1 1 0 0 0 1-.75L21 8H7"></path>
+        </svg>
+        {% if cart_count > 0 %}
+          <span class="site-header__count">{{ cart_count }}</span>
+        {% endif %}
+      </a>
+    </header>
+    <nav class="site-menu" id="site-menu" hidden>
+      <a href="{{ home_url }}#products">Instant Noodles</a>
+      <a href="{{ home_url }}#flavors">Meet the Flavors</a>
+      <a href="{{ home_url }}#founder-story">How NOODS Started</a>
+      <a href="{{ cart_url }}">Cart</a>
+    </nav>
+  </div>
 
   {{ content_for_layout }}
 
