@@ -293,7 +293,8 @@ a {
 #hero,
 #products,
 #flavors,
-#founder-story {
+#founder-story,
+#pride {
   scroll-margin-top: 56px;
 }
 
@@ -1291,28 +1292,90 @@ a {
   border-radius: 8px;
 }
 
-.founder-story__more {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px 36px;
-  margin-top: clamp(28px, 4vw, 44px);
-  text-align: left;
+.founder-story {
+  padding-bottom: clamp(28px, 4vw, 40px);
 }
 
-.founder-story__more-item h3 {
+.pride {
+  position: relative;
+  padding: clamp(12px, 2vw, 20px) 16px clamp(64px, 8vw, 96px);
+}
+
+.pride__header {
+  margin-bottom: 72px;
+}
+
+.pride__title {
   font-family: var(--font-headline);
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1.7rem, 4.6vw, 2.8rem);
+  font-weight: 900;
+  color: var(--brown);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.pride__bubbles {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px 36px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 0 0;
+}
+
+.pride__bubble {
+  --cloud-bg: #f8e7c8;
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  padding: 28px 28px 26px;
+  background: var(--cloud-bg);
+  border-radius: 48px;
+  text-align: center;
+  filter: drop-shadow(0 8px 16px rgba(90, 52, 36, 0.14));
+}
+
+.pride__bubble::before,
+.pride__bubble::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: var(--cloud-bg);
+  border-radius: 50%;
+}
+
+.pride__bubble::before {
+  width: 92px;
+  height: 92px;
+  left: 18%;
+  top: 0;
+  transform: translateY(-58%);
+}
+
+.pride__bubble::after {
+  width: 64px;
+  height: 64px;
+  right: 20%;
+  top: 0;
+  transform: translateY(-46%);
+}
+
+.pride__bubble h3 {
+  font-family: var(--font-headline);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 900;
   color: var(--red);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.2;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.founder-story__more-item p {
+.pride__bubble p {
   font-size: clamp(0.95rem, 1.6vw, 1.05rem);
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--brown);
   font-weight: 600;
 }
@@ -2109,9 +2172,10 @@ a {
     grid-template-columns: repeat(2, 200px);
   }
 
-  .founder-story__more {
+  .pride__bubbles {
     grid-template-columns: 1fr;
-    gap: 18px;
+    max-width: 460px;
+    gap: 68px;
   }
 }
 

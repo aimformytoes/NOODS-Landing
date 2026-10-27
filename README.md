@@ -14,7 +14,7 @@ product pages, and cart use the NOODS design (`layout/noods.liquid`). Other page
 | "Instant noodles made better" + benefit cards | `sections/noods-products.liquid` |
 | Meet the Flavors carousel | `sections/noods-flavors.liquid` |
 | Moving noodle banner | `sections/noods-marquee.liquid` |
-| How NOODS Started comic | `sections/noods-founder-story.liquid` |
+| How NOODS Started comic and pride bubbles | `sections/noods-founder-story.liquid` |
 | Flavor product page (photos, description, add to cart) | `sections/noods-flavor-product.liquid` |
 | Cart | `sections/noods-cart.liquid` |
 | Footer | `sections/noods-footer.liquid` |
