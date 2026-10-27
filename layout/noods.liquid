@@ -26,7 +26,7 @@
 
   <div class="site-bg" aria-hidden="true"></div>
 
-  <a href="#hero" class="site-logo site-logo--hidden" id="site-logo" aria-label="NOODS — back to top">
+  <a href="{% if request.page_type == 'index' %}#hero{% else %}{{ routes.root_url }}{% endif %}" class="site-logo{% if request.page_type == 'index' %} site-logo--hidden{% endif %}" id="site-logo" aria-label="{% if request.page_type == 'index' %}NOODS — back to top{% else %}NOODS home{% endif %}">
     <img src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
   </a>
 

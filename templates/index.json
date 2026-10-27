@@ -13,6 +13,10 @@
       "type": "noods-flavors",
       "settings": {}
     },
+    "marquee": {
+      "type": "noods-marquee",
+      "settings": {}
+    },
     "founder_story": {
       "type": "noods-founder-story",
       "settings": {}
@@ -26,6 +30,7 @@
     "hero",
     "products",
     "flavors",
+    "marquee",
     "founder_story",
     "footer"
   ]

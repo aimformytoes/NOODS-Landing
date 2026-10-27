@@ -124,36 +124,38 @@
     if (e.target.closest && e.target.closest(OPEN_SELECTOR)) openModal();
   });
 
-  modalClose.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', closeModal);
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
 
   document.addEventListener('keydown', function (e) {
-    if (!modal.hidden && e.key === 'Escape') closeModal();
+    if (modal && !modal.hidden && e.key === 'Escape') closeModal();
   });
 
-  signupForm.noValidate = true;
-  signupForm.addEventListener('submit', function (e) {
-    if (!validate()) {
-      e.preventDefault();
-      return;
-    }
+  if (signupForm) {
+    signupForm.noValidate = true;
+    signupForm.addEventListener('submit', function (e) {
+      if (!validate()) {
+        e.preventDefault();
+        return;
+      }
 
-    const parts = nameInput.value.trim().replace(/\s+/g, ' ').split(' ');
-    firstNameField.value = parts.shift();
-    lastNameField.value = parts.join(' ');
-    emailInput.value = emailInput.value.trim();
+      const parts = nameInput.value.trim().replace(/\s+/g, ' ').split(' ');
+      firstNameField.value = parts.shift();
+      lastNameField.value = parts.join(' ');
+      emailInput.value = emailInput.value.trim();
 
-    setFormStatus('Submitting…');
-    window.setTimeout(function () {
-      if (signupSubmit) signupSubmit.disabled = true;
-    }, 0);
-  });
+      setFormStatus('Submitting…');
+      window.setTimeout(function () {
+        if (signupSubmit) signupSubmit.disabled = true;
+      }, 0);
+    });
 
-  window.addEventListener('pageshow', function () {
-    if (signupSubmit) signupSubmit.disabled = false;
-  });
+    window.addEventListener('pageshow', function () {
+      if (signupSubmit) signupSubmit.disabled = false;
+    });
 
-  restoreSignupResult();
+    restoreSignupResult();
+  }
 
   function initHeroVideo(root) {
     const heroVideo = root.querySelector('.hero__video');
@@ -426,14 +428,22 @@
           'scale(' + scale.toFixed(3) + ') rotate(' + tilt.toFixed(2) + 'deg)';
         cup.style.zIndex = String(Math.round(depth * 100));
         cup.style.filter = 'brightness(' + (0.82 + 0.18 * depth).toFixed(3) + ')';
-        cup.setAttribute('aria-hidden', depth > 0.95 ? 'false' : 'true');
+        const front = depth > 0.95;
+        cup.setAttribute('aria-hidden', front ? 'false' : 'true');
+        if (front) cup.removeAttribute('tabindex');
+        else cup.setAttribute('tabindex', '-1');
       });
     }
 
     function spinTo(target) {
       window.cancelAnimationFrame(animId);
       index = ((Math.round(target / step) % count) + count) % count;
-      if (nameEl) nameEl.textContent = cups[index].getAttribute('data-name');
+      if (nameEl) {
+        const front = cups[index];
+        nameEl.textContent = front.getAttribute('data-name');
+        const href = front.getAttribute('href');
+        if (href) nameEl.setAttribute('href', href);
+      }
 
       if (motionQuery.matches) {
         rotation = target;
@@ -456,12 +466,6 @@
     function go(delta) {
       const base = Math.round(rotation / step) * step;
       spinTo(base + delta * step);
-    }
-
-    function goToCup(i) {
-      let delta = (i - index + count) % count;
-      if (delta > count / 2) delta -= count;
-      if (delta !== 0) go(delta);
     }
 
     function stopAutoplay() {
@@ -489,20 +493,28 @@
     if (prevBtn) prevBtn.addEventListener('click', function () { userGo(function () { go(-1); }); });
     if (nextBtn) nextBtn.addEventListener('click', function () { userGo(function () { go(1); }); });
 
-    cups.forEach(function (cup, i) {
-      cup.addEventListener('click', function () { userGo(function () { goToCup(i); }); });
-    });
-
     carousel.addEventListener('mouseenter', function () { paused = true; stopAutoplay(); });
     carousel.addEventListener('mouseleave', function () { paused = false; startAutoplay(); });
 
     let swipeX = null;
-    stage.addEventListener('pointerdown', function (e) { swipeX = e.clientX; });
+    let suppressCupClick = false;
+    stage.addEventListener('pointerdown', function (e) {
+      swipeX = e.clientX;
+      suppressCupClick = false;
+    });
     stage.addEventListener('pointerup', function (e) {
       if (swipeX === null) return;
       const dx = e.clientX - swipeX;
       swipeX = null;
-      if (Math.abs(dx) > 40) userGo(function () { go(dx < 0 ? 1 : -1); });
+      if (Math.abs(dx) > 40) {
+        suppressCupClick = true;
+        userGo(function () { go(dx < 0 ? 1 : -1); });
+      }
+    });
+    stage.addEventListener('click', function (e) {
+      if (!suppressCupClick) return;
+      if (e.target.closest && e.target.closest('.flavor-cup')) e.preventDefault();
+      suppressCupClick = false;
     });
 
     document.addEventListener('visibilitychange', startAutoplay);
@@ -531,11 +543,57 @@
     }
   }
 
+  function initFlavorGallery(root) {
+    root.querySelectorAll('[data-flavor-gallery]').forEach(function (gallery) {
+      const photo = gallery.querySelector('[data-flavor-photo]');
+      const thumbs = gallery.querySelectorAll('[data-flavor-thumb]');
+      if (!photo || !thumbs.length) return;
+
+      thumbs.forEach(function (thumb) {
+        thumb.addEventListener('click', function () {
+          const src = thumb.getAttribute('data-src');
+          if (!src) return;
+          photo.src = src;
+          photo.alt = thumb.getAttribute('data-alt') || '';
+          thumbs.forEach(function (other) {
+            const on = other === thumb;
+            other.classList.toggle('is-active', on);
+            if (on) other.setAttribute('aria-current', 'true');
+            else other.removeAttribute('aria-current');
+          });
+        });
+      });
+    });
+  }
+
+  function initFlavorBuy(root) {
+    root.querySelectorAll('.flavor-product__form').forEach(function (form) {
+      const select = form.querySelector('[data-variant-select]');
+      const button = form.querySelector('[data-add-button]');
+      const info = form.closest('.flavor-product__info');
+      const price = info ? info.querySelector('[data-flavor-price]') : null;
+      if (!select || !button) return;
+
+      select.addEventListener('change', function () {
+        const option = select.options[select.selectedIndex];
+        if (!option) return;
+        const available = option.getAttribute('data-available') === 'true';
+        button.disabled = !available;
+        button.textContent = available ? 'Add to cart' : 'Sold out';
+        if (price && option.getAttribute('data-price')) {
+          price.textContent = option.getAttribute('data-price');
+        }
+      });
+    });
+  }
+
   function initSections(root) {
     initHeroVideo(root);
     initReveal(root);
     initProductsNoodleBorder(root);
     initFlavorCarousel(root);
+    initFlavorGallery(root);
+    initFlavorBuy(root);
   }
 
   initSections(document);

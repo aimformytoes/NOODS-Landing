@@ -1,3 +1,22 @@
+{%- liquid
+  assign hot_url = '/products/hot-and-spicy'
+  assign beef_url = '/products/savoury-beef'
+  assign chicken_url = '/products/chicken-broth'
+  if routes.root_url != blank and routes.root_url != '/'
+    assign hot_url = routes.root_url | append: '/products/hot-and-spicy'
+    assign beef_url = routes.root_url | append: '/products/savoury-beef'
+    assign chicken_url = routes.root_url | append: '/products/chicken-broth'
+  endif
+  if section.settings.hot_product != blank
+    assign hot_url = section.settings.hot_product.url
+  endif
+  if section.settings.beef_product != blank
+    assign beef_url = section.settings.beef_product.url
+  endif
+  if section.settings.chicken_product != blank
+    assign chicken_url = section.settings.chicken_product.url
+  endif
+-%}
 <div class="page-content">
   <section class="flavors" id="flavors" aria-labelledby="flavors-title">
     <div class="container">
@@ -7,26 +26,26 @@
 
       <div class="flavors__carousel" data-flavor-carousel aria-roledescription="carousel">
         <div class="flavors__stage">
-          <div class="flavor-cup" data-flavor="0" data-name="Hot and Spicy">
+          <a class="flavor-cup" href="{{ hot_url }}" data-flavor="0" data-name="Hot and Spicy">
             <div class="flavor-cup__pop">
-              <img src="{{ 'noods-flavor-hot-and-spicy.png' | asset_url }}" alt="NOODS Hot and Spicy instant noodle cup" width="900" height="599" />
+              <img src="{{ 'noods-flavor-hot-and-spicy.png' | asset_url }}" alt="NOODS Hot and Spicy instant noodle cup" width="900" height="599" draggable="false" />
             </div>
-          </div>
-          <div class="flavor-cup" data-flavor="1" data-name="Savoury Beef">
+          </a>
+          <a class="flavor-cup" href="{{ beef_url }}" data-flavor="1" data-name="Savoury Beef">
             <div class="flavor-cup__pop">
-              <img src="{{ 'noods-flavor-savoury-beef.png' | asset_url }}" alt="NOODS Savoury Beef instant noodle cup" width="900" height="622" />
+              <img src="{{ 'noods-flavor-savoury-beef.png' | asset_url }}" alt="NOODS Savoury Beef instant noodle cup" width="900" height="622" draggable="false" />
             </div>
-          </div>
-          <div class="flavor-cup" data-flavor="2" data-name="Chicken Broth">
+          </a>
+          <a class="flavor-cup" href="{{ chicken_url }}" data-flavor="2" data-name="Chicken Broth">
             <div class="flavor-cup__pop">
-              <img src="{{ 'noods-flavor-chicken-broth.png' | asset_url }}" alt="NOODS Chicken Broth instant noodle cup" width="900" height="611" />
+              <img src="{{ 'noods-flavor-chicken-broth.png' | asset_url }}" alt="NOODS Chicken Broth instant noodle cup" width="900" height="611" draggable="false" />
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="flavors__controls">
           <button class="flavors__arrow" type="button" data-flavor-prev aria-label="Previous flavor">&larr;</button>
-          <p class="flavors__name" aria-live="polite">Hot and Spicy</p>
+          <a class="flavors__name" href="{{ hot_url }}" aria-live="polite">Hot and Spicy</a>
           <button class="flavors__arrow" type="button" data-flavor-next aria-label="Next flavor">&rarr;</button>
         </div>
       </div>
@@ -39,6 +58,27 @@
   "name": "NOODS flavors",
   "tag": "div",
   "class": "noods-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Each cup opens that flavor’s product page. Photos, description, price, and inventory are edited on the product in Shopify admin. Create products with handles hot-and-spicy, savoury-beef, and chicken-broth, or pick them here."
+    },
+    {
+      "type": "product",
+      "id": "hot_product",
+      "label": "Hot and Spicy"
+    },
+    {
+      "type": "product",
+      "id": "beef_product",
+      "label": "Savoury Beef"
+    },
+    {
+      "type": "product",
+      "id": "chicken_product",
+      "label": "Chicken Broth"
+    }
+  ],
   "presets": [
     {
       "name": "NOODS flavors"

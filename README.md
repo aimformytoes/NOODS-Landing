@@ -1,26 +1,42 @@
 # NOODS Shopify theme
 
-The NOODS landing page as a Shopify Online Store 2.0 theme. The homepage is the
-NOODS design (`layout/noods.liquid` + `sections/noods-*.liquid`); every other
-page (products, collections, cart, search, account, policies) comes from
-Shopify's [Dawn](https://github.com/Shopify/dawn) theme, so the store is ready
-for e-commerce. Checkout is Shopify's hosted checkout.
+The NOODS landing page as a Shopify Online Store 2.0 theme. The homepage, flavor
+product pages, and cart use the NOODS design (`layout/noods.liquid`). Other pages
+(collections, search, account, policies) come from Shopify's
+[Dawn](https://github.com/Shopify/dawn) theme. Checkout is Shopify's hosted checkout.
 
 ## Where things live
 
 | What | File |
 |---|---|
 | Page shell, fonts, fixed logo, floating button | `layout/noods.liquid` |
-| Hero + noodle marquee | `sections/noods-hero.liquid` |
+| Hero | `sections/noods-hero.liquid` |
 | "Instant noodles made better" + benefit cards | `sections/noods-products.liquid` |
 | Meet the Flavors carousel | `sections/noods-flavors.liquid` |
+| Moving noodle banner | `sections/noods-marquee.liquid` |
 | How NOODS Started comic | `sections/noods-founder-story.liquid` |
+| Flavor product page (photos, description, add to cart) | `sections/noods-flavor-product.liquid` |
+| Cart | `sections/noods-cart.liquid` |
 | Footer | `sections/noods-footer.liquid` |
 | Waitlist pop-up and form | `snippets/noods-signup-modal.liquid` |
 | Styles / animations | `assets/noods.css` |
 | Interactions (pop-up, carousel, noodle border, reveals) | `assets/noods.js` |
 | Images and video | `assets/noods-*.png`, `noods-background.jpg`, `noods-hero-video.mp4` |
 | Homepage section order | `templates/index.json` |
+| Product page template | `templates/product.json` |
+| Cart template | `templates/cart.json` |
+
+## Flavor pages
+
+Clicking a cup, or the flavor name under it, opens that flavor’s product page.
+Arrows and swipes still rotate the carousel.
+
+In Shopify admin, create one product per flavor. The easiest handles are
+`hot-and-spicy`, `savoury-beef`, and `chicken-broth`. On each product, add the
+photos, description, and price — those show on the flavor page, and **Add to
+cart** sends shoppers to the NOODS cart. If a product uses a different handle,
+open the theme editor, select **Meet the Flavors**, and pick that product for
+the matching cup. Until the product exists, the cup link has nowhere to land.
 
 `assets/` must stay flat (no subfolders). Reference files with
 `{{ 'file.png' | asset_url }}`. Original artwork that the site does not use is
