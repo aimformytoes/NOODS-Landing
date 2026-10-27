@@ -1830,10 +1830,79 @@ a {
   }
 
   .floating-cta {
-    bottom: 16px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     right: 16px;
     left: 16px;
     text-align: center;
+    min-height: 48px;
+  }
+
+  .hero__cta .btn--hero,
+  .btn--footer {
+    min-height: 48px;
+  }
+
+  .products__clouds {
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    max-width: 300px;
+    margin-top: 22px;
+  }
+
+  .products__cloud {
+    flex: none;
+    width: 100%;
+    max-width: 300px;
+    padding: 16px 20px 14px;
+  }
+
+  .products__cloud-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.045em;
+  }
+
+  .flavors__stage {
+    --cup-w: clamp(168px, 52vw, 230px);
+  }
+
+  .flavors__name {
+    min-width: 0;
+    font-size: 0.85rem;
+    padding: 0.45em 0.85em;
+  }
+
+  .modal {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modal__dialog {
+    padding: 28px 18px 20px;
+    max-height: calc(100dvh - 24px);
+    border-radius: 20px 20px 16px 16px;
+  }
+
+  .modal__header {
+    margin-bottom: 14px;
+  }
+
+  .modal__bundle {
+    margin-bottom: 12px;
+    padding: 14px 14px;
+  }
+
+  .modal__form {
+    gap: 14px;
+  }
+
+  .modal__close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .noodle-tag {
+    font-size: 0.75rem;
   }
 }
 

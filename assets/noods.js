@@ -417,7 +417,10 @@
     }
 
     function layout() {
-      const rx = stage.clientWidth * 0.36;
+      // Phones get a tighter orbit so the side cups stay on screen.
+      // Wider stages keep the original desktop spacing.
+      const compact = stage.clientWidth < 640;
+      const rx = stage.clientWidth * (compact ? 0.3 : 0.36);
       const ry = stage.clientHeight * 0.1;
 
       cups.forEach(function (cup, i) {
@@ -425,7 +428,7 @@
         const depth = (Math.cos(theta) + 1) / 2;
         const x = Math.sin(theta) * rx;
         const y = -(1 - depth) * ry * 2;
-        const scale = 0.8 + 0.2 * depth;
+        const scale = (compact ? 0.78 : 0.8) + (compact ? 0.22 : 0.2) * depth;
         const tilt = Math.sin(theta) * -10;
 
         cup.style.transform =
