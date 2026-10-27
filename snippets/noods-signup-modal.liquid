@@ -83,8 +83,11 @@
     {%- endform -%}
 
     <div class="modal__success" id="modal-success" hidden>
-      <div class="modal__success-icon" aria-hidden="true">🍜</div>
-      <h2 class="modal__title">You're in!</h2>
+      <img
+        class="modal__success-characters"
+        src="{{ 'noods-mascot-girls.png' | asset_url }}"
+        alt="The three NOODS characters"
+      />
     </div>
   </div>
 </div>

@@ -1435,8 +1435,18 @@ a {
   margin-bottom: 16px;
 }
 
-.modal__dialog:has(#modal-success:not([hidden])) .modal__header {
+.modal__dialog:has(#modal-success:not([hidden])) .modal__title,
+.modal__dialog:has(#modal-success:not([hidden])) .modal__subtitle {
   display: none;
+}
+
+.modal__dialog:has(#modal-success:not([hidden])) .modal__header {
+  margin-bottom: 4px;
+}
+
+.modal__dialog:has(#modal-success:not([hidden])) .modal__logo-img {
+  height: 56px;
+  margin-bottom: 0;
 }
 
 .modal__logo-img {
@@ -1566,17 +1576,14 @@ a {
 
 .modal__success {
   text-align: center;
-  padding: 36px 8px 20px;
+  padding: 8px 0 12px;
 }
 
-.modal__success .modal__title {
-  font-size: clamp(2.6rem, 8vw, 3.4rem);
-  margin-bottom: 0;
-}
-
-.modal__success-icon {
-  font-size: 3.5rem;
-  margin-bottom: 16px;
+.modal__success-characters {
+  width: min(360px, 100%);
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* ---- Keyframes ---- */
