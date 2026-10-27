@@ -29,7 +29,7 @@ kept in `source-art/`, which Shopify ignores.
 ## Waitlist signups → Shopify Customers
 
 The pop-up uses Shopify's native customer form (`{% form 'customer' %}`).
-On submit, after the browser checks name, email, and the consent box, the
+On submit, after the browser checks the name and email, the
 browser posts to the store's `/contact` endpoint. Shopify then:
 
 - creates the customer, or updates the existing customer with that email (no duplicates),
