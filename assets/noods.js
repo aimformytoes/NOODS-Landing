@@ -13,8 +13,6 @@
   const emailInput = document.getElementById('email');
   const nameError = document.getElementById('name-error');
   const emailError = document.getElementById('email-error');
-  const consentInput = document.getElementById('consent');
-  const consentError = document.getElementById('consent-error');
   const firstNameField = document.getElementById('signup-first-name');
   const lastNameField = document.getElementById('signup-last-name');
   const siteLogo = document.getElementById('site-logo');
@@ -53,17 +51,14 @@
   function clearErrors() {
     nameError.textContent = '';
     emailError.textContent = '';
-    consentError.textContent = '';
     nameInput.classList.remove('is-error');
     emailInput.classList.remove('is-error');
-    consentInput.classList.remove('is-error');
   }
 
   function showFieldError(field, message) {
     const map = {
       name: [nameInput, nameError],
       email: [emailInput, emailError],
-      consent: [consentInput, consentError],
     };
     const entry = map[field];
     if (!entry) return false;
@@ -90,11 +85,6 @@
     } else if (!emailPattern.test(emailInput.value.trim())) {
       emailError.textContent = 'Please enter a valid email address.';
       emailInput.classList.add('is-error');
-      valid = false;
-    }
-
-    if (!consentInput.checked) {
-      showFieldError('consent', 'Please tick the box so we can email you about the launch.');
       valid = false;
     }
 
