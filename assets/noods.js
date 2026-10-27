@@ -33,6 +33,14 @@
     menuBtn.classList.toggle('is-open', open);
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    syncHeaderLogo();
+  }
+
+  function syncHeaderLogo() {
+    const nav = document.querySelector('.site-nav--home');
+    if (!nav) return;
+    const menuOpen = siteMenu && !siteMenu.hidden;
+    nav.classList.toggle('is-compact', window.scrollY > 12 || !!menuOpen);
   }
 
   function openModal() {
@@ -614,6 +622,8 @@
 
   initSections(document);
   initHeroWatch();
+  syncHeaderLogo();
+  window.addEventListener('scroll', syncHeaderLogo, { passive: true });
 
   // Theme editor: sections are re-rendered in place when edited.
   document.addEventListener('shopify:section:load', function (e) {

@@ -30,7 +30,7 @@
   {% assign cart_url = routes.cart_url | default: '/cart' %}
   {% assign cart_count = cart.item_count | default: 0 %}
 
-  <div class="site-nav">
+  <div class="site-nav{% if request.page_type == 'index' %} site-nav--home{% endif %}">
     <header class="site-header">
       <button class="site-header__menu" id="site-menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
         <span class="site-header__lines" aria-hidden="true"><span></span><span></span><span></span></span>
