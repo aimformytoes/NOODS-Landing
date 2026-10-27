@@ -2088,11 +2088,23 @@ a {
   }
 
   .hero {
-    padding-bottom: 56px;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    padding-bottom: 0;
+  }
+
+  .hero__video {
+    object-fit: contain;
+    object-position: center center;
   }
 
   .hero__layout {
-    padding: 0 16px clamp(190px, 26vh, 280px);
+    position: absolute;
+    inset: 0;
+    justify-content: flex-start;
+    max-width: none;
+    padding: 4% 12px 0;
   }
 
   .hero__group {
@@ -2100,11 +2112,11 @@ a {
   }
 
   .hero__stack {
-    gap: 2px;
+    gap: 1px;
   }
 
   .hero__logo {
-    width: min(540px, 96vw);
+    width: min(250px, 58vw);
   }
 
   .hero__cta {
@@ -2113,20 +2125,33 @@ a {
     justify-content: center;
   }
 
+  .hero__cta {
+    margin-top: 3px;
+  }
+
   .hero__cta .btn--hero {
-    padding: 11px 26px;
-    font-size: 0.9rem;
+    min-height: 36px;
+    padding: 6px 14px;
+    font-size: clamp(0.68rem, 2.6vw, 0.82rem);
+    font-family: var(--font-display);
   }
 
   .hero__banner {
-    padding: 8px 14px 10px;
-    border-radius: 12px;
-    gap: 3px;
+    margin-top: 2px;
+    padding: 3px 8px 4px;
+    border-radius: 8px;
+    gap: 0;
   }
 
   .hero__banner-line {
-    font-size: clamp(0.98rem, 4.1vw, 1.4rem);
-    letter-spacing: 0.03em;
+    font-family: var(--font-headline);
+    font-weight: 900;
+    font-size: clamp(0.58rem, 2.55vw, 0.82rem);
+    letter-spacing: 0.04em;
+  }
+
+  .hero__scroll {
+    display: none;
   }
 
   .marquee {
@@ -2236,7 +2261,6 @@ a {
     min-height: 48px;
   }
 
-  .hero__cta .btn--hero,
   .btn--footer {
     min-height: 48px;
   }
