@@ -1,0 +1,12 @@
+{
+  "layout": "noods",
+  "sections": {
+    "main": {
+      "type": "noods-flavor-product",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

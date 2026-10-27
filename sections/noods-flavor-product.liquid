@@ -1,0 +1,144 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign fallback_image = ''
+  if product.handle == 'hot-and-spicy'
+    assign fallback_image = 'noods-flavor-hot-and-spicy.png'
+  elsif product.handle == 'savoury-beef'
+    assign fallback_image = 'noods-flavor-savoury-beef.png'
+  elsif product.handle == 'chicken-broth'
+    assign fallback_image = 'noods-flavor-chicken-broth.png'
+  endif
+-%}
+<div class="page-content">
+  <section class="flavor-product" aria-labelledby="flavor-product-title">
+    <div class="flavor-product__top">
+      <a class="flavor-product__back" href="{{ routes.root_url }}#flavors">← Meet the flavors</a>
+      <a class="flavor-product__cart-link" href="{{ routes.cart_url }}">
+        Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
+      </a>
+    </div>
+
+    <div class="flavor-product__layout">
+      <div class="flavor-product__gallery" data-flavor-gallery>
+        {%- if product.images.size > 0 -%}
+          <img
+            class="flavor-product__photo"
+            data-flavor-photo
+            src="{{ product.featured_image | image_url: width: 1400 }}"
+            alt="{{ product.featured_image.alt | default: product.title | escape }}"
+            width="1400"
+            height="1400"
+          >
+          {%- if product.images.size > 1 -%}
+            <div class="flavor-product__thumbs">
+              {%- for image in product.images -%}
+                <button
+                  class="flavor-product__thumb{% if forloop.first %} is-active{% endif %}"
+                  type="button"
+                  data-flavor-thumb
+                  data-src="{{ image | image_url: width: 1400 }}"
+                  data-alt="{{ image.alt | escape }}"
+                  aria-label="Show photo {{ forloop.index }} of {{ product.title | escape }}"
+                  {% if forloop.first %}aria-current="true"{% endif %}
+                >
+                  <img src="{{ image | image_url: width: 240 }}" alt="" width="240" height="240">
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        {%- elsif fallback_image != blank -%}
+          <img
+            class="flavor-product__photo"
+            src="{{ fallback_image | asset_url }}"
+            alt="{{ product.title | escape }}"
+            width="900"
+            height="600"
+          >
+        {%- else -%}
+          <div class="flavor-product__photo-empty">Photo coming soon</div>
+        {%- endif -%}
+      </div>
+
+      <div class="flavor-product__info">
+        <h1 class="flavor-product__title" id="flavor-product-title">{{ product.title | escape }}</h1>
+        {%- if current_variant -%}
+          <p class="flavor-product__price" data-flavor-price>
+            {{ current_variant.price | money }}
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              <s class="flavor-product__compare">{{ current_variant.compare_at_price | money }}</s>
+            {%- endif -%}
+          </p>
+        {%- endif -%}
+
+        {%- if product.description != blank -%}
+          <div class="flavor-product__description">{{ product.description }}</div>
+        {%- endif -%}
+
+        {%- if product != blank and current_variant -%}
+          {% form 'product', product, class: 'flavor-product__form' %}
+            <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+            {%- if product.variants.size > 1 -%}
+              <label class="flavor-product__field" for="FlavorVariant-{{ section.id }}">
+                Option
+                <select id="FlavorVariant-{{ section.id }}" name="id" data-variant-select>
+                  {%- for variant in product.variants -%}
+                    <option
+                      value="{{ variant.id }}"
+                      data-available="{{ variant.available }}"
+                      data-price="{{ variant.price | money | escape }}"
+                      {% if variant.id == current_variant.id %}selected{% endif %}
+                      {% unless variant.available %}disabled{% endunless %}
+                    >
+                      {{ variant.title | escape }} — {{ variant.price | money }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </label>
+            {%- else -%}
+              <input type="hidden" name="id" value="{{ current_variant.id }}">
+            {%- endif -%}
+
+            <label class="flavor-product__field" for="FlavorQty-{{ section.id }}">
+              Quantity
+              <input id="FlavorQty-{{ section.id }}" type="number" name="quantity" value="1" min="1" inputmode="numeric">
+            </label>
+
+            <button
+              class="btn btn--primary flavor-product__add"
+              type="submit"
+              name="add"
+              data-add-button
+              {% unless current_variant.available %}disabled{% endunless %}
+            >
+              {%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+            </button>
+          {% endform %}
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS flavor product",
+  "tag": "div",
+  "class": "noods-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Photos, description, price, and variants come from the product in Shopify admin. Upload images on the product to show them here."
+    }
+  ],
+  "presets": [
+    {
+      "name": "NOODS flavor product"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  }
+}
+{% endschema %}

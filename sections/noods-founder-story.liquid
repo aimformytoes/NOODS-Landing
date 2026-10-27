@@ -1,0 +1,65 @@
+<div class="page-content">
+  <section class="founder-story" id="founder-story" aria-labelledby="founder-story-title">
+    <div class="container founder-story__box">
+      <header class="section-header founder-story__header reveal">
+        <h2 class="founder-story__title" id="founder-story-title">How NOODS Started</h2>
+        <p class="founder-story__intro">The noodles we wanted didn&rsquo;t exist, so we made our own.</p>
+      </header>
+      <figure class="founder-story__comic float-card reveal">
+        <img
+          class="founder-story__comic-img"
+          src="{{ 'noods-founder-comic.png' | asset_url }}"
+          alt="Comic strip: two friends crave instant noodles but hate feeling bloated from ultra-processed ones. Realizing they're food scientists, they decide to make noodles that support your gut. After endless testing, they introduce NOODS — prebiotic instant noodles with clean ingredients, air dried, no oils, less sodium, and amazing taste."
+          width="1882"
+          height="1124"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="pride" id="pride" aria-labelledby="pride-title">
+    <div class="container">
+      <header class="section-header pride__header reveal">
+        <h2 class="pride__title" id="pride-title">We Take Pride in Our Noods</h2>
+      </header>
+      <ul class="pride__bubbles">
+        <li class="pride__bubble">
+          <h3>Gut Friendly</h3>
+          <p>7 grams of prebiotic fiber in every bowl. Chicory root inulin helps nourish beneficial gut bacteria and support overall gut health.</p>
+        </li>
+        <li class="pride__bubble">
+          <h3>Clean Ingredients</h3>
+          <p>Made with clean ingredients with no artificial flavors, preservatives, or additives.</p>
+        </li>
+        <li class="pride__bubble">
+          <h3>Lower Sodium</h3>
+          <p>Big, satisfying flavor with less sodium than traditional instant noodles, so you don&rsquo;t have to choose between better-for-you and actually delicious.</p>
+        </li>
+        <li class="pride__bubble">
+          <h3>Air-Dried, Not Fried</h3>
+          <p>Steamed and air-dried instead of the traditional deep-fried for a healthier noodle with no processing oils!</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS founder story",
+  "tag": "div",
+  "class": "noods-section",
+  "presets": [
+    {
+      "name": "NOODS founder story"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  }
+}
+{% endschema %}
