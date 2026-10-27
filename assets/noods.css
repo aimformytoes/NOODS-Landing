@@ -134,12 +134,12 @@ a {
 .site-header {
   position: relative;
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  grid-template-columns: 32px minmax(0, 1fr) 32px;
   align-items: center;
   gap: 8px;
-  min-height: 76px;
-  padding: 12px 24px;
-  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  min-height: 46px;
+  padding: 4px 18px;
+  padding-top: calc(4px + env(safe-area-inset-top, 0px));
   background: var(--banner);
   z-index: 1;
 }
@@ -148,10 +148,10 @@ a {
 .site-header__cart {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   color: var(--brown);
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .site-header__menu {
@@ -209,7 +209,7 @@ a {
   justify-self: center;
   align-self: center;
   z-index: 2;
-  width: min(220px, 72%);
+  width: min(156px, 46%);
   min-width: 0;
   line-height: 0;
   transition: width 0.35s ease;
@@ -229,7 +229,7 @@ a {
 }
 
 .site-nav--home:not(.is-compact) .site-header__logo img {
-  transform: translateY(calc(50% + 12px));
+  transform: translateY(calc(50% + 4px));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -294,7 +294,7 @@ a {
 #products,
 #flavors,
 #founder-story {
-  scroll-margin-top: 84px;
+  scroll-margin-top: 56px;
 }
 
 /* ---- Buttons ---- */
@@ -426,7 +426,7 @@ a {
 
 .hero__media {
   position: relative;
-  width: min(calc(100% - 48px), calc((100dvh - 180px) * 16 / 9));
+  width: min(calc(100% - 48px), calc((100dvh - 150px) * 16 / 9));
   margin-inline: auto;
   aspect-ratio: 16 / 9;
   background: #1c120c;
@@ -2130,17 +2130,17 @@ a {
   }
 
   .site-header {
-    min-height: 64px;
-    padding: 8px 12px;
-    padding-top: calc(8px + env(safe-area-inset-top, 0px));
+    min-height: 42px;
+    padding: 3px 10px;
+    padding-top: calc(3px + env(safe-area-inset-top, 0px));
   }
 
   .site-header__logo {
-    width: min(180px, 70%);
+    width: min(132px, 58%);
   }
 
   .site-nav--home:not(.is-compact) .site-header__logo img {
-    transform: translateY(calc(50% + 8px));
+    transform: translateY(calc(50% + 3px));
   }
 
   .hero__media {
