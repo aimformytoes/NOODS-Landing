@@ -2090,8 +2090,9 @@ a {
   .hero {
     min-height: 0;
     height: auto;
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 1.185 / 1;
     padding-bottom: 0;
+    background: transparent;
   }
 
   .hero__video {
@@ -2100,7 +2101,7 @@ a {
     right: auto;
     bottom: 0;
     left: 50%;
-    width: 148%;
+    width: 150%;
     max-width: none;
     height: auto;
     transform: translateX(-50%);
@@ -2111,56 +2112,85 @@ a {
   .hero__layout {
     position: absolute;
     inset: 0;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     max-width: none;
-    padding: 4% 12px 0;
+    padding: 8px 16px 36%;
   }
 
   .hero__group {
-    gap: 2px;
+    gap: 6px;
+    width: 100%;
   }
 
   .hero__stack {
-    gap: 1px;
+    gap: 6px;
   }
 
   .hero__logo {
-    width: min(250px, 58vw);
+    width: min(380px, 88vw);
   }
 
   .hero__cta {
     width: 100%;
     display: flex;
     justify-content: center;
-  }
-
-  .hero__cta {
-    margin-top: 3px;
+    margin-top: 2px;
   }
 
   .hero__cta .btn--hero {
-    min-height: 36px;
-    padding: 6px 14px;
-    font-size: clamp(0.68rem, 2.6vw, 0.82rem);
+    min-height: 42px;
+    padding: 8px 20px;
+    font-size: clamp(0.88rem, 3.6vw, 1.02rem);
     font-family: var(--font-display);
   }
 
   .hero__banner {
-    margin-top: 2px;
-    padding: 3px 8px 4px;
-    border-radius: 8px;
-    gap: 0;
+    margin-top: 0;
+    padding: 6px 12px 8px;
+    border-radius: 12px;
+    gap: 2px;
   }
 
   .hero__banner-line {
     font-family: var(--font-headline);
     font-weight: 900;
-    font-size: clamp(0.58rem, 2.55vw, 0.82rem);
+    font-size: clamp(0.82rem, 3.7vw, 1.12rem);
     letter-spacing: 0.04em;
   }
 
   .hero__scroll {
     display: none;
+  }
+
+  @media (max-width: 380px) {
+    .hero__logo {
+      width: 80vw;
+    }
+
+    .hero__layout {
+      padding-top: 6px;
+      padding-bottom: 33%;
+    }
+
+    .hero__group,
+    .hero__stack {
+      gap: 4px;
+    }
+
+    .hero__banner {
+      padding: 4px 10px 6px;
+    }
+
+    .hero__banner-line {
+      font-size: 0.78rem;
+    }
+
+    .hero__cta .btn--hero {
+      min-height: 38px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+    }
   }
 
   .marquee {
