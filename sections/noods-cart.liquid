@@ -1,0 +1,71 @@
+<div class="page-content">
+  <section class="noods-cart" aria-labelledby="noods-cart-title">
+    <div class="noods-cart__box">
+      <h1 class="noods-cart__title" id="noods-cart-title">Your cart</h1>
+
+      {%- if cart.item_count == 0 -%}
+        <p class="noods-cart__empty">Your cart is empty.</p>
+        <a class="btn btn--primary" href="{{ routes.root_url }}#flavors">Meet the flavors</a>
+      {%- else -%}
+        <form action="{{ routes.cart_url }}" method="post">
+          {%- for item in cart.items -%}
+            <article class="noods-cart__item">
+              {%- if item.image -%}
+                <a href="{{ item.url }}">
+                  <img
+                    class="noods-cart__thumb"
+                    src="{{ item.image | image_url: width: 240 }}"
+                    alt="{{ item.image.alt | default: item.product.title | escape }}"
+                    width="84"
+                    height="84"
+                  >
+                </a>
+              {%- else -%}
+                <span class="noods-cart__thumb noods-cart__thumb--empty" aria-hidden="true"></span>
+              {%- endif -%}
+              <div>
+                <a class="noods-cart__name" href="{{ item.url }}">{{ item.product.title | escape }}</a>
+                {%- unless item.variant.title == 'Default Title' -%}
+                  <p class="noods-cart__variant">{{ item.variant.title | escape }}</p>
+                {%- endunless -%}
+                <div class="noods-cart__meta">
+                  <label>
+                    <input class="noods-cart__qty" type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric" aria-label="Quantity for {{ item.product.title | escape }}">
+                  </label>
+                  <span class="noods-cart__line-price">{{ item.final_line_price | money }}</span>
+                  <a class="noods-cart__remove" href="{{ item.url_to_remove }}">Remove</a>
+                </div>
+              </div>
+            </article>
+          {%- endfor -%}
+
+          <div class="noods-cart__footer">
+            <p class="noods-cart__total">Total {{ cart.total_price | money }}</p>
+            <div class="noods-cart__actions">
+              <button class="noods-cart__update" type="submit" name="update">Update</button>
+              <button class="btn btn--primary noods-cart__checkout" type="submit" name="checkout">Checkout</button>
+            </div>
+          </div>
+        </form>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS cart",
+  "tag": "div",
+  "class": "noods-section",
+  "presets": [
+    {
+      "name": "NOODS cart"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "cart"
+    ]
+  }
+}
+{% endschema %}

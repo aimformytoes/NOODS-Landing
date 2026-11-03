@@ -1,0 +1,30 @@
+<div class="page-content">
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img class="footer__logo-img" src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
+      <p class="footer__tagline">Prebiotic Instant Noodles</p>
+      <button class="btn btn--primary btn--footer" type="button" id="footer-cta-btn">
+        Be the First to Try
+      </button>
+      <p class="footer__copy">&copy; 2026 NOODS. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS footer",
+  "tag": "div",
+  "class": "noods-section",
+  "presets": [
+    {
+      "name": "NOODS footer"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  }
+}
+{% endschema %}

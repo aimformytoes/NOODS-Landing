@@ -1,0 +1,58 @@
+name: Deploy unpublished Shopify theme
+
+# Pushes this branch to an unpublished theme named "NOODS".
+# Skips quietly until both repository secrets exist:
+#   SHOPIFY_FLAG_STORE        your-store.myshopify.com
+#   SHOPIFY_CLI_THEME_TOKEN   password from the Shopify "Theme Access" app
+# The live theme is never touched.
+
+on:
+  push:
+    branches:
+      - cursor/shopify-theme-f6c7
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Shopify secrets
+        id: secrets
+        env:
+          STORE: ${{ secrets.SHOPIFY_FLAG_STORE }}
+          TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+        run: |
+          if [ -z "$STORE" ] || [ -z "$TOKEN" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "SHOPIFY_FLAG_STORE or SHOPIFY_CLI_THEME_TOKEN is not set. Skipping deploy."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Shopify CLI
+        if: steps.secrets.outputs.configured == 'true'
+        run: npm install -g @shopify/cli@4
+
+      - name: Push unpublished theme
+        if: steps.secrets.outputs.configured == 'true'
+        env:
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_FLAG_STORE }}
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_FLAG_PASSWORD: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_CLI_TTY: "0"
+        run: |
+          set -euo pipefail
+          LIST="$(shopify theme list --name NOODS --role unpublished --json || true)"
+          THEME_ID="$(printf '%s' "$LIST" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const start=s.indexOf("[");if(start<0){process.exit(0)}const list=JSON.parse(s.slice(start));const t=list.find(x=>x&&x.name==="NOODS");process.stdout.write(t?String(t.id):"")})')"
+          if [ -n "$THEME_ID" ]; then
+            shopify theme push --theme "$THEME_ID" --json
+          else
+            shopify theme push --unpublished --theme "NOODS" --json
+          fi
