@@ -2208,18 +2208,9 @@ a {
   }
 
   .hero__media {
-    width: calc(100% - 20px);
-    border-radius: 22px;
-  }
-
-  .hero__video {
-    inset: auto;
-    top: 50%;
-    left: 50%;
-    width: 125%;
-    height: 125%;
-    max-width: none;
-    transform: translate(-50%, -50%);
+    width: 100%;
+    border-radius: 0;
+    aspect-ratio: 16 / 10.8;
   }
 
   .hero__cta {
