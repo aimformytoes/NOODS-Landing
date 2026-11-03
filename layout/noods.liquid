@@ -14,11 +14,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --noods-bg-image: url('{{ 'noods-background.jpg' | asset_url }}');
-    }
-  </style>
   {{ 'noods.css' | asset_url | stylesheet_tag }}
   {{ content_for_header }}
 </head>

@@ -26,6 +26,7 @@
   --radius-pill: 999px;
   --border-subtle: 1px solid rgba(217, 154, 85, 0.2);
   --card-bg: rgba(237, 220, 200, 0.95);
+  --page-bg: #E6E279;
 }
 
 *,
@@ -46,7 +47,7 @@ html {
 body {
   font-family: var(--font-display);
   color: var(--black);
-  background: var(--cream);
+  background: var(--page-bg);
   overflow-x: hidden;
   line-height: 1.6;
   min-height: 100%;
@@ -58,25 +59,8 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-color: var(--cream);
-  background-image: var(--noods-bg-image);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: var(--page-bg);
   pointer-events: none;
-}
-
-.site-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(248, 231, 200, 0.08) 0%,
-    rgba(248, 231, 200, 0.02) 40%,
-    rgba(248, 231, 200, 0.02) 60%,
-    rgba(248, 231, 200, 0.06) 100%
-  );
 }
 
 .hero,
