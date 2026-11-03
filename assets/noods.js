@@ -309,8 +309,7 @@
     const LOOP_WAVES = 14;
     const FILL_PULL_IN = 10.5;
 
-    function buildWavyLoop(width, height, phaseOffset, pullInward) {
-      const inset = LOOP_INSET;
+    function buildWavyLoop(width, height, phaseOffset, pullInward, inset, amp) {
       const frameW = Math.max(40, width - inset * 2);
       const frameH = Math.max(40, height - inset * 2);
       const radius = Math.min(24, frameW * 0.12, frameH * 0.22);
@@ -332,7 +331,7 @@
         const mag = Math.hypot(dx, dy) || 1;
         const nx = dy / mag;
         const ny = -dx / mag;
-        const wave = LOOP_AMP * Math.sin(t * LOOP_WAVES * Math.PI * 2 + phaseOffset);
+        const wave = amp * Math.sin(t * LOOP_WAVES * Math.PI * 2 + phaseOffset);
         const radial = wave - pullInward;
         points.push({ x: p.x + nx * radial, y: p.y + ny * radial });
       }
@@ -347,8 +346,12 @@
 
       svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
-      const dFill = buildWavyLoop(width, height, phase, FILL_PULL_IN);
-      const dNoodle = buildWavyLoop(width, height, phase, 0);
+      const narrow = width < 640;
+      const inset = narrow ? 6 : LOOP_INSET;
+      const amp = narrow ? 4 : LOOP_AMP;
+      const pull = narrow ? 4 : FILL_PULL_IN;
+      const dFill = buildWavyLoop(width, height, phase, pull, inset, amp);
+      const dNoodle = buildWavyLoop(width, height, phase, 0, inset, amp);
 
       fillPath.setAttribute('d', dFill);
       shadowPath.setAttribute('d', dNoodle);
