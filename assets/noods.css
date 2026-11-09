@@ -2192,8 +2192,8 @@ a {
 
   .products__title-line {
     white-space: nowrap;
-    font-size: calc(1.5 * clamp(1.15rem, 6.6vw, 2.25rem));
-    letter-spacing: -0.06em;
+    font-size: clamp(1.7rem, 8.5vw, 2.15rem);
+    letter-spacing: 0.03em;
   }
 
   .container {
