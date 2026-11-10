@@ -922,8 +922,7 @@ a {
 
 /* Match scrolling marquee noodle strand colors */
 .products__noodle-loop__fill {
-  fill: var(--products-bubble-bg-opaque);
-  fill-opacity: 1;
+  fill: none;
   stroke: none;
 }
 
