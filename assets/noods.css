@@ -7,6 +7,7 @@
   --banner: #FFE45A;
   --orange: #FF8A00;
   --red: #E63220;
+  --red-text: #990808;
   --cream: #F8E7C8;
   --pale: #FBF4E6;
   --nude: #EDDCC8;
@@ -26,7 +27,7 @@
   --radius-pill: 999px;
   --border-subtle: 1px solid rgba(217, 154, 85, 0.2);
   --card-bg: rgba(237, 220, 200, 0.95);
-  --page-bg: #E6E279;
+  --page-bg: var(--banner);
 }
 
 *,
@@ -618,7 +619,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 900;
-  color: var(--red);
+  color: var(--red-text);
   line-height: 1.1;
   margin-bottom: 6px;
   letter-spacing: -0.02em;
@@ -646,7 +647,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(1rem, 2.2vw, 1.2rem);
   font-weight: 800;
-  color: var(--red);
+  color: var(--red-text);
   line-height: 1.35;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -961,7 +962,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(calc(1.5rem + 15px), calc(5vw + 15px), calc(2.75rem + 15px));
   font-weight: 900;
-  color: var(--red);
+  color: var(--red-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.05;
@@ -1350,7 +1351,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 900;
-  color: var(--red);
+  color: var(--red-text);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.2;
@@ -1465,7 +1466,7 @@ a {
   font-family: var(--font-headline);
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--red);
+  color: var(--red-text);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 12px;
@@ -1604,7 +1605,7 @@ a {
   font-family: var(--font-headline);
   font-size: 1.75rem;
   font-weight: 900;
-  color: var(--red);
+  color: var(--red-text);
   margin-bottom: 10px;
 }
 
@@ -1635,7 +1636,7 @@ a {
 .modal__form-status {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--red);
+  color: var(--red-text);
   min-height: 0;
   text-align: center;
 }
@@ -1696,7 +1697,7 @@ a {
 
 .form-error {
   font-size: 0.9rem;
-  color: var(--red);
+  color: var(--red-text);
   font-weight: 600;
   min-height: 0;
 }
@@ -1920,7 +1921,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 900;
-  color: var(--red);
+  color: var(--red-text);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   line-height: 1.05;
@@ -1962,7 +1963,7 @@ a {
 }
 
 .flavor-product__description a {
-  color: var(--red);
+  color: var(--red-text);
   text-decoration: underline;
 }
 
@@ -2036,7 +2037,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 900;
-  color: var(--red);
+  color: var(--red-text);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   line-height: 1.05;
@@ -2108,7 +2109,7 @@ a {
 }
 
 .noods-cart__remove {
-  color: var(--red);
+  color: var(--red-text);
   font-weight: 800;
   text-decoration: underline;
 }
