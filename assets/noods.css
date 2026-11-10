@@ -27,7 +27,7 @@
   --radius-pill: 999px;
   --border-subtle: 1px solid rgba(217, 154, 85, 0.2);
   --card-bg: rgba(237, 220, 200, 0.95);
-  --page-bg: #ffe033;
+  --page-bg: var(--banner);
 }
 
 *,
