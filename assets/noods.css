@@ -1044,19 +1044,21 @@ a {
   margin-bottom: clamp(28px, 4vw, 36px);
 }
 
+.flavors__header .products__noodle-box {
+  margin-inline: auto;
+}
+
 .flavors__title {
   display: inline-block;
-  padding: 0.35em 0.9em;
+  padding: 0.1em 0.15em;
   font-family: var(--font-headline);
   font-size: clamp(1.6rem, 4.5vw, 2.75rem);
   font-weight: 900;
-  color: var(--brown);
+  color: var(--red-text);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.1;
-  background: var(--cream);
-  border-radius: 999px;
-  box-shadow: var(--shadow-cartoon);
+  background: transparent;
 }
 
 .flavors__carousel {

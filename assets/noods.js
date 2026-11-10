@@ -250,9 +250,10 @@
 
   /* Products title: one continuous noodle worm around the full border */
   function initProductsNoodleBorder(root) {
-    const box = root.querySelector('[data-noodle-border]');
-    if (!box) return;
+    root.querySelectorAll('[data-noodle-border]').forEach(initOneNoodleBorder);
+  }
 
+  function initOneNoodleBorder(box) {
     const svg = box.querySelector('.products__noodle-loop');
     const fillPath = box.querySelector('.products__noodle-loop__fill');
     const shadowPath = box.querySelector('.products__noodle-loop__shadow');
