@@ -1355,6 +1355,33 @@ a {
   text-wrap: balance;
 }
 
+@media (max-width: 640px) {
+  .founder-story {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .founder-story__box {
+    padding: 28px 16px 24px;
+  }
+
+  .founder-story__title {
+    font-size: clamp(1.45rem, 7.2vw, 1.85rem);
+    letter-spacing: 0.02em;
+    max-width: none;
+  }
+
+  .founder-story__title-line,
+  .founder-story__intro-line {
+    display: block;
+  }
+
+  .founder-story__intro {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+}
+
 .founder-story__comic {
   margin: 0 auto;
   max-width: min(1040px, 94vw);
