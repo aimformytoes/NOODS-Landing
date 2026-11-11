@@ -194,6 +194,104 @@
     restoreSignupResult();
   }
 
+  const footerForm = document.getElementById('footer-signup');
+  const footerName = document.getElementById('footer-name');
+  const footerEmail = document.getElementById('footer-email');
+  const footerNameError = document.getElementById('footer-name-error');
+  const footerEmailError = document.getElementById('footer-email-error');
+  const footerFirstName = document.getElementById('footer-first-name');
+  const footerLastName = document.getElementById('footer-last-name');
+  const footerSubmit = document.getElementById('footer-signup-submit');
+  const footerStatus = document.getElementById('footer-signup-status');
+  const footerThanks = document.getElementById('footer-signup-thanks');
+
+  function setFooterStatus(message) {
+    if (footerStatus) footerStatus.textContent = message || '';
+  }
+
+  function clearFooterErrors() {
+    if (footerNameError) footerNameError.textContent = '';
+    if (footerEmailError) footerEmailError.textContent = '';
+    if (footerName) footerName.classList.remove('is-error');
+    if (footerEmail) footerEmail.classList.remove('is-error');
+  }
+
+  function validateFooter() {
+    clearFooterErrors();
+    let valid = true;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!footerName.value.trim()) {
+      footerNameError.textContent = 'Please enter your name.';
+      footerName.classList.add('is-error');
+      valid = false;
+    }
+
+    if (!footerEmail.value.trim()) {
+      footerEmailError.textContent = 'Please enter your email.';
+      footerEmail.classList.add('is-error');
+      valid = false;
+    } else if (!emailPattern.test(footerEmail.value.trim())) {
+      footerEmailError.textContent = 'Please enter a valid email address.';
+      footerEmail.classList.add('is-error');
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  function showFooterSuccess() {
+    setFooterStatus('');
+    footerForm.hidden = true;
+    footerThanks.hidden = false;
+    const card = document.querySelector('.footer-signup');
+    if (card) card.scrollIntoView({ block: 'center' });
+  }
+
+  if (footerForm && footerName && footerEmail) {
+    footerForm.noValidate = true;
+    footerForm.addEventListener('submit', function (e) {
+      if (!validateFooter()) {
+        e.preventDefault();
+        return;
+      }
+
+      const parts = footerName.value.trim().replace(/\s+/g, ' ').split(' ');
+      footerFirstName.value = parts.shift();
+      footerLastName.value = parts.join(' ');
+      footerEmail.value = footerEmail.value.trim();
+      setFooterStatus('Submitting…');
+      window.setTimeout(function () {
+        if (footerSubmit) footerSubmit.disabled = true;
+      }, 0);
+    });
+
+    window.addEventListener('pageshow', function () {
+      if (footerSubmit) footerSubmit.disabled = false;
+    });
+
+    const footerResult = footerForm.querySelector('[data-signup-result]');
+    if (footerResult) {
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.hash.replace(/^#footer-signup$/, ''));
+      }
+      if (footerResult.getAttribute('data-signup-result') === 'success') {
+        showFooterSuccess();
+      } else {
+        const message = footerResult.getAttribute('data-signup-message') || 'We could not save your email. Please try again.';
+        const field = footerResult.getAttribute('data-signup-field');
+        if (field === 'email') {
+          footerEmailError.textContent = message;
+          footerEmail.classList.add('is-error');
+        } else {
+          setFooterStatus(message);
+        }
+        const card = document.querySelector('.footer-signup');
+        if (card) card.scrollIntoView({ block: 'center' });
+      }
+    }
+  }
+
   function initHeroVideo(root) {
     const heroVideo = root.querySelector('.hero__video');
     if (heroVideo) {

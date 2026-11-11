@@ -1,11 +1,82 @@
 <div class="page-content">
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <div class="container footer__inner">
+      <section class="footer-signup" aria-labelledby="footer-signup-title">
+        <h2 class="footer-signup__title" id="footer-signup-title">Be the first to try NOODS when we launch!</h2>
+        <p class="footer-signup__copy">Get early access to our first drop, new flavors, and exclusive perks. No spam, just the good stuff.</p>
+
+        {%- comment -%}
+          Same Shopify customer form as the popup. A successful submit creates
+          or updates the customer, subscribes the email, and adds NOODS-WAITLIST.
+        {%- endcomment -%}
+        {%- form 'customer', id: 'footer-signup', class: 'footer-signup__form', novalidate: 'novalidate' -%}
+          <input type="hidden" name="contact[tags]" value="NOODS-WAITLIST" />
+          <input type="hidden" name="contact[first_name]" id="footer-first-name" value="" />
+          <input type="hidden" name="contact[last_name]" id="footer-last-name" value="" />
+
+          {%- if form.posted_successfully? -%}
+            <span hidden data-signup-result="success"></span>
+          {%- elsif form.errors -%}
+            {%- capture footer_signup_error -%}
+              {%- if form.errors contains 'email' -%}
+                {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+              {%- else -%}
+                {{ form.errors | default_errors | strip_html | strip }}
+              {%- endif -%}
+            {%- endcapture -%}
+            <span
+              hidden
+              data-signup-result="error"
+              data-signup-field="{% if form.errors contains 'email' %}email{% endif %}"
+              data-signup-message="{{ footer_signup_error | strip | escape }}"
+            ></span>
+          {%- endif -%}
+
+          <div class="footer-signup__fields">
+            <div class="form-group">
+              <label class="form-label" for="footer-name">Name</label>
+              <input
+                class="form-input"
+                type="text"
+                id="footer-name"
+                placeholder="Your name"
+                required
+                autocomplete="name"
+              />
+              <span class="form-error" id="footer-name-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="footer-email">Email</label>
+              <input
+                class="form-input"
+                type="email"
+                id="footer-email"
+                name="contact[email]"
+                value="{{ form.email }}"
+                placeholder="you@email.com"
+                required
+                autocomplete="email"
+                autocapitalize="off"
+                spellcheck="false"
+              />
+              <span class="form-error" id="footer-email-error"></span>
+            </div>
+
+            <button class="btn btn--primary footer-signup__submit" type="submit" id="footer-signup-submit">
+              Get early access
+            </button>
+          </div>
+          <p class="footer-signup__status" id="footer-signup-status" role="status" aria-live="polite"></p>
+        {%- endform -%}
+
+        <p class="footer-signup__thanks" id="footer-signup-thanks" role="status" hidden>
+          You're on the list. We'll email you when NOODS launches.
+        </p>
+      </section>
+
       <img class="footer__logo-img" src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
       <p class="footer__tagline">Prebiotic Instant Noodles</p>
-      <button class="btn btn--primary btn--footer" type="button" id="footer-cta-btn">
-        Be the First to Try
-      </button>
       <p class="footer__copy">&copy; 2026 NOODS. All rights reserved.</p>
     </div>
   </footer>
