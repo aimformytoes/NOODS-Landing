@@ -1607,7 +1607,7 @@ a {
   position: relative;
   z-index: 2;
   width: min(760px, calc(100% - 32px));
-  margin: 12px auto 20px;
+  margin: 20px auto clamp(64px, 8vw, 96px);
   padding: 0;
   background: transparent;
   box-shadow: none;
