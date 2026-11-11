@@ -1001,7 +1001,8 @@ a {
 
 .flavors {
   --flavors-bg: #ff8a3d;
-  --flavors-scallop-size: 40px;
+  --flavors-scallop-size: 44px;
+  --flavors-scallop-period: 72px;
   position: relative;
   z-index: 1;
   margin: calc(var(--flavors-scallop-size) / 2) 0;
@@ -1011,38 +1012,43 @@ a {
 }
 
 .flavors__scallop {
-  --scallop-y: -50%;
+  --scallop-shift-y: -50%;
+  --scallop-dot-y: 18%;
   position: absolute;
-  left: -50%;
+  left: -20%;
   z-index: 2;
-  width: 200%;
+  width: 140%;
   height: var(--flavors-scallop-size);
   pointer-events: none;
-  background-image: radial-gradient(
-    closest-side,
-    var(--flavors-bg) 98%,
-    transparent 100%
-  );
-  background-size: var(--flavors-scallop-size) var(--flavors-scallop-size);
+  will-change: transform;
+  background-color: transparent;
+  background-image:
+    radial-gradient(circle 24px at 24px 50%, var(--flavors-bg) 99%, transparent 100%),
+    radial-gradient(circle 10px at 56px 50%, var(--flavors-bg) 99%, transparent 100%),
+    radial-gradient(circle 8px at 24px var(--scallop-dot-y), var(--yellow) 96%, transparent 100%);
+  background-size: var(--flavors-scallop-period) var(--flavors-scallop-size);
   background-repeat: repeat-x;
-  transform: translateY(var(--scallop-y));
-  animation: flavors-scallop-drift 12s linear infinite;
+  transform: translateY(var(--scallop-shift-y));
+  animation: flavors-scallop-drift 0.85s linear infinite;
 }
 
 .flavors__scallop--top {
-  --scallop-y: -50%;
+  --scallop-shift-y: -50%;
+  --scallop-dot-y: 22%;
   top: 0;
 }
 
 .flavors__scallop--bottom {
-  --scallop-y: 50%;
+  --scallop-shift-y: 50%;
+  --scallop-dot-y: 78%;
   bottom: 0;
   animation-direction: reverse;
 }
 
+/* Shift by half a pattern so large/small lobes swap places — motion reads clearly */
 @keyframes flavors-scallop-drift {
-  from { transform: translateY(var(--scallop-y)) translateX(0); }
-  to { transform: translateY(var(--scallop-y)) translateX(calc(var(--flavors-scallop-size) * -1)); }
+  from { transform: translate3d(0, var(--scallop-shift-y), 0); }
+  to { transform: translate3d(calc(var(--flavors-scallop-period) / -2), var(--scallop-shift-y), 0); }
 }
 
 .flavors__header {
@@ -1786,7 +1792,8 @@ a {
   }
 
   .flavors {
-    --flavors-scallop-size: 28px;
+    --flavors-scallop-size: 34px;
+    --flavors-scallop-period: 60px;
   }
 
   .products__title-line {
