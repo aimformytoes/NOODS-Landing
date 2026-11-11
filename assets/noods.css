@@ -929,6 +929,18 @@ a {
 }
 
 @media (max-width: 719px) {
+  .products__pitch-lead {
+    font-size: clamp(1.4rem, 6.55vw, 1.7rem);
+    letter-spacing: 0.01em;
+    line-height: 1.06;
+  }
+
+  .products__pitch-chunk,
+  .products__pitch-line {
+    display: block;
+    white-space: nowrap;
+  }
+
   .products__pitch-copy--wide {
     display: none;
   }
@@ -1635,36 +1647,50 @@ a {
 
 @media (max-width: 640px) {
   .cup-stack {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 
   .cup-stack__frame {
-    width: min(156px, 42vw);
+    width: min(280px, 72vw);
   }
 
   .cup-stack__note {
-    gap: 3px;
+    gap: 2px;
     max-width: none;
   }
 
-  .cup-stack__note--left {
-    right: calc(100% + 2px);
-  }
-
-  .cup-stack__note--right {
-    left: calc(100% + 2px);
-  }
-
   .cup-stack__label {
-    max-width: 74px;
+    max-width: 72px;
     font-size: 0.62rem;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
   }
 
   .cup-stack__arrow {
-    width: 26px;
+    width: 36px;
   }
+
+  /* Inline --note-y marks the desktop spots. Phones move each
+     note into the transparent corner beside that cup. */
+  .cup-stack__note:nth-child(1) { --note-y: 34% !important; right: 68%; }
+  .cup-stack__note:nth-child(2) { --note-y: 7% !important; left: 58%; }
+  .cup-stack__note:nth-child(3) {
+    --note-y: 61% !important;
+    right: auto;
+    left: calc(50% - 50vw + 4px);
+  }
+  .cup-stack__note:nth-child(4) { --note-y: 67% !important; left: 51%; }
+  .cup-stack__note:nth-child(5) { --note-y: 94% !important; right: 69%; }
+
+  .cup-stack__stage {
+    animation-name: cup-stack-wobble-phone;
+  }
+}
+
+@keyframes cup-stack-wobble-phone {
+  from { transform: rotate(-2.2deg); }
+  to { transform: rotate(2.2deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
