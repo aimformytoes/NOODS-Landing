@@ -1043,7 +1043,7 @@ a {
 
 .flavors {
   --flavor-red: #E14B3A;
-  --products-bubble-bg-opaque: #f8e7c8;
+  --products-bubble-bg-opaque: var(--flavor-red);
   position: relative;
   margin: 28px 0 36px;
   padding: clamp(56px, 7vw, 92px) 0 clamp(40px, 5vw, 64px);
@@ -1061,7 +1061,7 @@ a {
   height: 16px;
   pointer-events: none;
   background-repeat: repeat-x;
-  animation: flavors-scallop 3.2s linear infinite;
+  animation: flavors-scallop 1.15s linear infinite;
 }
 
 .flavors::before {
@@ -1096,7 +1096,7 @@ a {
   font-family: var(--font-headline);
   font-size: clamp(1.6rem, 4.5vw, 2.75rem);
   font-weight: 900;
-  color: var(--red-text);
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.1;
