@@ -1568,19 +1568,21 @@ a {
 }
 
 @keyframes cup-stack-drop {
-  0% { opacity: 0; transform: translateY(-6%); }
+  0%, 11% { opacity: 0; transform: translateY(-38%); }
+  11.2% { opacity: 1; transform: translateY(-38%); }
   14% { opacity: 1; transform: translateY(0); }
-  72% { opacity: 1; transform: translateY(0); }
-  84% { opacity: 0; transform: translateY(-3%); }
-  100% { opacity: 0; transform: translateY(-6%); }
+  74% { opacity: 1; transform: translateY(0); }
+  74.2% { opacity: 0; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-38%); }
 }
 
 @keyframes cup-stack-drop-late {
-  0%, 26% { opacity: 0; transform: translateY(-6%); }
-  40% { opacity: 1; transform: translateY(0); }
-  72% { opacity: 1; transform: translateY(0); }
-  84% { opacity: 0; transform: translateY(-3%); }
-  100% { opacity: 0; transform: translateY(-6%); }
+  0%, 30% { opacity: 0; transform: translateY(-38%); }
+  30.2% { opacity: 1; transform: translateY(-38%); }
+  33% { opacity: 1; transform: translateY(0); }
+  74% { opacity: 1; transform: translateY(0); }
+  74.2% { opacity: 0; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-38%); }
 }
 
 @media (max-width: 640px) {
