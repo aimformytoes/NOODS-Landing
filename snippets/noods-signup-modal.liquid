@@ -16,8 +16,8 @@
 
     <div class="modal__header">
       <img class="modal__logo-img" src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
-      <p class="modal__subtitle modal__subtitle--lead" id="modal-title">Be part of the very first people to try NOODS</p>
-      <p class="modal__subtitle">Sign up for the waitlist for information on our first launch.</p>
+      <p class="modal__subtitle modal__subtitle--lead" id="modal-title">We are currently PRE-LAUNCH.</p>
+      <p class="modal__subtitle">Sign up to get info on our journey and launch details! No spam, just the good stuff.</p>
     </div>
 
     {%- form 'customer', id: 'signup-form', class: 'modal__form', novalidate: 'novalidate' -%}
@@ -73,10 +73,8 @@
         <span class="form-error" id="email-error"></span>
       </div>
 
-      <p class="modal__fine-print">We only use your info for launch updates.</p>
-
       <button class="btn btn--primary btn--full btn--large" type="submit" id="signup-submit">
-        Join the waitlist
+        Sign up
       </button>
       <p class="modal__form-status" id="form-status" role="status" aria-live="polite"></p>
     {%- endform -%}

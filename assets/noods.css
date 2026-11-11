@@ -1852,13 +1852,13 @@ a {
 }
 
 .modal__subtitle--lead {
+  font-family: var(--font-headline);
   font-size: clamp(1.25rem, 3.6vw, 1.45rem);
-  font-weight: 800;
-  line-height: 1.3;
+  font-weight: 900;
+  line-height: 1.25;
   margin-bottom: 6px;
   text-wrap: balance;
   color: var(--red-text);
-  text-transform: uppercase;
 }
 
 .modal__fine-print {
