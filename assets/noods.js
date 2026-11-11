@@ -15,7 +15,7 @@
   const emailError = document.getElementById('email-error');
   const firstNameField = document.getElementById('signup-first-name');
   const lastNameField = document.getElementById('signup-last-name');
-  const OPEN_SELECTOR = '#cta-btn, #footer-cta-btn, #floating-cta';
+  const OPEN_SELECTOR = '#cta-btn, #footer-cta-btn, #floating-cta, #flavors-cta';
   const menuBtn = document.getElementById('site-menu-btn');
   const siteMenu = document.getElementById('site-menu');
 
@@ -564,12 +564,7 @@
     function spinTo(target) {
       window.cancelAnimationFrame(animId);
       index = ((Math.round(target / step) % count) + count) % count;
-      if (nameEl) {
-        const front = cups[index];
-        nameEl.textContent = front.getAttribute('data-name');
-        const href = front.getAttribute('href');
-        if (href) nameEl.setAttribute('href', href);
-      }
+      if (nameEl) nameEl.textContent = cups[index].getAttribute('data-name');
 
       if (motionQuery.matches) {
         rotation = target;
@@ -638,9 +633,18 @@
       }
     });
     stage.addEventListener('click', function (e) {
-      if (!suppressCupClick) return;
-      if (e.target.closest && e.target.closest('.flavor-cup')) e.preventDefault();
-      suppressCupClick = false;
+      const cup = e.target.closest && e.target.closest('.flavor-cup');
+      if (!cup) return;
+      if (suppressCupClick) {
+        suppressCupClick = false;
+        return;
+      }
+      const targetIndex = cups.indexOf(cup);
+      if (targetIndex < 0 || targetIndex === index) return;
+      let delta = targetIndex - index;
+      if (delta > count / 2) delta -= count;
+      if (delta < -count / 2) delta += count;
+      userGo(function () { go(delta); });
     });
 
     document.addEventListener('visibilitychange', startAutoplay);

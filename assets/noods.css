@@ -1192,6 +1192,7 @@ a {
   bottom: 4%;
   width: var(--cup-w);
   margin-left: calc(var(--cup-w) / -2);
+  padding: 0;
   cursor: pointer;
   will-change: transform;
   color: inherit;
@@ -1288,6 +1289,27 @@ a {
 .flavors__name:focus-visible {
   background: var(--yellow);
   color: var(--brown);
+}
+
+.flavors__cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.flavors__cta {
+  background: var(--cream);
+  color: var(--red-text);
+  font-family: var(--font-headline);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  padding: 14px 28px;
+  box-shadow: 0 8px 20px rgba(90, 52, 36, 0.18);
+}
+
+.flavors__cta:hover {
+  background: var(--white);
+  transform: translateY(-2px);
 }
 
 .flavors__arrow {
