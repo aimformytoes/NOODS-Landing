@@ -1544,6 +1544,8 @@ a {
   width: min(420px, 86vw);
   margin: 0 auto;
   aspect-ratio: 840 / 1734;
+  transform-origin: center bottom;
+  animation: cup-stack-wobble 2.8s ease-in-out infinite;
 }
 
 .cup-stack__layer {
@@ -1558,83 +1560,12 @@ a {
   user-select: none;
 }
 
-.cup-stack__layer--drop {
-  opacity: 0;
-  animation: cup-stack-drop 5.4s linear infinite;
-}
-
-.cup-stack__layer--first {
-  animation-name: cup-stack-drop-first;
-}
-
-.cup-stack__layer--later {
-  animation-name: cup-stack-drop-late;
-}
-
-@keyframes cup-stack-drop-first {
-  0%, 3% {
-    opacity: 0;
-    transform: translateY(-30%);
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  16% {
-    opacity: 1;
-    transform: translateY(0);
-    animation-timing-function: linear;
-  }
-  80% {
-    opacity: 1;
-    transform: translateY(0);
-    animation-timing-function: ease;
-  }
-  88%, 100% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-}
-
-@keyframes cup-stack-drop {
-  0%, 24% {
-    opacity: 0;
-    transform: translateY(-30%);
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  37% {
-    opacity: 1;
-    transform: translateY(0);
-    animation-timing-function: linear;
-  }
-  80% {
-    opacity: 1;
-    transform: translateY(0);
-    animation-timing-function: ease;
-  }
-  88%, 100% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-}
-
-@keyframes cup-stack-drop-late {
-  0%, 45% {
-    opacity: 0;
-    transform: translateY(-30%);
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  58% {
-    opacity: 1;
-    transform: translateY(0);
-    animation-timing-function: linear;
-  }
-  80% {
-    opacity: 1;
-    transform: translateY(0);
-    animation-timing-function: ease;
-  }
-  88%, 100% {
-    opacity: 0;
-    transform: translateY(0);
-  }
+@keyframes cup-stack-wobble {
+  0%, 100% { transform: rotate(-2.4deg); }
+  18% { transform: rotate(2.1deg); }
+  37% { transform: rotate(-2.8deg); }
+  58% { transform: rotate(2.6deg); }
+  78% { transform: rotate(-1.6deg); }
 }
 
 @media (max-width: 640px) {
@@ -1644,10 +1575,8 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cup-stack__layer--drop {
+  .cup-stack__stage {
     animation: none;
-    opacity: 1;
-    transform: none;
   }
 }
 
