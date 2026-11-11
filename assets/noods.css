@@ -870,14 +870,17 @@ a {
 }
 
 .products__header {
-  margin-bottom: 28px;
+  margin-bottom: 44px;
   --products-bubble-bg: #f8e7c8;
   --products-bubble-bg-opaque: #f8e7c8;
 }
 
 .products__pitch {
+  position: relative;
+  z-index: 2;
   max-width: 40rem;
-  margin: 0 auto 48px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 48px) 20px 4px;
   text-align: center;
 }
 
@@ -996,7 +999,7 @@ a {
 .comfort-clouds {
   position: relative;
   z-index: 2;
-  padding: clamp(40px, 6vw, 72px) 16px 0;
+  padding: clamp(22px, 4vw, 36px) 16px 0;
 }
 
 .products__clouds {
