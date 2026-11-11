@@ -1,9 +1,15 @@
 <div class="page-content">
-  <footer class="footer" id="footer">
-    <div class="container footer__inner">
-      <section class="footer-signup" aria-labelledby="footer-signup-title">
-        <h2 class="footer-signup__title" id="footer-signup-title">Be the first to try NOODS when we launch!</h2>
-        <p class="footer-signup__copy">Get early access to our first drop, new flavors, and exclusive perks. No spam, just the good stuff.</p>
+  <section class="footer-signup" aria-labelledby="footer-signup-title">
+    <div class="footer-signup__noodle products__noodle-box" data-noodle-border>
+      <svg class="products__noodle-loop" aria-hidden="true" focusable="false">
+        <path class="products__noodle-loop__fill" />
+        <path class="products__noodle-loop__shadow" fill="none" />
+        <path class="products__noodle-loop__body" fill="none" />
+        <path class="products__noodle-loop__highlight" fill="none" />
+      </svg>
+      <div class="products__noodle-box__panel footer-signup__panel">
+        <h2 class="footer-signup__title" id="footer-signup-title">We are currently PRE-LAUNCH.</h2>
+        <p class="footer-signup__copy">Sign up to get info on our journey and launch details! No spam, just the good stuff.</p>
 
         {%- comment -%}
           Same Shopify customer form as the popup. A successful submit creates
@@ -64,17 +70,21 @@
             </div>
 
             <button class="btn btn--primary footer-signup__submit" type="submit" id="footer-signup-submit">
-              Get early access
+              Sign up
             </button>
           </div>
           <p class="footer-signup__status" id="footer-signup-status" role="status" aria-live="polite"></p>
         {%- endform -%}
 
         <p class="footer-signup__thanks" id="footer-signup-thanks" role="status" hidden>
-          You're on the list. We'll email you when NOODS launches.
+          You're on the list. We'll share the journey and launch details.
         </p>
-      </section>
+      </div>
+    </div>
+  </section>
 
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
       <img class="footer__logo-img" src="{{ 'noods-logo.png' | asset_url }}" alt="NOODS" />
       <p class="footer__tagline">Prebiotic Instant Noodles</p>
       <p class="footer__copy">&copy; 2026 NOODS. All rights reserved.</p>
