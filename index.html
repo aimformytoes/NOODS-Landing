@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Roboto+Slab:wght@700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20251025-shopify-waitlist" />
+  <link rel="stylesheet" href="css/styles.css?v=20261110-scallop-flavors" />
 </head>
 <body>
 
@@ -122,11 +122,6 @@
                 </h2>
               </div>
             </div>
-            <ul class="products__clouds">
-              <li class="products__cloud"><span class="products__cloud-text">No weird ingredients.</span></li>
-              <li class="products__cloud"><span class="products__cloud-text">A little love for your gut.</span></li>
-              <li class="products__cloud"><span class="products__cloud-text">A whole lot of guilt&#8209;free comfort.</span></li>
-            </ul>
           </div>
         </header>
 
@@ -184,6 +179,7 @@
 
     <!-- Flavors carousel -->
     <section class="flavors" id="flavors" aria-labelledby="flavors-title">
+      <div class="flavors__scallop flavors__scallop--top" aria-hidden="true"></div>
       <div class="container">
         <header class="section-header flavors__header reveal">
           <h2 class="flavors__title" id="flavors-title">Meet the Flavors</h2>
@@ -215,6 +211,7 @@
           </div>
         </div>
       </div>
+      <div class="flavors__scallop flavors__scallop--bottom" aria-hidden="true"></div>
     </section>
 
     <!-- Founder story (comic strip: assets/founder-comic-strip.png or .jpg) -->
@@ -224,6 +221,11 @@
           <h2 class="founder-story__title" id="founder-story-title">How NOODS Started</h2>
           <p class="founder-story__intro">The noodles we wanted didn&rsquo;t exist, so we made our own.</p>
         </header>
+        <ul class="products__clouds founder-story__clouds reveal">
+          <li class="products__cloud"><span class="products__cloud-text">No weird ingredients.</span></li>
+          <li class="products__cloud"><span class="products__cloud-text">A little love for your gut.</span></li>
+          <li class="products__cloud"><span class="products__cloud-text">A whole lot of guilt&#8209;free comfort.</span></li>
+        </ul>
         <figure class="founder-story__comic float-card reveal">
           <img
             class="founder-story__comic-img"

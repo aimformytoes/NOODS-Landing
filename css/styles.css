@@ -844,7 +844,6 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: clamp(22px, 4vw, 36px);
 }
 
 /* Continuous wavy noodle loop around products title */
@@ -917,7 +916,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  margin-bottom: 48px;
+  margin-bottom: 0;
 }
 
 .products__title-line {
@@ -932,6 +931,8 @@ a {
 }
 
 .products__clouds {
+  --products-bubble-bg: #f8e7c8;
+  --products-bubble-bg-opaque: #f8e7c8;
   list-style: none;
   display: flex;
   justify-content: center;
@@ -999,9 +1000,49 @@ a {
 /* ---- Flavors carousel ---- */
 
 .flavors {
+  --flavors-bg: #ff8a3d;
+  --flavors-scallop-size: 40px;
   position: relative;
-  padding: clamp(48px, 7vw, 88px) 0 clamp(8px, 2vw, 24px);
-  overflow: hidden;
+  z-index: 1;
+  margin: calc(var(--flavors-scallop-size) / 2) 0;
+  padding: clamp(48px, 7vw, 88px) 0 clamp(28px, 4vw, 48px);
+  overflow: visible;
+  background: var(--flavors-bg);
+}
+
+.flavors__scallop {
+  --scallop-y: -50%;
+  position: absolute;
+  left: -50%;
+  z-index: 2;
+  width: 200%;
+  height: var(--flavors-scallop-size);
+  pointer-events: none;
+  background-image: radial-gradient(
+    closest-side,
+    var(--flavors-bg) 98%,
+    transparent 100%
+  );
+  background-size: var(--flavors-scallop-size) var(--flavors-scallop-size);
+  background-repeat: repeat-x;
+  transform: translateY(var(--scallop-y));
+  animation: flavors-scallop-drift 12s linear infinite;
+}
+
+.flavors__scallop--top {
+  --scallop-y: -50%;
+  top: 0;
+}
+
+.flavors__scallop--bottom {
+  --scallop-y: 50%;
+  bottom: 0;
+  animation-direction: reverse;
+}
+
+@keyframes flavors-scallop-drift {
+  from { transform: translateY(var(--scallop-y)) translateX(0); }
+  to { transform: translateY(var(--scallop-y)) translateX(calc(var(--flavors-scallop-size) * -1)); }
 }
 
 .flavors__header {
@@ -1020,7 +1061,7 @@ a {
   line-height: 1.1;
   background: var(--cream);
   border-radius: 999px;
-  box-shadow: var(--shadow-cartoon);
+  box-shadow: 4px 4px 0 rgba(90, 52, 36, 0.85);
 }
 
 .flavors__carousel {
@@ -1153,6 +1194,10 @@ a {
     transform: none;
     animation: none;
   }
+
+  .flavors__scallop {
+    animation: none;
+  }
 }
 
 /* ---- Founder story ---- */
@@ -1172,7 +1217,11 @@ a {
 }
 
 .founder-story__header {
-  margin-bottom: clamp(28px, 4vw, 40px);
+  margin-bottom: clamp(18px, 3vw, 28px);
+}
+
+.founder-story__clouds {
+  margin: 0 auto clamp(28px, 4vw, 40px);
 }
 
 .founder-story__title {
@@ -1722,6 +1771,22 @@ a {
 @media (max-width: 640px) {
   html {
     font-size: 16px;
+  }
+
+  .products__clouds {
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .products__cloud {
+    width: min(100%, 320px);
+    max-width: none;
+    flex: 0 0 auto;
+  }
+
+  .flavors {
+    --flavors-scallop-size: 28px;
   }
 
   .products__title-line {
