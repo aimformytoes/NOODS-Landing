@@ -1560,52 +1560,78 @@ a {
 
 .cup-stack__layer--drop {
   opacity: 0;
-  animation: cup-stack-drop 4.8s linear infinite;
+  animation: cup-stack-drop 5.4s linear infinite;
+}
+
+.cup-stack__layer--first {
+  animation-name: cup-stack-drop-first;
 }
 
 .cup-stack__layer--later {
   animation-name: cup-stack-drop-late;
 }
 
-@keyframes cup-stack-drop {
-  0%, 12% {
+@keyframes cup-stack-drop-first {
+  0%, 3% {
     opacity: 0;
     transform: translateY(-30%);
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
-  24% {
+  16% {
     opacity: 1;
     transform: translateY(0);
     animation-timing-function: linear;
   }
-  76% {
+  80% {
     opacity: 1;
     transform: translateY(0);
     animation-timing-function: ease;
   }
-  84%, 100% {
+  88%, 100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cup-stack-drop {
+  0%, 24% {
+    opacity: 0;
+    transform: translateY(-30%);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  37% {
+    opacity: 1;
+    transform: translateY(0);
+    animation-timing-function: linear;
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+    animation-timing-function: ease;
+  }
+  88%, 100% {
     opacity: 0;
     transform: translateY(0);
   }
 }
 
 @keyframes cup-stack-drop-late {
-  0%, 34% {
+  0%, 45% {
     opacity: 0;
     transform: translateY(-30%);
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
-  46% {
+  58% {
     opacity: 1;
     transform: translateY(0);
     animation-timing-function: linear;
   }
-  76% {
+  80% {
     opacity: 1;
     transform: translateY(0);
     animation-timing-function: ease;
   }
-  84%, 100% {
+  88%, 100% {
     opacity: 0;
     transform: translateY(0);
   }
