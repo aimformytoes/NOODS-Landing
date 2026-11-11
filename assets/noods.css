@@ -870,9 +870,35 @@ a {
 }
 
 .products__header {
-  margin-bottom: 44px;
+  margin-bottom: 28px;
   --products-bubble-bg: #f8e7c8;
   --products-bubble-bg-opaque: #f8e7c8;
+}
+
+.products__pitch {
+  max-width: 40rem;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.products__pitch-lead {
+  font-family: var(--font-headline);
+  font-size: clamp(1.55rem, 3.4vw, 2.35rem);
+  font-weight: 900;
+  color: var(--red-text);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+  margin-bottom: 16px;
+}
+
+.products__pitch-body {
+  font-family: var(--font-display);
+  font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+  font-weight: 600;
+  color: var(--brown);
+  line-height: 1.5;
+  text-wrap: balance;
 }
 
 .products__header-stack {
