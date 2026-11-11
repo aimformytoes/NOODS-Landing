@@ -1507,12 +1507,80 @@ a {
 }
 
 .cup-stack {
-  padding: 12px 16px 8px;
+  padding: 28px 16px 12px;
+}
+
+.cup-stack__title {
+  margin: 0 auto 28px;
+  font-family: var(--font-headline);
+  font-size: clamp(1.45rem, 3.2vw, 2.35rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--red-text);
+}
+
+.cup-stack__frame {
+  position: relative;
+  width: min(400px, 42vw);
+  margin: 0 auto;
+}
+
+.cup-stack__notes {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  pointer-events: none;
+}
+
+.cup-stack__note {
+  position: absolute;
+  top: var(--note-y);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: 240px;
+  color: var(--brown);
+  transform: translateY(-50%);
+}
+
+.cup-stack__note--left {
+  right: calc(100% + 8px);
+  text-align: right;
+}
+
+.cup-stack__note--right {
+  left: calc(100% + 8px);
+  text-align: left;
+}
+
+.cup-stack__note--right .cup-stack__arrow {
+  transform: scaleX(-1);
+}
+
+.cup-stack__label {
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.15vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.cup-stack__arrow {
+  width: 72px;
+  height: 14px;
+  flex: none;
+  overflow: visible;
 }
 
 .cup-stack__stage {
   position: relative;
-  width: min(420px, 86vw);
+  width: 100%;
   margin: 0 auto;
   aspect-ratio: 840 / 1734;
   transform-origin: center bottom;
@@ -1537,8 +1605,36 @@ a {
 }
 
 @media (max-width: 640px) {
-  .cup-stack__stage {
-    width: min(300px, 76vw);
+  .cup-stack {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .cup-stack__frame {
+    width: min(156px, 42vw);
+  }
+
+  .cup-stack__note {
+    gap: 3px;
+    max-width: none;
+  }
+
+  .cup-stack__note--left {
+    right: calc(100% + 2px);
+  }
+
+  .cup-stack__note--right {
+    left: calc(100% + 2px);
+  }
+
+  .cup-stack__label {
+    max-width: 74px;
+    font-size: 0.62rem;
+    letter-spacing: 0.02em;
+  }
+
+  .cup-stack__arrow {
+    width: 26px;
   }
 }
 
