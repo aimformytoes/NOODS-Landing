@@ -1535,6 +1535,68 @@ a {
   font-weight: 600;
 }
 
+.cup-stack {
+  padding: 12px 16px 8px;
+}
+
+.cup-stack__stage {
+  position: relative;
+  width: min(420px, 86vw);
+  margin: 0 auto;
+  aspect-ratio: 840 / 1734;
+}
+
+.cup-stack__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cup-stack__layer--drop {
+  opacity: 0;
+  animation: cup-stack-drop 4.8s linear infinite;
+}
+
+.cup-stack__layer--later {
+  animation-name: cup-stack-drop-late;
+}
+
+@keyframes cup-stack-drop {
+  0% { opacity: 0; transform: translateY(-6%); }
+  14% { opacity: 1; transform: translateY(0); }
+  72% { opacity: 1; transform: translateY(0); }
+  84% { opacity: 0; transform: translateY(-3%); }
+  100% { opacity: 0; transform: translateY(-6%); }
+}
+
+@keyframes cup-stack-drop-late {
+  0%, 26% { opacity: 0; transform: translateY(-6%); }
+  40% { opacity: 1; transform: translateY(0); }
+  72% { opacity: 1; transform: translateY(0); }
+  84% { opacity: 0; transform: translateY(-3%); }
+  100% { opacity: 0; transform: translateY(-6%); }
+}
+
+@media (max-width: 640px) {
+  .cup-stack__stage {
+    width: min(300px, 76vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cup-stack__layer--drop {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .products__grid {
   display: grid;
   grid-template-columns: repeat(4, 210px);

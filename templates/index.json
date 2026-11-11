@@ -17,6 +17,10 @@
       "type": "noods-founder-story",
       "settings": {}
     },
+    "cup_stack": {
+      "type": "noods-stack",
+      "settings": {}
+    },
     "footer": {
       "type": "noods-footer",
       "settings": {}
@@ -27,6 +31,7 @@
     "products",
     "flavors",
     "founder_story",
+    "cup_stack",
     "footer"
   ]
 }

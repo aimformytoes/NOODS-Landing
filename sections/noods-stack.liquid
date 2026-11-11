@@ -1,0 +1,48 @@
+<div class="page-content">
+  <section class="cup-stack" id="cup-stack" aria-label="NOODS cups stacking">
+    <div class="cup-stack__stage">
+      <img
+        class="cup-stack__layer"
+        src="{{ 'noods-stack-1.png' | asset_url }}"
+        alt="NOODS cups stacking: Hot and Spicy, then Savoury Beef, then Chicken Broth"
+        width="840"
+        height="1734"
+        draggable="false"
+      />
+      <img
+        class="cup-stack__layer cup-stack__layer--drop"
+        src="{{ 'noods-stack-2.png' | asset_url }}"
+        alt=""
+        width="840"
+        height="1734"
+        draggable="false"
+      />
+      <img
+        class="cup-stack__layer cup-stack__layer--drop cup-stack__layer--later"
+        src="{{ 'noods-stack-3.png' | asset_url }}"
+        alt=""
+        width="840"
+        height="1734"
+        draggable="false"
+      />
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS cup stack",
+  "tag": "div",
+  "class": "noods-section",
+  "presets": [
+    {
+      "name": "NOODS cup stack"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  }
+}
+{% endschema %}
