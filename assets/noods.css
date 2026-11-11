@@ -1545,7 +1545,7 @@ a {
   margin: 0 auto;
   aspect-ratio: 840 / 1734;
   transform-origin: center bottom;
-  animation: cup-stack-wobble 3.2s ease-in-out infinite alternate;
+  animation: cup-stack-wobble 2.1s linear infinite;
 }
 
 .cup-stack__layer {
@@ -1561,8 +1561,23 @@ a {
 }
 
 @keyframes cup-stack-wobble {
-  from { transform: rotate(-2.2deg); }
-  to { transform: rotate(2.2deg); }
+  0% { transform: rotate(0deg); }
+  6.25% { transform: rotate(2.5deg); }
+  12.5% { transform: rotate(3.08deg); }
+  18.75% { transform: rotate(1.99deg); }
+  25% { transform: rotate(1.25deg); }
+  31.25% { transform: rotate(1.99deg); }
+  37.5% { transform: rotate(3.08deg); }
+  43.75% { transform: rotate(2.5deg); }
+  50% { transform: rotate(0deg); }
+  56.25% { transform: rotate(-2.5deg); }
+  62.5% { transform: rotate(-3.08deg); }
+  68.75% { transform: rotate(-1.99deg); }
+  75% { transform: rotate(-1.25deg); }
+  81.25% { transform: rotate(-1.99deg); }
+  87.5% { transform: rotate(-3.08deg); }
+  93.75% { transform: rotate(-2.5deg); }
+  100% { transform: rotate(0deg); }
 }
 
 @media (max-width: 640px) {
