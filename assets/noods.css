@@ -1333,13 +1333,15 @@ a {
 
 .founder-story__title {
   font-family: var(--font-headline);
-  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  font-size: clamp(1.55rem, 3.8vw, 2.7rem);
   font-weight: 900;
   color: var(--brown);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  line-height: 1.05;
-  margin-bottom: 14px;
+  line-height: 1.12;
+  max-width: 16em;
+  margin: 0 auto 14px;
+  text-wrap: balance;
 }
 
 .founder-story__intro {
