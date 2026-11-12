@@ -1283,10 +1283,11 @@ a {
 .flavors__cta-row {
   display: flex;
   justify-content: center;
-  margin-top: 18px;
+  margin-top: 64px;
 }
 
 .flavors__cta {
+  position: relative;
   background: var(--cream);
   color: var(--red-text);
   font-family: var(--font-headline);
@@ -1294,11 +1295,38 @@ a {
   letter-spacing: 0.03em;
   padding: 14px 28px;
   box-shadow: 0 8px 20px rgba(90, 52, 36, 0.18);
+  animation: flavors-cta-pulse 1.5s ease-in-out infinite;
+}
+
+.flavors__cta-finger {
+  position: absolute;
+  width: 42px;
+  height: 62px;
+  top: -48px;
+  right: 12px;
+  pointer-events: none;
+  transform-origin: 50% 8%;
+  animation: flavors-finger-tap 1.5s ease-in-out infinite;
 }
 
 .flavors__cta:hover {
   background: var(--white);
-  transform: translateY(-2px);
+  animation: none;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.flavors__cta:hover .flavors__cta-finger {
+  animation: none;
+}
+
+@keyframes flavors-cta-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes flavors-finger-tap {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(8px) rotate(4deg); }
 }
 
 .flavors__arrow {
