@@ -717,10 +717,31 @@
     });
   }
 
+  function initBenefitFlips(root) {
+    root.querySelectorAll('.product-card__flip').forEach(function (button) {
+      if (button.dataset.flipReady === 'true') return;
+      button.dataset.flipReady = 'true';
+      var front = button.querySelector('.product-card__face--front');
+      var back = button.querySelector('.product-card__face--back');
+      function sync() {
+        var flipped = button.classList.contains('is-flipped');
+        button.setAttribute('aria-expanded', flipped ? 'true' : 'false');
+        if (front) front.setAttribute('aria-hidden', flipped ? 'true' : 'false');
+        if (back) back.setAttribute('aria-hidden', flipped ? 'false' : 'true');
+      }
+      sync();
+      button.addEventListener('click', function () {
+        button.classList.toggle('is-flipped');
+        sync();
+      });
+    });
+  }
+
   function initSections(root) {
     initHeroVideo(root);
     initReveal(root);
     initProductsNoodleBorder(root);
+    initBenefitFlips(root);
     initFlavorCarousel(root);
     initFlavorGallery(root);
     initFlavorBuy(root);
