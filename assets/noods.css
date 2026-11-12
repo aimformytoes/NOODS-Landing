@@ -2,6 +2,12 @@
    NOODS Landing Page
    ============================================ */
 
+@property --peel {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 :root {
   --yellow: #FFC90A;
   --banner: #FFE45A;
@@ -1714,6 +1720,9 @@ a {
 }
 
 .product-card {
+  --peel: 0px;
+  --peel-size: 48px;
+  --curl: 12px;
   position: relative;
   width: 100%;
   aspect-ratio: auto;
@@ -1724,6 +1733,45 @@ a {
   background: transparent;
   border: none;
   box-shadow: none;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 100% 100%,
+    transparent calc(var(--peel) - 1px),
+    rgba(90, 52, 36, 0.28) var(--peel),
+    #cbb392 calc(var(--peel) + 3px),
+    #e8d4b8 calc(var(--peel) + var(--curl) * 0.62),
+    #f6ead8 calc(var(--peel) + var(--curl) * 0.86),
+    rgba(90, 52, 36, 0.14) calc(var(--peel) + var(--curl)),
+    transparent calc(var(--peel) + var(--curl) + 4px)
+  );
+}
+
+.product-reveal.is-visible .product-card {
+  animation: card-corner-fold 0.85s cubic-bezier(0.22, 1.15, 0.36, 1) 0.45s forwards;
+}
+
+.product-card:has(.product-card__flip:hover)::before,
+.product-card:has(.product-card__flip:focus-visible)::before,
+.product-card:has(.product-card__flip.is-flipped)::before {
+  opacity: 0;
+}
+
+@keyframes card-corner-fold {
+  from { --peel: 0px; }
+  to { --peel: 48px; }
+}
+
+@keyframes card-corner-fold-phone {
+  from { --peel: 0px; }
+  to { --peel: 28px; }
 }
 
 .product-card.float-card {
@@ -1790,31 +1838,15 @@ a {
 .product-card__face--front {
   position: relative;
   overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle at 100% 100%, transparent var(--peel), #000 calc(var(--peel) + 0.6px));
+  mask-image: radial-gradient(circle at 100% 100%, transparent var(--peel), #000 calc(var(--peel) + 0.6px));
 }
 
-.product-card__face--front::after {
-  content: "";
-  position: absolute;
-  z-index: 5;
-  right: 0;
-  bottom: 0;
-  width: 46px;
-  height: 46px;
-  pointer-events: none;
-  background: #eedcc3;
-  border-radius: 46px 0 30px 0;
-  box-shadow: -4px -4px 6px rgba(90, 52, 36, 0.16);
-  transform-origin: 100% 100%;
-  transform: scale(0.08);
-}
-
-.product-reveal.is-visible .product-card__face--front::after {
-  animation: card-corner-fold 0.9s cubic-bezier(0.22, 1.15, 0.36, 1) forwards;
-}
-
-@keyframes card-corner-fold {
-  from { transform: scale(0.08); }
-  to { transform: scale(1); }
+.product-card:has(.product-card__flip:hover) .product-card__face--front,
+.product-card:has(.product-card__flip:focus-visible) .product-card__face--front,
+.product-card:has(.product-card__flip.is-flipped) .product-card__face--front {
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .product-card__face--back {
@@ -2820,14 +2852,17 @@ a {
     padding: 12px 10px;
   }
 
-  .product-card__face--front {
-    padding-bottom: 20px;
+  .product-card {
+    --peel-size: 28px;
+    --curl: 8px;
   }
 
-  .product-card__face--front::after {
-    width: 30px;
-    height: 30px;
-    border-radius: 30px 0 22px 0;
+  .product-reveal.is-visible .product-card {
+    animation-name: card-corner-fold-phone;
+  }
+
+  .product-card__face--front {
+    padding: 12px 28px 24px 12px;
   }
 
   .product-card__face--back {
@@ -3044,9 +3079,12 @@ a {
     transform: translateY(-3px) scale(1.04);
   }
 
-  .product-card__inner,
-  .product-card__face--front::after {
+  .product-card__inner {
     animation: none;
-    transform: none;
+  }
+
+  .product-card {
+    animation: none;
+    --peel: var(--peel-size);
   }
 }
