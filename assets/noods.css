@@ -1763,17 +1763,24 @@ a {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.45, 0.05, 0.25, 1);
+  animation: benefit-card-tease 14s ease-in-out infinite;
 }
 
-.product-card__flip.is-flipped .product-card__inner {
+.product-card:nth-child(2) .product-card__inner { animation-delay: -3.5s; }
+.product-card:nth-child(3) .product-card__inner { animation-delay: -7s; }
+.product-card:nth-child(4) .product-card__inner { animation-delay: -10.5s; }
+
+.product-card__flip.is-flipped .product-card__inner,
+.product-card__flip:hover .product-card__inner,
+.product-card__flip:focus-visible .product-card__inner {
+  animation: none;
   transform: rotateX(180deg);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .product-card__flip:hover .product-card__inner,
-  .product-card__flip:focus-visible .product-card__inner {
-    transform: rotateX(180deg);
-  }
+@keyframes benefit-card-tease {
+  0%, 58% { transform: rotateX(0deg); }
+  68%, 86% { transform: rotateX(180deg); }
+  96%, 100% { transform: rotateX(0deg); }
 }
 
 .product-card__face {
@@ -3007,5 +3014,9 @@ a {
   .product-card.float-card:hover .product-card__icon {
     animation: none;
     transform: translateY(-3px) scale(1.04);
+  }
+
+  .product-card__inner {
+    animation: none;
   }
 }
