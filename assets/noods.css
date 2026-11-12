@@ -1721,8 +1721,7 @@ a {
 
 .product-card {
   --peel: 0px;
-  --peel-size: 48px;
-  --curl: 12px;
+  --peel-size: 22px;
   position: relative;
   width: 100%;
   aspect-ratio: auto;
@@ -1742,15 +1741,13 @@ a {
   z-index: 4;
   border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(
-    circle at 100% 100%,
-    transparent calc(var(--peel) - 1px),
-    rgba(90, 52, 36, 0.28) var(--peel),
-    #cbb392 calc(var(--peel) + 3px),
-    #e8d4b8 calc(var(--peel) + var(--curl) * 0.62),
-    #f6ead8 calc(var(--peel) + var(--curl) * 0.86),
-    rgba(90, 52, 36, 0.14) calc(var(--peel) + var(--curl)),
-    transparent calc(var(--peel) + var(--curl) + 4px)
+  background: linear-gradient(
+    135deg,
+    transparent calc(100% - var(--peel) * 2),
+    rgba(90, 52, 36, 0.22) calc(100% - var(--peel) * 2),
+    #d4be9c calc(100% - var(--peel) * 2 + 1.5px),
+    #ead9c0 calc(100% - var(--peel) - 1px),
+    transparent calc(100% - var(--peel))
   );
 }
 
@@ -1766,12 +1763,12 @@ a {
 
 @keyframes card-corner-fold {
   from { --peel: 0px; }
-  to { --peel: 48px; }
+  to { --peel: 22px; }
 }
 
 @keyframes card-corner-fold-phone {
   from { --peel: 0px; }
-  to { --peel: 28px; }
+  to { --peel: 16px; }
 }
 
 .product-card.float-card {
@@ -1838,8 +1835,8 @@ a {
 .product-card__face--front {
   position: relative;
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(circle at 100% 100%, transparent var(--peel), #000 calc(var(--peel) + 0.6px));
-  mask-image: radial-gradient(circle at 100% 100%, transparent var(--peel), #000 calc(var(--peel) + 0.6px));
+  -webkit-mask-image: linear-gradient(135deg, #000 calc(100% - var(--peel)), transparent calc(100% - var(--peel)));
+  mask-image: linear-gradient(135deg, #000 calc(100% - var(--peel)), transparent calc(100% - var(--peel)));
 }
 
 .product-card:has(.product-card__flip:hover) .product-card__face--front,
@@ -2853,8 +2850,7 @@ a {
   }
 
   .product-card {
-    --peel-size: 28px;
-    --curl: 8px;
+    --peel-size: 16px;
   }
 
   .product-reveal.is-visible .product-card {
@@ -2862,7 +2858,7 @@ a {
   }
 
   .product-card__face--front {
-    padding: 12px 28px 24px 12px;
+    padding-bottom: 20px;
   }
 
   .product-card__face--back {
