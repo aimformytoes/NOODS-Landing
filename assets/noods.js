@@ -36,11 +36,63 @@
     syncHeaderLogo();
   }
 
-  function syncHeaderLogo() {
+  let logoRaf = 0;
+  let logoMetrics = null;
+
+  function measureHeaderLogo() {
     const nav = document.querySelector('.site-nav--home');
-    if (!nav) return;
+    if (!nav) return null;
+    const logo = nav.querySelector('.site-header__logo');
+    const img = logo && logo.querySelector('img');
+    const header = logo && logo.parentElement;
+    if (!img || !header) return null;
+    const headerW = header.clientWidth;
+    const narrow = window.matchMedia('(max-width: 640px)').matches;
+    const large = Math.min(640, Math.max(1, headerW - 8));
+    const compact = narrow ? Math.min(132, headerW * 0.58) : Math.min(156, headerW * 0.46);
+    const layoutH = img.offsetHeight || img.getBoundingClientRect().height;
+    if (!layoutH) return null;
+    const compactH = narrow ? 42 : 46;
+    const largeH = layoutH + (narrow ? 6 : 8);
+    const hero = document.querySelector('.hero');
+    if (hero) hero.style.paddingTop = Math.max(0, largeH - compactH).toFixed(2) + 'px';
+    return {
+      img: img,
+      header: header,
+      layoutH: layoutH,
+      minScale: compact / large,
+      hang: narrow ? 3 : 4,
+      distance: narrow ? 110 : 160,
+      compactH: compactH,
+      largeH: largeH
+    };
+  }
+
+  function applyHeaderLogo() {
+    logoRaf = 0;
+    if (!logoMetrics) logoMetrics = measureHeaderLogo();
+    if (!logoMetrics) return;
     const menuOpen = siteMenu && !siteMenu.hidden;
-    nav.classList.toggle('is-compact', window.scrollY > 12 || !!menuOpen);
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const raw = menuOpen
+      ? 1
+      : reduced
+        ? (window.scrollY > 12 ? 1 : 0)
+        : Math.max(0, Math.min(1, window.scrollY / logoMetrics.distance));
+    const e = raw * raw * (3 - 2 * raw);
+    const headerH = logoMetrics.compactH + (logoMetrics.largeH - logoMetrics.compactH) * (1 - e);
+    const scale = 1 + (logoMetrics.minScale - 1) * e;
+    const hangTy = (1 - e) * (logoMetrics.layoutH * 0.5 + logoMetrics.hang);
+    const visualH = logoMetrics.layoutH * scale;
+    const centerNudge = e * Math.max(0, (headerH - visualH) / 2);
+    const ty = hangTy - centerNudge;
+    logoMetrics.header.style.height = headerH.toFixed(2) + 'px';
+    logoMetrics.img.style.transform = 'translate3d(0,' + ty.toFixed(2) + 'px,0) scale(' + scale.toFixed(4) + ')';
+  }
+
+  function syncHeaderLogo() {
+    if (logoRaf) return;
+    logoRaf = window.requestAnimationFrame(applyHeaderLogo);
   }
 
   function openModal() {
@@ -407,6 +459,14 @@
     const LOOP_AMP = 12;
     const LOOP_WAVES = 14;
     const FILL_PULL_IN = 10.5;
+    let boxW = 0;
+    let boxH = 0;
+
+    function readBoxSize() {
+      const rect = box.getBoundingClientRect();
+      boxW = Math.max(1, Math.round(rect.width));
+      boxH = Math.max(1, Math.round(rect.height));
+    }
 
     function buildWavyLoop(width, height, phaseOffset, pullInward, inset, amp) {
       const frameW = Math.max(40, width - inset * 2);
@@ -439,9 +499,9 @@
     }
 
     function render(phase) {
-      const rect = box.getBoundingClientRect();
-      const width = Math.max(1, Math.round(rect.width));
-      const height = Math.max(1, Math.round(rect.height));
+      const width = boxW;
+      const height = boxH;
+      if (!width || !height) return;
 
       svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
@@ -481,14 +541,17 @@
 
     if ('ResizeObserver' in window) {
       const ro = new ResizeObserver(function () {
+        readBoxSize();
         render(lastPhase);
       });
       ro.observe(box);
     } else {
       window.addEventListener('resize', function () {
+        readBoxSize();
         render(lastPhase);
       });
     }
+    readBoxSize();
 
     motionQuery.addEventListener('change', function () {
       render(lastPhase);
@@ -528,18 +591,30 @@
     let paused = false;
     let inView = false;
 
-    function easeOutBack(t) {
-      const c1 = 1.3;
-      const c3 = c1 + 1;
-      return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
     }
 
-    function layout() {
-      // Phones get a tighter orbit so the side cups stay on screen.
-      // Wider stages keep the original desktop spacing.
-      const compact = stage.clientWidth < 640;
-      const rx = stage.clientWidth * (compact ? 0.27 : 0.36);
-      const ry = stage.clientHeight * 0.1;
+    // Stage size is read on resize only so the spin stays on the compositor.
+    let stageMetrics = { compact: false, rx: 0, ry: 0 };
+    let frontCup = null;
+
+    function measureStage() {
+      const w = stage.clientWidth;
+      const h = stage.clientHeight;
+      const compact = w < 640;
+      stageMetrics = {
+        compact: compact,
+        rx: w * (compact ? 0.27 : 0.36),
+        ry: h * 0.1
+      };
+    }
+
+    function layout(settled) {
+      const compact = stageMetrics.compact;
+      const rx = stageMetrics.rx;
+      const ry = stageMetrics.ry;
+      let nextFront = null;
 
       cups.forEach(function (cup, i) {
         const theta = ((i * step - rotation) * Math.PI) / 180;
@@ -557,13 +632,31 @@
         cup.style.transform =
           'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) ' +
           'scale(' + scale.toFixed(3) + ') rotate(' + tilt.toFixed(2) + 'deg)';
-        cup.style.zIndex = String(Math.round(depth * 100));
-        cup.style.filter = 'brightness(' + (0.82 + 0.18 * depth).toFixed(3) + ')';
-        const front = depth > 0.95;
-        cup.setAttribute('aria-hidden', front ? 'false' : 'true');
-        if (front) cup.removeAttribute('tabindex');
-        else cup.setAttribute('tabindex', '-1');
+        const z = Math.round(depth * 100);
+        if (cup._z !== z) {
+          cup._z = z;
+          cup.style.zIndex = String(z);
+        }
+        if (depth > 0.95) nextFront = cup;
       });
+
+      if (nextFront !== frontCup) {
+        cups.forEach(function (cup) {
+          const front = cup === nextFront;
+          cup.setAttribute('aria-hidden', front ? 'false' : 'true');
+          if (front) cup.removeAttribute('tabindex');
+          else cup.setAttribute('tabindex', '-1');
+        });
+        frontCup = nextFront;
+      }
+
+      if (settled) {
+        cups.forEach(function (cup, i) {
+          const theta = ((i * step - rotation) * Math.PI) / 180;
+          const depth = (Math.cos(theta) + 1) / 2;
+          cup.style.filter = 'brightness(' + (0.82 + 0.18 * depth).toFixed(3) + ')';
+        });
+      }
     }
 
     function spinTo(target) {
@@ -573,7 +666,7 @@
 
       if (motionQuery.matches) {
         rotation = target;
-        layout();
+        layout(true);
         return;
       }
 
@@ -582,8 +675,8 @@
 
       function frame(now) {
         const t = Math.min(1, (now - start) / SPIN_MS);
-        rotation = from + (target - from) * easeOutBack(t);
-        layout();
+        rotation = from + (target - from) * easeOutCubic(t);
+        layout(t === 1);
         if (t < 1) animId = window.requestAnimationFrame(frame);
       }
       animId = window.requestAnimationFrame(frame);
@@ -653,8 +746,12 @@
     });
 
     document.addEventListener('visibilitychange', startAutoplay);
-    window.addEventListener('resize', layout);
-    layout();
+    window.addEventListener('resize', function () {
+      measureStage();
+      layout(true);
+    });
+    measureStage();
+    layout(true);
 
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver(function (entries) {
@@ -756,6 +853,17 @@
   initHeroWatch();
   syncHeaderLogo();
   window.addEventListener('scroll', syncHeaderLogo, { passive: true });
+  window.addEventListener('resize', function () {
+    logoMetrics = null;
+    syncHeaderLogo();
+  });
+  const homeLogo = document.querySelector('.site-nav--home .site-header__logo img');
+  if (homeLogo && !homeLogo.complete) {
+    homeLogo.addEventListener('load', function () {
+      logoMetrics = null;
+      syncHeaderLogo();
+    });
+  }
 
   // Theme editor: sections are re-rendered in place when edited.
   document.addEventListener('shopify:section:load', function (e) {
