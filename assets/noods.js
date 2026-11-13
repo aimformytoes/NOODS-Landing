@@ -545,12 +545,12 @@
         const theta = ((i * step - rotation) * Math.PI) / 180;
         const depth = (Math.cos(theta) + 1) / 2;
         const x = Math.sin(theta) * rx;
-        // On a phone the front cup is larger and sits higher than the side cups.
+        // On a phone the two back cups sit higher, and the front cup is a bit larger.
         const y = compact
-          ? (1 - depth) * 20 - depth * 36
+          ? -92 + depth * 56
           : -(1 - depth) * ry * 2;
         const scale = compact
-          ? 0.53 + 0.47 * depth
+          ? 0.5 + 0.58 * depth
           : 0.8 + 0.2 * depth;
         const tilt = Math.sin(theta) * -10;
 
