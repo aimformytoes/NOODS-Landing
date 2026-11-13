@@ -1283,11 +1283,10 @@ a {
 .flavors__cta-row {
   display: flex;
   justify-content: center;
-  margin-top: 64px;
+  margin-top: 18px;
 }
 
 .flavors__cta {
-  position: relative;
   background: var(--cream);
   color: var(--red-text);
   font-family: var(--font-headline);
@@ -1298,25 +1297,10 @@ a {
   animation: flavors-cta-bounce 0.95s cubic-bezier(0.34, 1.45, 0.64, 1) infinite;
 }
 
-.flavors__cta-finger {
-  position: absolute;
-  width: 34px;
-  height: 46px;
-  top: -36px;
-  right: 14px;
-  pointer-events: none;
-  transform-origin: 42% 18%;
-  animation: flavors-finger-tap 0.95s cubic-bezier(0.34, 1.45, 0.64, 1) infinite;
-}
-
 .flavors__cta:hover {
   background: var(--white);
   animation: none;
   transform: translateY(-2px) scale(1.04);
-}
-
-.flavors__cta:hover .flavors__cta-finger {
-  animation: none;
 }
 
 @keyframes flavors-cta-bounce {
@@ -1325,14 +1309,6 @@ a {
   46% { transform: scale(0.94); }
   62% { transform: scale(1.08); }
   78% { transform: scale(0.98); }
-}
-
-@keyframes flavors-finger-tap {
-  0%, 100% { transform: translateY(0) rotate(-14deg); }
-  28% { transform: translateY(8px) rotate(8deg); }
-  46% { transform: translateY(-6px) rotate(-10deg); }
-  62% { transform: translateY(4px) rotate(2deg); }
-  78% { transform: translateY(0) rotate(-12deg); }
 }
 
 .flavors__arrow {
