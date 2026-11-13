@@ -49,13 +49,16 @@ html {
   -webkit-font-smoothing: antialiased;
   font-size: 18px;
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
   font-family: var(--font-display);
   color: var(--black);
   background: var(--page-bg);
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
   line-height: 1.6;
   min-height: 100%;
 }
@@ -1408,11 +1411,24 @@ a {
     font-size: 1.05rem;
     line-height: 1.35;
   }
+
+  .founder-story__box {
+    overflow: hidden;
+  }
+
+  .founder-story__comic {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+  }
 }
 
 .founder-story__comic {
   margin: 0 auto;
-  max-width: min(1040px, 94vw);
+  width: 100%;
+  max-width: 100%;
   padding: clamp(10px, 1.6vw, 16px);
   background: var(--white);
   border: 3px solid var(--brown);
@@ -1496,6 +1512,14 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.1;
+}
+
+.pride__title-line {
+  display: inline;
+}
+
+.pride__title-line + .pride__title-line::before {
+  content: " ";
 }
 
 .pride__bubbles {
@@ -2742,8 +2766,9 @@ a {
   }
 
   .products__header {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: auto;
+    margin-left: -14px;
+    margin-right: -14px;
   }
 
   .products__noodle-box {
@@ -2814,8 +2839,7 @@ a {
   }
 
   .pride {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 36px 20px;
     text-align: center;
   }
 
@@ -2835,6 +2859,14 @@ a {
     width: 100%;
     margin-inline: auto;
     text-align: center;
+  }
+
+  .pride__title-line {
+    display: block;
+  }
+
+  .pride__title-line + .pride__title-line::before {
+    content: none;
   }
 
   .marquee {
