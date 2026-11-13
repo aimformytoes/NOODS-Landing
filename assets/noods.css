@@ -1393,7 +1393,7 @@ a {
   }
 
   .founder-story__box {
-    padding: 28px 16px 24px;
+    padding: 22px 8px 48px;
   }
 
   .founder-story__title {
@@ -1421,6 +1421,8 @@ a {
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
+    padding: 5px 3px;
+    box-shadow: 4px 4px 0 rgba(90, 52, 36, 0.9);
     overflow: hidden;
   }
 }
@@ -3077,8 +3079,43 @@ a {
     letter-spacing: 0.045em;
   }
 
+  .flavors .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .flavors__header,
+  .flavors__controls,
+  .flavors__cta-row {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .flavors__stage {
-    --cup-w: clamp(168px, 52vw, 230px);
+    --cup-w: clamp(214px, 68vw, 280px);
+    height: calc(var(--cup-w) * 0.98);
+  }
+
+  .flavor-cup {
+    bottom: 6%;
+  }
+
+  .founder-story__box {
+    padding: 22px 0 86px;
+  }
+
+  .founder-story__header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .founder-story__comic {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 4px 0;
+    border-radius: 12px;
+    box-shadow: none;
   }
 
   .flavors__name {

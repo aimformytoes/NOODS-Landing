@@ -545,8 +545,13 @@
         const theta = ((i * step - rotation) * Math.PI) / 180;
         const depth = (Math.cos(theta) + 1) / 2;
         const x = Math.sin(theta) * rx;
-        const y = -(1 - depth) * ry * 2;
-        const scale = (compact ? 0.78 : 0.8) + (compact ? 0.22 : 0.2) * depth;
+        // On a phone the front cup is larger and sits higher than the side cups.
+        const y = compact
+          ? (1 - depth) * 20 - depth * 36
+          : -(1 - depth) * ry * 2;
+        const scale = compact
+          ? 0.53 + 0.47 * depth
+          : 0.8 + 0.2 * depth;
         const tilt = Math.sin(theta) * -10;
 
         cup.style.transform =
