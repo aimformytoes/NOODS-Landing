@@ -545,9 +545,9 @@
         const theta = ((i * step - rotation) * Math.PI) / 180;
         const depth = (Math.cos(theta) + 1) / 2;
         const x = Math.sin(theta) * rx;
-        // On a phone the two back cups sit higher, and the front cup is a bit larger.
+        // On a phone the two back cups sit higher so their tops stay visible.
         const y = compact
-          ? -92 + depth * 56
+          ? -170 + depth * 134
           : -(1 - depth) * ry * 2;
         const scale = compact
           ? 0.5 + 0.58 * depth

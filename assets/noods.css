@@ -2914,6 +2914,10 @@ a {
     margin-bottom: 40px;
   }
 
+  .pride__header {
+    margin-bottom: 0;
+  }
+
   .product-card {
     width: 100%;
     aspect-ratio: auto;
@@ -3094,6 +3098,7 @@ a {
   .flavors__stage {
     --cup-w: clamp(214px, 68vw, 280px);
     height: calc(var(--cup-w) * 0.98);
+    margin-top: 92px;
   }
 
   .flavor-cup {
