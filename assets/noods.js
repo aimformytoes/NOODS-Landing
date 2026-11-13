@@ -538,7 +538,7 @@
       // Phones get a tighter orbit so the side cups stay on screen.
       // Wider stages keep the original desktop spacing.
       const compact = stage.clientWidth < 640;
-      const rx = stage.clientWidth * (compact ? 0.3 : 0.36);
+      const rx = stage.clientWidth * (compact ? 0.27 : 0.36);
       const ry = stage.clientHeight * 0.1;
 
       cups.forEach(function (cup, i) {

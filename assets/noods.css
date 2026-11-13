@@ -3096,9 +3096,9 @@ a {
   }
 
   .flavors__stage {
-    --cup-w: clamp(214px, 68vw, 280px);
-    height: calc(var(--cup-w) * 0.98);
-    margin-top: 92px;
+    --cup-w: clamp(268px, 86vw, 380px);
+    height: calc(var(--cup-w) * 1.02);
+    margin-top: 46px;
   }
 
   .flavor-cup {
