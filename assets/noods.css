@@ -490,7 +490,7 @@ a {
   display: flex;
   align-items: flex-end;
   width: max-content;
-  animation: marquee 90s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
 .noodle-loop {
