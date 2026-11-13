@@ -2794,6 +2794,9 @@ a {
   }
 
   .hero__cta {
+    position: relative;
+    display: flex;
+    justify-content: center;
     padding: 12px 16px 4px;
   }
 
@@ -2801,6 +2804,37 @@ a {
     min-height: 44px;
     padding: 8px 20px;
     font-size: clamp(0.88rem, 3.6vw, 1.02rem);
+  }
+
+  .hero__scroll {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    margin-top: -22px;
+  }
+
+  .pride {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+  }
+
+  .pride .container {
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .pride__header {
+    margin-bottom: 0;
+  }
+
+  .pride__title {
+    display: block;
+    width: 100%;
+    margin-inline: auto;
+    text-align: center;
   }
 
   .marquee {
