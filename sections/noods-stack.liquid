@@ -1,0 +1,93 @@
+<div class="page-content">
+  <section class="cup-stack" id="cup-stack" aria-labelledby="cup-stack-title">
+    <h2 class="cup-stack__title" id="cup-stack-title">The healthier alternative</h2>
+    <div class="cup-stack__frame">
+      <ul class="cup-stack__notes">
+        <li class="cup-stack__note cup-stack__note--left" style="--note-y: 18%">
+          <span class="cup-stack__label">prebiotic fiber</span>
+          <svg class="cup-stack__arrow" viewBox="0 0 78 14" aria-hidden="true" focusable="false">
+            <circle cx="5" cy="7" r="3.25" fill="none" stroke="currentColor" stroke-width="1.35" />
+            <path d="M9 7 H66" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+            <path d="M62 3.2 L72 7 L62 10.8" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </li>
+        <li class="cup-stack__note cup-stack__note--right" style="--note-y: 34%">
+          <svg class="cup-stack__arrow" viewBox="0 0 78 14" aria-hidden="true" focusable="false">
+            <circle cx="5" cy="7" r="3.25" fill="none" stroke="currentColor" stroke-width="1.35" />
+            <path d="M9 7 H66" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+            <path d="M62 3.2 L72 7 L62 10.8" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="cup-stack__label">clean ingredients</span>
+        </li>
+        <li class="cup-stack__note cup-stack__note--left" style="--note-y: 50%">
+          <span class="cup-stack__label">lower sodium</span>
+          <svg class="cup-stack__arrow" viewBox="0 0 78 14" aria-hidden="true" focusable="false">
+            <circle cx="5" cy="7" r="3.25" fill="none" stroke="currentColor" stroke-width="1.35" />
+            <path d="M9 7 H66" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+            <path d="M62 3.2 L72 7 L62 10.8" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </li>
+        <li class="cup-stack__note cup-stack__note--right" style="--note-y: 66%">
+          <svg class="cup-stack__arrow" viewBox="0 0 78 14" aria-hidden="true" focusable="false">
+            <circle cx="5" cy="7" r="3.25" fill="none" stroke="currentColor" stroke-width="1.35" />
+            <path d="M9 7 H66" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+            <path d="M62 3.2 L72 7 L62 10.8" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="cup-stack__label">lower fat</span>
+        </li>
+        <li class="cup-stack__note cup-stack__note--left" style="--note-y: 82%">
+          <span class="cup-stack__label">functional nutrition</span>
+          <svg class="cup-stack__arrow" viewBox="0 0 78 14" aria-hidden="true" focusable="false">
+            <circle cx="5" cy="7" r="3.25" fill="none" stroke="currentColor" stroke-width="1.35" />
+            <path d="M9 7 H66" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+            <path d="M62 3.2 L72 7 L62 10.8" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </li>
+      </ul>
+    <div class="cup-stack__stage">
+      <img
+        class="cup-stack__layer"
+        src="{{ 'noods-stack-1.png' | asset_url }}"
+        alt="Three NOODS cups stacked: Hot and Spicy, Savoury Beef, and Chicken Broth"
+        width="840"
+        height="1734"
+        draggable="false"
+      />
+      <img
+        class="cup-stack__layer"
+        src="{{ 'noods-stack-2.png' | asset_url }}"
+        alt=""
+        width="840"
+        height="1734"
+        draggable="false"
+      />
+      <img
+        class="cup-stack__layer"
+        src="{{ 'noods-stack-3.png' | asset_url }}"
+        alt=""
+        width="840"
+        height="1734"
+        draggable="false"
+      />
+    </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "NOODS cup stack",
+  "tag": "div",
+  "class": "noods-section",
+  "presets": [
+    {
+      "name": "NOODS cup stack"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  }
+}
+{% endschema %}

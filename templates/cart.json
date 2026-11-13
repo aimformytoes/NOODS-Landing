@@ -1,0 +1,12 @@
+{
+  "layout": "noods",
+  "sections": {
+    "main": {
+      "type": "noods-cart",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
