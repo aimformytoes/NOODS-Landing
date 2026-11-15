@@ -239,6 +239,7 @@ a {
 .site-nav--home .site-header__cart {
   position: absolute;
   top: 50%;
+  z-index: 4;
   transform: translateY(-50%);
 }
 
@@ -254,13 +255,18 @@ a {
   position: absolute;
   left: 50%;
   bottom: 0;
+  z-index: 2;
   width: min(640px, calc(100% - 8px));
   transform: translateX(-50%);
+  /* The layout box stays full size while the picture scales. Only the
+     visible logo should take the tap, so the menu and cart stay clickable. */
+  pointer-events: none;
 }
 
 .site-nav--home .site-header__logo img {
   transform: translate3d(0, calc(50% + 4px), 0);
   transform-origin: center bottom;
+  pointer-events: auto;
   will-change: transform;
 }
 
@@ -292,6 +298,7 @@ a {
   left: 0;
   right: 0;
   top: 100%;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   gap: 4px;
