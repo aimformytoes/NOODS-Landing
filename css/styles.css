@@ -922,6 +922,43 @@ a {
   font-weight: 400;
 }
 
+.footer__contact {
+  margin-top: 18px;
+  font-family: var(--font-headline);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+}
+
+.footer__contact a {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--yellow);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__contact a:hover,
+.footer__contact a:focus-visible {
+  color: var(--white);
+  outline: none;
+}
+
+@media (max-width: 640px) {
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0 12px;
+  }
+
+  .footer__contact a {
+    margin-left: 0;
+  }
+}
+
 /* ---- Floating CTA ---- */
 
 .floating-cta {
@@ -1339,6 +1376,10 @@ a {
     right: 16px;
     left: 16px;
     text-align: center;
+  }
+
+  .footer {
+    padding-bottom: 96px;
   }
 }
 
